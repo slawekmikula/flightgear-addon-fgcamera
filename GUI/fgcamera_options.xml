@@ -4,19 +4,8 @@
 	<name>fgcamera-options</name>
 	<layout>vbox</layout>
 	<width>330</width>
-	<x>20</x>
-	<y>50</y>
 	<group>
 		<layout>hbox</layout>
-
-		<button>
-			<legend> </legend>
-			<pref-width>16</pref-width>
-			<pref-height>16</pref-height>
-			<binding>
-				<command>dialog-close</command>
-			</binding>
-		</button>
 
 		<empty><stretch>1</stretch></empty>
 
@@ -49,11 +38,28 @@
 		</binding>
 	</checkbox>
 
-	<checkbox>
-		<halign>left</halign>
-		<label>play sounds (n/a)</label>
-		<property>/autopilot/locks/heading</property>
-	</checkbox>
+	<group>
+		<layout>hbox</layout>
+		<checkbox>
+			<halign>left</halign>
+			<label>Enable mini dialog</label>
+			<property>/sim/fgcamera/enable-mini-dialog</property>
+			<binding>
+				<command>dialog-apply</command>
+			</binding>
+		</checkbox>
+		<!--checkbox>
+			<halign>right</halign>
+			<enable>
+				<property>/sim/fgcamera/enable-mini-dialog</property>
+			</enable>
+			<label>Auto-hide</label>
+			<property>/sim/fgcamera/mini-dialog-autohide</property>
+			<binding>
+				<command>dialog-apply</command>
+			</binding>
+		</checkbox-->
+	</group>
 
 	<hrule/>
 

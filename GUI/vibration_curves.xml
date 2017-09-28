@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 
 <PropertyList>
-	<name>RND-curves</name>
+	<name>vibration-curves</name>
 	<layout>vbox</layout>
 	<x>-20</x>
 	<y>-50</y>
@@ -10,11 +10,8 @@
 		<open><![CDATA[
 			var self = cmdarg();
 			var listeners = [];
-			append(listeners, setlistener( "/sim/fgcamera/current-camera/camera-index", func { getCameraIndex() } ) );
-			append(listeners, setlistener( "/sim/fgcamera/state/wow", func { getMode() }, 0, 0 ) );
 
-			var mode = 0;
-			var current_index = 0;
+			var mode = getprop("/sim/fgcamera/dialogs/power-plant-vibration/curve-type");
 			var engine_number = getprop("/sim/fgcamera/dialogs/power-plant-vibration/engine-number");
 			var node = "rotor";
 			if (mode == "engine")
@@ -76,14 +73,8 @@
 					me.marker.setTranslation(me._x = x, me._y = y);
 					me._update_curve();
 
-					#me.data_x[me._id].setValue(x * me.h_res);
-					#me.data_y[me._id].setValue((me.graph_height - y) * me.v_res);
-					var N = props.getNode("/sim/fgcamera/current-camera/effects").getChild("RND", mode, 1).getNode("curves", 1);
-					N.getChild(me.data_x, me._id, 1).setValue(x * me.h_res);
-					N.getChild(me.data_y, me._id, 1).setValue((me.graph_height - y) * me.v_res);
-					N = props.getNode("/sim/fgcamera", 1).getChild("camera", current_index, 1).getNode("effects", 1).getChild("RND", mode, 1).getNode("curves", 1);
-					N.getChild(me.data_x, me._id, 1).setValue(x * me.h_res);
-					N.getChild(me.data_y, me._id, 1).setValue((me.graph_height - y) * me.v_res);
+					me.data_x[me._id].setValue(x * me.h_res);
+					me.data_y[me._id].setValue((me.graph_height - y) * me.v_res);
 				},
 			#--------------------------------------------------
 				refresh: func (graph_width, graph_height, h_res, v_res) {
@@ -115,8 +106,8 @@
 			var Chart = {
 				new: func (x_values, y_values, myCanvas) {
 
-					#if ( size(x_values) != size(y_values) )
-					#	return;
+					if ( size(x_values) != size(y_values) )
+						return;
 
 					var m = { parents : [ Chart ] };
 
@@ -145,12 +136,8 @@
 
 					m.canvas = myCanvas;
 
-
-					m.x_values = x_values;
-					m.y_values = y_values;
-					var N = props.getNode("/sim/fgcamera/current-camera/effects").getChild("RND", mode, 1).getNode("curves", 1);
-					m._x_vector = N.getChildren(m.x_values);
-					m._y_vector = N.getChildren(m.y_values);
+					m._x_vector = x_values;
+					m._y_vector = y_values;
 
 					foreach (var a; ["_chart", "_axes_bg", "_xAxis", "_yAxis", "_graph_window_top"])
 						m[a] = myCanvas.createGroup();
@@ -221,10 +208,6 @@
 					var x = nil;
 					var y = nil;
 
-
-					var N = props.getNode("/sim/fgcamera/current-camera/effects").getChild("RND", mode, 1).getNode("curves", 1);
-					me._x_vector = N.getChildren(me.x_values);
-					me._y_vector = N.getChildren(me.y_values);
 					for (var i = 0; i <= 9; i += 1) {
 						x = me._x_vector[i].getValue() / me.h_res;
 						y = ( me.max_y - me._y_vector[i].getValue() ) / me.v_res;
@@ -483,21 +466,18 @@
 
 
 			var getMode = func {
-				if ( getprop("/sim/fgcamera/dialogs/RND/edit-mode") )
-					mode = getprop("/sim/fgcamera/dialogs/RND/profile");
-				else mode = !getprop("/sim/fgcamera/state/wow");
-				#print(mode);
+				var GUI_edit = fgcamera.RND_handler.GUI_edit;
+				var GUI_mode = fgcamera.RND_handler.GUI_mode;
+
+				if ( GUI_edit ) var mode = GUI_mode;
+				else var mode = fgcamera.RND_handler._mode;
 			}
-			getMode();
-
-			getCameraIndex = func current_index = getprop("/sim/fgcamera/current-camera/camera-index");
-			getCameraIndex();
 
 
-			#var getData = func (key, i) fgcamera.rnd[ getMode() ].curves[key][i];
+			var getData = func (key, i) fgcamera.rnd[ getMode() ].curves[key][i];
 
 
-			#var setData = func (key, i, d) fgcamera.rnd[ getMode() ].curves[key][i] = d;
+			var setData = func (key, i, d) fgcamera.rnd[ getMode() ].curves[key][i] = d;
 
 
 		]]></open>
@@ -527,11 +507,11 @@
 			</binding-->
 			<binding>
 				<command>dialog-show</command>
-				<dialog-name>RND-mixer</dialog-name>
+				<dialog-name>power-plant-vibration</dialog-name>
 			</binding>
 			<binding>
 				<command>dialog-close</command>
-				<dialog-name>RND-curves</dialog-name>
+				<dialog-name>vibration-curves</dialog-name>
 			</binding>
 		</button>
 	</group>
@@ -558,26 +538,25 @@
 
 						#var v1 = props.getNode("/sim/fgcamera/camera/effects/RND/curves").getChildren("v1");
 						#var level = props.getNode("/sim/fgcamera/camera/effects/RND/curves").getChildren("level");
-						#var frequency = props.getNode("/sim/fgcamera/effects/power-plant-vibration/" ~ node).getChildren("frequency");
-						#var rpm = props.getNode("/sim/fgcamera/effects/power-plant-vibration/" ~ node).getChildren("rpm");
-						var myChart1 = Chart.new( "v1", "level", myCanvas1 )
-							.chartTitle("Gain curve")
-							.xTitle("speed, kt")
-							.yTitle("gain")
+						var frequency = props.getNode("/sim/fgcamera/effects/power-plant-vibration/" ~ node).getChildren("frequency");
+						var rpm = props.getNode("/sim/fgcamera/effects/power-plant-vibration/" ~ node).getChildren("rpm");
+						var myChart1 = Chart.new( rpm, frequency, myCanvas1 )
+							.chartTitle("Frequency curve [engine 0]")
+							.xTitle("RPM")
+							.yTitle("frequency")
 							.graphLineColor(1, 0, 0)
 							.markerLineColor(0, 1, 0)
 							.markerFillColor(0, 0, 0)
 							.plotAreaColor(0, 0, 0.2)
 							.chartAreaColor(0, 0, 0)
-							.hLength(200)
+							.hLength(mode == "engine" ? 3500 : 500)
 							.hSpacing(100)
-							.hStep(10)
-							.vLength(2)
-							.vSpacing(70)
-							.vStep(0.5)
+							.hStep(mode == "engine" ? 500 : 100)
+							.vLength(25)
+							.vSpacing(50)
+							.vStep(5)
 						;
-						append(listeners, setlistener( "/sim/fgcamera/current-camera/camera-index", func myChart1.update()) );
-						append(listeners, setlistener( "/sim/fgcamera/state/wow", func myChart1.update()) );
+						append(listeners, setlistener( "/sim/fgcamera/current-camera/RND-updated", func { myChart1.update( { x: "v1", y: "level"} ) } ) );
 
 					]]> </load>
 				</nasal>
@@ -616,26 +595,25 @@
 						var myCanvas2 = canvas.get( cmdarg() );
 						myCanvas2.setColorBackground(0, 0, 0, 1);
 
-#						var gain = props.getNode("/sim/fgcamera/effects/power-plant-vibration/" ~ node).getChildren("gain");
-#						var velocity = props.getNode("/sim/fgcamera/effects/power-plant-vibration/" ~ node).getChildren("rpm1");
+						var gain = props.getNode("/sim/fgcamera/effects/power-plant-vibration/" ~ node).getChildren("gain");
+						var rpm = props.getNode("/sim/fgcamera/effects/power-plant-vibration/" ~ node).getChildren("rpm1");
 
 #						var v2 = props.getNode("/sim/fgcamera/camera/effects/RND/curves").getChildren("v2");
 #						var filter = props.getNode("/sim/fgcamera/camera/effects/RND/curves").getChildren("filter");
-						var myChart2 = Chart.new( "v2", "filter", myCanvas2 )
-							.chartTitle("Filter curve")
+						var myChart2 = Chart.new( rpm, gain, myCanvas2 )
+							.chartTitle("Gain curve")
 							.chartAreaColor(0, 0, 0)
 							.plotAreaColor(0, 0, 0.2)
-							.hLength(200)
+							.hLength(mode == "engine" ? 3500 : 500)
 							.hSpacing(100)
-							.hStep(10)
-							.vLength(1.5)
-							.vSpacing(100)
+							.hStep(mode == "engine" ? 500 : 100)
+							.vLength(2)
+							.vSpacing(50)
 							.vStep(0.5)
-							.xTitle("speed, kt")
-							.yTitle("filter")
+							.xTitle("RPM")
+							.yTitle("Gain")
 						;
-						append(listeners, setlistener( "/sim/fgcamera/current-camera/camera-index", func myChart2.update()) );
-						append(listeners, setlistener( "/sim/fgcamera/state/wow", func myChart2.update()) );
+						#append(listeners, setlistener( "/sim/fgcamera/current-camera/RND-updated", func { myChart2.update( { x: "v2", y: "filter"} ) } ) );
 					]]> </load>
 				</nasal>
 			</canvas>

@@ -1,73 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <PropertyList>
+	<fgcam>
+		<rnd>0</rnd>
+		<buffeting>
+			<enable>1</enable>
+			<frequency>10</frequency>
+			<level>0.0015</level>
+		</buffeting>
+	</fgcam>
 	<input>
 		<keyboard>
-			<!-- key n="101">
-				<name>e</name>
-				<desc>throttle up</desc>
-				<repeatable>1</repeatable>
-				<binding>
-					<command>nasal</command>
-					<script>controls.incThrottle(0.01, 1.0)</script>
-				</binding>
-			</key>
-
-			<key n="100">
-				<name>d</name>
-				<desc>throttle down</desc>
-				<repeatable>1</repeatable>
-				<binding>
-					<command>nasal</command>
-					<script>controls.incThrottle(-0.01, -1.0)</script>
-				</binding>
-			</key>
-
-			<key n="115">
-				<name>s</name>
-				<desc>rudder left</desc>
-				<repeatable>1</repeatable>
-				<binding>
-					<command>property-adjust</command>
-					<property>/controls/flight/rudder</property>
-					<step type="double">-0.05</step>
-				</binding>
-			</key>
-
-			<key n="119">
-				<name>w</name>
-				<desc>rudder left - slow</desc>
-				<repeatable>1</repeatable>
-				<binding>
-					<command>property-adjust</command>
-					<property>/controls/flight/rudder</property>
-					<step type="double">-0.01</step>
-				</binding>
-			</key>
-
-			<key n="102">
-				<name>f</name>
-				<desc>rudder right</desc>
-				<repeatable>1</repeatable>
-				<binding>
-					<command>property-adjust</command>
-					<property>/controls/flight/rudder</property>
-					<step type="double">0.05</step>
-				</binding>
-			</key>
-
-			<key n="114">
-				<name>r</name>
-				<desc>rudder right - slow</desc>
-				<repeatable>1</repeatable>
-				<binding>
-					<command>property-adjust</command>
-					<property>/controls/flight/rudder</property>
-					<step type="double">0.01</step>
-				</binding>
-			</key -->
-
-			<key n="32">
+			<!--key n="32">
 				<name>Space</name>
 				<desc>toggle mouse mode</desc>
 				<repeatable>0</repeatable>
@@ -75,7 +19,7 @@
 					<command>nasal</command>
 					<script>fgcamera.toggleYoke()</script>
 				</binding>
-			</key>
+			</key-->
 
 			<key n="360">
 				<mod-shift>
@@ -118,22 +62,20 @@
 			<key n="48">
 				<name> 0 </name>
 				<repeatable type="bool">false</repeatable>
-				<desc>Preset view 0</desc>
+				<desc>Slot 0</desc>
 				<binding>
 					<command>fgcamera-select</command>
-					<camera-id>0</camera-id>
-					<camera-type>aircraft</camera-type>
+					<slot>0</slot>
 				</binding>
 			</key>
 
 			<key n="49">
 				<name> 1 </name>
 				<repeatable type="bool">false</repeatable>
-				<desc>Preset view 1</desc>
+				<desc>Preset view 5</desc>
 				<binding>
 					<command>fgcamera-select</command>
-					<camera-id>1</camera-id>
-					<camera-type>aircraft</camera-type>
+					<slot>1</slot>
 				</binding>
 			</key>
 			<key n="50">
@@ -141,8 +83,7 @@
 				<desc>Preset view 2</desc>
 				<binding>
 					<command>fgcamera-select</command>
-					<camera-id>2</camera-id>
-					<camera-type>aircraft</camera-type>
+					<slot>2</slot>
 				</binding>
 			</key>
 
@@ -151,8 +92,7 @@
 				<desc>Preset view 3</desc>
 				<binding>
 					<command>fgcamera-select</command>
-					<camera-id>3</camera-id>
-					<camera-type>aircraft</camera-type>
+					<slot>3</slot>
 				</binding>
 			</key>
 
@@ -162,8 +102,7 @@
 				<desc>Preset view 4</desc>
 				<binding>
 					<command>fgcamera-select</command>
-					<camera-id>4</camera-id>
-					<camera-type>aircraft</camera-type>
+					<slot>4</slot>
 				</binding>
 			</key>
 
@@ -172,8 +111,7 @@
 				<desc>Preset view 5</desc>
 				<binding>
 					<command>fgcamera-select</command>
-					<camera-id>5</camera-id>
-					<camera-type>aircraft</camera-type>
+					<slot>5</slot>
 				</binding>
 			</key>
 
@@ -182,8 +120,7 @@
 				<desc>Preset view 6</desc>
 				<binding>
 					<command>fgcamera-select</command>
-					<camera-id>6</camera-id>
-					<camera-type>aircraft</camera-type>
+					<slot>6</slot>
 				</binding>
 			</key>
 
@@ -192,8 +129,7 @@
 				<desc>Preset view 7</desc>
 				<binding>
 					<command>fgcamera-select</command>
-					<camera-id>7</camera-id>
-					<camera-type>aircraft</camera-type>
+					<slot>7</slot>
 				</binding>
 			</key>
 
@@ -202,8 +138,7 @@
 				<desc>Preset view 8</desc>
 				<binding>
 					<command>fgcamera-select</command>
-					<camera-id>8</camera-id>
-					<camera-type>aircraft</camera-type>
+					<slot>8</slot>
 				</binding>
 			</key>
 
@@ -212,14 +147,14 @@
 				<desc>Preset view 9</desc>
 				<binding>
 					<command>fgcamera-select</command>
-					<camera-id>9</camera-id>
-					<camera-type>aircraft</camera-type>
+					<slot>9</slot>
 				</binding>
 			</key>
 
 			<key n="357">
 				<name> Up </name>
 				<desc>Camera forward</desc>
+				<repeatable>0</repeatable>
 				<binding>
 					<command>fgcamera-adjust</command>
 					<velocity>-1</velocity>
@@ -232,11 +167,26 @@
 						<dof>z</dof>
 					</binding>
 				</mod-up>
+				<mod-shift>
+					<binding>
+						<command>property-assign</command>
+						<property>/sim/fgcamera/view-adjustment/raw/fov-velocity</property>
+						<value>-1</value>
+					</binding>
+					<mod-up>
+						<binding>
+							<command>property-assign</command>
+							<property>/sim/fgcamera/view-adjustment/raw/fov-velocity</property>
+							<value>0</value>
+						</binding>
+					</mod-up>
+				</mod-shift>
 			</key>
 
 			<key n="359">
 				<name> Down </name>
 				<desc>camera back</desc>
+				<repeatable>0</repeatable>
 				<binding>
 					<command>fgcamera-adjust</command>
 					<velocity>1</velocity>
@@ -249,21 +199,36 @@
 						<dof>z</dof>
 					</binding>
 				</mod-up>
+				<mod-shift>
+					<binding>
+						<command>property-assign</command>
+						<property>/sim/fgcamera/view-adjustment/raw/fov-velocity</property>
+						<value>1</value>
+					</binding>
+					<mod-up>
+						<binding>
+							<command>property-assign</command>
+							<property>/sim/fgcamera/view-adjustment/raw/fov-velocity</property>
+							<value>0</value>
+						</binding>
+					</mod-up>
+				</mod-shift>
 			</key>
 
 			<key n="356">
 				<name> Left </name>
 				<desc>Camera left</desc>
+				<repeatable>0</repeatable>
 				<binding>
-					<command>fgcamera-adjust</command>
-					<velocity>-1</velocity>
-					<dof>x</dof>
+					<command>property-assign</command>
+					<property>/sim/fgcamera/view-adjustment/raw/x-velocity</property>
+					<value>-1</value>
 				</binding>
 				<mod-up>
 					<binding>
-						<command>fgcamera-adjust</command>
-						<velocity>0</velocity>
-						<dof>x</dof>
+						<command>property-assign</command>
+						<property>/sim/fgcamera/view-adjustment/raw/x-velocity</property>
+						<value>0</value>
 					</binding>
 				</mod-up>
 			</key>
@@ -271,16 +236,17 @@
 			<key n="358">
 				<name> Right </name>
 				<desc>Camera right</desc>
+				<repeatable>0</repeatable>
 				<binding>
-					<command>fgcamera-adjust</command>
-					<velocity>1</velocity>
-					<dof>x</dof>
+					<command>property-assign</command>
+					<property>/sim/fgcamera/view-adjustment/raw/x-velocity</property>
+					<value>1</value>
 				</binding>
 				<mod-up>
 					<binding>
-						<command>fgcamera-adjust</command>
-						<velocity>0</velocity>
-						<dof>x</dof>
+						<command>property-assign</command>
+						<property>/sim/fgcamera/view-adjustment/raw/x-velocity</property>
+						<value>0</value>
 					</binding>
 				</mod-up>
 			</key>
@@ -288,11 +254,302 @@
 	</input>
 
 	<sim>
+		<TrackIR>
+			<heading-deg>0.0</heading-deg>
+			<pitch-deg>0.0</pitch-deg>
+			<roll-deg>0.0</roll-deg>
+			<x-m>0.0</x-m>
+			<y-m>0.0</y-m>
+			<z-m>0.0</z-m>
+		</TrackIR>
+		<mouse>
+			<right-button-mode-cycle-enabled>true</right-button-mode-cycle-enabled>
+		</mouse>
 		<fgcamera>
-			<enable type="bool">true</enable>
-			<mouse>
-				<spring-loaded type="bool" userarchive="y">true</spring-loaded>
-			</mouse>
+			<camera n="0" include="default-camera.xml"/>
+			<fgcamera-enabled type="bool">true</fgcamera-enabled>
+			<!--mouse>
+				<spring-loaded type="bool">true</spring-loaded>
+			</mouse-->
+			<current-camera>
+				<view-number>0</view-number>
+			</current-camera>
+			<panel n="0">
+				<path>Nasal/fgcamera/Panels/generic-vfr-panel.xml</path>
+				<name>vfr panel 1</name>
+			</panel>
+			<panel n="2">
+				<path>Nasal/fgcamera/Panels/generic-vfr-panel2.xml</path>
+				<name>vfr panel 2</name>
+			</panel>
+
+			<effects>
+				<DHM>
+					<head-mass-kg>4.0</head-mass-kg>
+					<load-release-filter>0.2</load-release-filter>
+
+					<x-damping>48</x-damping>
+					<x-limit>0.2</x-limit>
+					<x-constant-g-scale>2</x-constant-g-scale>
+					<x-impulse-g-scale>2</x-impulse-g-scale>
+					<x-roll-factor>57</x-roll-factor>
+
+					<y-damping>33</y-damping>
+					<y-limit>0.09</y-limit>
+					<y-constant-g-scale>0.9</y-constant-g-scale>
+					<y-impulse-g-scale>1.27</y-impulse-g-scale>
+					<y-pitch-factor>178</y-pitch-factor>
+
+					<z-damping>30</z-damping>
+					<z-limit>0.05</z-limit>
+					<z-constant-g-scale>2</z-constant-g-scale>
+					<z-impulse-g-scale>2</z-impulse-g-scale>
+					<z-pitch-factor>50</z-pitch-factor>
+
+					<r-damping>100</r-damping>
+					<r-limit>15</r-limit>
+					<r-constant-g-scale>0.5</r-constant-g-scale>
+					<r-impulse-g-scale>0.5</r-impulse-g-scale>
+					<r-x-factor>0.01</r-x-factor>
+				</DHM>
+
+				<power-plant-vibration>
+					<engine n="0">
+						<enable type="bool">0</enable>
+						<x-scale type="double">0</x-scale>
+						<y-scale type="double">0</y-scale>
+						<z-scale type="double">0</z-scale>
+
+						<rpm type="double">0</rpm>
+						<rpm type="double">10</rpm>
+						<rpm type="double">20</rpm>
+						<rpm type="double">50</rpm>
+						<rpm type="double">100</rpm>
+						<rpm type="double">150</rpm>
+						<rpm type="double">200</rpm>
+						<rpm type="double">220</rpm>
+						<rpm type="double">250</rpm>
+						<rpm type="double">300</rpm>
+
+						<frequency type="double">0</frequency>
+						<frequency type="double">1</frequency>
+						<frequency type="double">2</frequency>
+						<frequency type="double">3</frequency>
+						<frequency type="double">4</frequency>
+						<frequency type="double">5</frequency>
+						<frequency type="double">6</frequency>
+						<frequency type="double">7</frequency>
+						<frequency type="double">8</frequency>
+						<frequency type="double">9</frequency>
+
+						<rpm1 type="double">0</rpm1>
+						<rpm1 type="double">10</rpm1>
+						<rpm1 type="double">20</rpm1>
+						<rpm1 type="double">50</rpm1>
+						<rpm1 type="double">100</rpm1>
+						<rpm1 type="double">150</rpm1>
+						<rpm1 type="double">200</rpm1>
+						<rpm1 type="double">220</rpm1>
+						<rpm1 type="double">250</rpm1>
+						<rpm1 type="double">300</rpm1>
+
+						<gain type="double">0</gain>
+						<gain type="double">1</gain>
+						<gain type="double">1.5</gain>
+						<gain type="double">1.2</gain>
+						<gain type="double">1.1</gain>
+						<gain type="double">1.0</gain>
+						<gain type="double">0.5</gain>
+						<gain type="double">0.3</gain>
+						<gain type="double">0.1</gain>
+						<gain type="double">0.05</gain>
+					</engine>
+
+					<engine n="1">
+						<enable type="bool">0</enable>
+						<x-scale type="double">0</x-scale>
+						<y-scale type="double">0</y-scale>
+						<z-scale type="double">0</z-scale>
+
+						<rpm type="double">0</rpm>
+						<rpm type="double">10</rpm>
+						<rpm type="double">20</rpm>
+						<rpm type="double">50</rpm>
+						<rpm type="double">100</rpm>
+						<rpm type="double">150</rpm>
+						<rpm type="double">200</rpm>
+						<rpm type="double">220</rpm>
+						<rpm type="double">250</rpm>
+						<rpm type="double">300</rpm>
+
+						<frequency type="double">0</frequency>
+						<frequency type="double">1</frequency>
+						<frequency type="double">2</frequency>
+						<frequency type="double">3</frequency>
+						<frequency type="double">4</frequency>
+						<frequency type="double">5</frequency>
+						<frequency type="double">6</frequency>
+						<frequency type="double">7</frequency>
+						<frequency type="double">8</frequency>
+						<frequency type="double">9</frequency>
+
+						<rpm1 type="double">0</rpm1>
+						<rpm1 type="double">10</rpm1>
+						<rpm1 type="double">20</rpm1>
+						<rpm1 type="double">50</rpm1>
+						<rpm1 type="double">100</rpm1>
+						<rpm1 type="double">150</rpm1>
+						<rpm1 type="double">200</rpm1>
+						<rpm1 type="double">220</rpm1>
+						<rpm1 type="double">250</rpm1>
+						<rpm1 type="double">300</rpm1>
+
+						<gain type="double">0</gain>
+						<gain type="double">1</gain>
+						<gain type="double">1.5</gain>
+						<gain type="double">1.2</gain>
+						<gain type="double">1.1</gain>
+						<gain type="double">1.0</gain>
+						<gain type="double">0.5</gain>
+						<gain type="double">0.3</gain>
+						<gain type="double">0.1</gain>
+						<gain type="double">0.05</gain>
+					</engine>
+
+					<engine n="2">
+						<enable type="bool">0</enable>
+						<x-scale type="double">0</x-scale>
+						<y-scale type="double">0</y-scale>
+						<z-scale type="double">0</z-scale>
+						<rpm type="double">0</rpm>    <gain type="double">0</gain>    <frequency type="double">0</frequency>
+						<rpm type="double">100</rpm>  <gain type="double">1</gain>    <frequency type="double">1</frequency>
+						<rpm type="double">200</rpm>  <gain type="double">1.5</gain>  <frequency type="double">2</frequency>
+						<rpm type="double">500</rpm>  <gain type="double">1.2</gain>  <frequency type="double">3</frequency>
+						<rpm type="double">1000</rpm> <gain type="double">1.1</gain>  <frequency type="double">4</frequency>
+						<rpm type="double">1500</rpm> <gain type="double">1.0</gain>  <frequency type="double">5</frequency>
+						<rpm type="double">2000</rpm> <gain type="double">0.5</gain>  <frequency type="double">6</frequency>
+						<rpm type="double">2200</rpm> <gain type="double">0.3</gain>  <frequency type="double">7</frequency>
+						<rpm type="double">2500</rpm> <gain type="double">0.1</gain>  <frequency type="double">8</frequency>
+						<rpm type="double">3000</rpm> <gain type="double">0.05</gain> <frequency type="double">9</frequency>
+					</engine>
+
+					<engine n="3">
+						<enable type="bool">0</enable>
+						<x-scale type="double">0</x-scale>
+						<y-scale type="double">0</y-scale>
+						<z-scale type="double">0</z-scale>
+						<rpm type="double">0</rpm>    <gain type="double">0</gain>    <frequency type="double">0</frequency>
+						<rpm type="double">100</rpm>  <gain type="double">1</gain>    <frequency type="double">1</frequency>
+						<rpm type="double">200</rpm>  <gain type="double">1.5</gain>  <frequency type="double">2</frequency>
+						<rpm type="double">500</rpm>  <gain type="double">1.2</gain>  <frequency type="double">3</frequency>
+						<rpm type="double">1000</rpm> <gain type="double">1.1</gain>  <frequency type="double">4</frequency>
+						<rpm type="double">1500</rpm> <gain type="double">1.0</gain>  <frequency type="double">5</frequency>
+						<rpm type="double">2000</rpm> <gain type="double">0.5</gain>  <frequency type="double">6</frequency>
+						<rpm type="double">2200</rpm> <gain type="double">0.3</gain>  <frequency type="double">7</frequency>
+						<rpm type="double">2500</rpm> <gain type="double">0.1</gain>  <frequency type="double">8</frequency>
+						<rpm type="double">3000</rpm> <gain type="double">0.05</gain> <frequency type="double">9</frequency>
+					</engine>
+
+					<rotor n="0">
+						<enable type="bool">0</enable>
+						<x-scale type="double">0</x-scale>
+						<y-scale type="double">0</y-scale>
+						<z-scale type="double">0</z-scale>
+
+						<rpm type="double">0</rpm>
+						<rpm type="double">10</rpm>
+						<rpm type="double">20</rpm>
+						<rpm type="double">50</rpm>
+						<rpm type="double">100</rpm>
+						<rpm type="double">150</rpm>
+						<rpm type="double">200</rpm>
+						<rpm type="double">220</rpm>
+						<rpm type="double">250</rpm>
+						<rpm type="double">300</rpm>
+
+						<frequency type="double">0</frequency>
+						<frequency type="double">1</frequency>
+						<frequency type="double">2</frequency>
+						<frequency type="double">3</frequency>
+						<frequency type="double">4</frequency>
+						<frequency type="double">5</frequency>
+						<frequency type="double">6</frequency>
+						<frequency type="double">7</frequency>
+						<frequency type="double">8</frequency>
+						<frequency type="double">9</frequency>
+
+						<rpm1 type="double">0</rpm1>
+						<rpm1 type="double">10</rpm1>
+						<rpm1 type="double">20</rpm1>
+						<rpm1 type="double">50</rpm1>
+						<rpm1 type="double">100</rpm1>
+						<rpm1 type="double">150</rpm1>
+						<rpm1 type="double">200</rpm1>
+						<rpm1 type="double">220</rpm1>
+						<rpm1 type="double">250</rpm1>
+						<rpm1 type="double">300</rpm1>
+
+						<gain type="double">0</gain>
+						<gain type="double">1</gain>
+						<gain type="double">1.5</gain>
+						<gain type="double">1.2</gain>
+						<gain type="double">1.1</gain>
+						<gain type="double">1.0</gain>
+						<gain type="double">0.5</gain>
+						<gain type="double">0.3</gain>
+						<gain type="double">0.1</gain>
+						<gain type="double">0.05</gain>
+					</rotor>
+					<rotor n="1">
+						<enable type="bool">0</enable>
+						<x-scale type="double">0</x-scale>
+						<y-scale type="double">0</y-scale>
+						<z-scale type="double">0</z-scale>
+						<rpm type="double">0</rpm>    <gain type="double">0</gain>    <frequency type="double">0</frequency>
+						<rpm type="double">10</rpm>  <gain type="double">1</gain>    <frequency type="double">1</frequency>
+						<rpm type="double">20</rpm>  <gain type="double">1.5</gain>  <frequency type="double">2</frequency>
+						<rpm type="double">50</rpm>  <gain type="double">1.2</gain>  <frequency type="double">3</frequency>
+						<rpm type="double">100</rpm> <gain type="double">1.1</gain>  <frequency type="double">4</frequency>
+						<rpm type="double">150</rpm> <gain type="double">1.0</gain>  <frequency type="double">5</frequency>
+						<rpm type="double">200</rpm> <gain type="double">0.5</gain>  <frequency type="double">6</frequency>
+						<rpm type="double">220</rpm> <gain type="double">0.3</gain>  <frequency type="double">7</frequency>
+						<rpm type="double">250</rpm> <gain type="double">0.1</gain>  <frequency type="double">8</frequency>
+						<rpm type="double">300</rpm> <gain type="double">0.05</gain> <frequency type="double">9</frequency>
+					</rotor>
+					<rotor n="2">
+						<enable type="bool">0</enable>
+						<x-scale type="double">0</x-scale>
+						<y-scale type="double">0</y-scale>
+						<z-scale type="double">0</z-scale>
+						<rpm type="double">0</rpm>    <gain type="double">0</gain>    <frequency type="double">0</frequency>
+						<rpm type="double">100</rpm>  <gain type="double">1</gain>    <frequency type="double">1</frequency>
+						<rpm type="double">200</rpm>  <gain type="double">1.5</gain>  <frequency type="double">2</frequency>
+						<rpm type="double">500</rpm>  <gain type="double">1.2</gain>  <frequency type="double">3</frequency>
+						<rpm type="double">1000</rpm> <gain type="double">1.1</gain>  <frequency type="double">4</frequency>
+						<rpm type="double">1500</rpm> <gain type="double">1.0</gain>  <frequency type="double">5</frequency>
+						<rpm type="double">2000</rpm> <gain type="double">0.5</gain>  <frequency type="double">6</frequency>
+						<rpm type="double">2200</rpm> <gain type="double">0.3</gain>  <frequency type="double">7</frequency>
+						<rpm type="double">2500</rpm> <gain type="double">0.1</gain>  <frequency type="double">8</frequency>
+						<rpm type="double">3000</rpm> <gain type="double">0.05</gain> <frequency type="double">9</frequency>
+					</rotor>
+					<rotor n="3">
+						<enable type="bool">0</enable>
+						<x-scale type="double">0</x-scale>
+						<y-scale type="double">0</y-scale>
+						<z-scale type="double">0</z-scale>
+						<rpm type="double">0</rpm>    <gain type="double">0</gain>    <frequency type="double">0</frequency>
+						<rpm type="double">100</rpm>  <gain type="double">1</gain>    <frequency type="double">1</frequency>
+						<rpm type="double">200</rpm>  <gain type="double">1.5</gain>  <frequency type="double">2</frequency>
+						<rpm type="double">500</rpm>  <gain type="double">1.2</gain>  <frequency type="double">3</frequency>
+						<rpm type="double">1000</rpm> <gain type="double">1.1</gain>  <frequency type="double">4</frequency>
+						<rpm type="double">1500</rpm> <gain type="double">1.0</gain>  <frequency type="double">5</frequency>
+						<rpm type="double">2000</rpm> <gain type="double">0.5</gain>  <frequency type="double">6</frequency>
+						<rpm type="double">2200</rpm> <gain type="double">0.3</gain>  <frequency type="double">7</frequency>
+						<rpm type="double">2500</rpm> <gain type="double">0.1</gain>  <frequency type="double">8</frequency>
+						<rpm type="double">3000</rpm> <gain type="double">0.05</gain> <frequency type="double">9</frequency>
+					</rotor>
+				</power-plant-vibration>
+			</effects>
 		</fgcamera>
 
 		<panel>
@@ -302,23 +559,32 @@
 			<hide-nonzero-view type="bool">false</hide-nonzero-view>
 		</panel>
 
-		<!--rotorgear
-			max-power-engine="557"
-			max-power-rotor-brake="100"
-			rotorgear-friction="2.6"
-			engine-prop-factor="0.015"
-			engine-accel-limit="100"
-			yasimdragfactor="19"
-			yasimliftfactor="18"/-->
-
-		<!-- systems>
-			<property-rule n="100">
-				<path>/Aircraft/ec135/filtrai/filtras1.xml</path>
+		<systems>
+			<property-rule n="150">
+				<path>/Nasal/fgcamera/property-rules/fgcamera.xml</path>
 			</property-rule>
-		</systems -->
+			<property-rule n="142">
+				<path>/Nasal/fgcamera/property-rules/RND/RND-air.xml</path>
+			</property-rule>
+			<property-rule n="141">
+				<path>/Nasal/fgcamera/property-rules/RND/RND-ground.xml</path>
+			</property-rule>
+			<property-rule n="140">
+				<path>/Nasal/fgcamera/property-rules/RND/RND-main.xml</path>
+			</property-rule>
+			<property-rule n="148">
+				<path>/Nasal/fgcamera/property-rules/power-plant-vibration/power_plant_vibration.xml</path>
+			</property-rule>
+			<property-rule n="147"> <!-- 149 -->
+				<path>/Nasal/fgcamera/property-rules/DHM/dhm.xml</path>
+			</property-rule>
+			<property-rule n="200">
+				<path>MyPropertyRules.xml</path>
+			</property-rule>
+		</systems>
 
 		<view n="120">
-			<name>FGCamera1</name>
+			<name>FGCamera0</name>
 			<enabled type="bool" userarchive="y">false</enabled>
 			<type>lookfrom</type>
 			<internal type="bool">true</internal>
@@ -347,33 +613,7 @@
 		</view>
 
 		<view n="121">
-			<name>FGCamera2</name>
-			<enabled type="bool" userarchive="y">false</enabled>
-			<type>lookat</type>
-			<config>
-				<from-model type="bool">false</from-model>
-				<from-model-idx type="int">0</from-model-idx>
-				<eye-lat-deg-path>/position/latitude-deg</eye-lat-deg-path>
-				<eye-lon-deg-path>/position/longitude-deg</eye-lon-deg-path>
-				<eye-alt-ft-path>/position/altitude-ft</eye-alt-ft-path>
-				<eye-heading-deg-path>/orientation/heading-deg</eye-heading-deg-path>
-
-				<at-model type="bool">true</at-model>
-				<at-model-idx type="int">0</at-model-idx>
-				<at-model-heading-damping type="double">0.0</at-model-heading-damping>
-				<target-z-offset-m type="double">0</target-z-offset-m>
-
-				<ground-level-nearplane-m type="double">0.5f</ground-level-nearplane-m>
-				<default-field-of-view-deg type="double">55.0</default-field-of-view-deg>
-
-				<x-offset-m type="double">0</x-offset-m>
-				<y-offset-m type="double">0</y-offset-m>
-				<z-offset-m alias="/sim/chase-distance-m"/>
-			</config>
-		</view>
-
-		<view n="122">
-			<name>FGCamera3</name>
+			<name>FGCamera1</name>
 			<enabled type="bool" userarchive="y">false</enabled>
 			<type>lookfrom</type>
 			<config>
@@ -398,52 +638,38 @@
 			</config>
 		</view>
 
-		<view n="123">
-			<name>FGCamera4</name>
-			<enabled type="bool" userarchive="y">false</enabled>
-			<type>lookat</type>
-			<config>
-				<eye-lat-deg-path>/sim/tower/latitude-deg</eye-lat-deg-path>
-				<eye-lon-deg-path>/sim/tower/longitude-deg</eye-lon-deg-path>
-				<eye-alt-ft-path>/sim/tower/altitude-ft</eye-alt-ft-path>
-				<eye-roll-deg-path>/sim/tower/roll-deg</eye-roll-deg-path>
-				<eye-pitch-deg-path>/sim/tower/pitch-deg</eye-pitch-deg-path>
-				<eye-heading-deg-path>/sim/tower/heading-deg</eye-heading-deg-path>
-
-				<at-model type="bool">true</at-model>
-				<at-model-idx type="int">0</at-model-idx>
-
-				<ground-level-nearplane-m type="double">10.0f</ground-level-nearplane-m>
-				<default-field-of-view-deg type="double">55.0</default-field-of-view-deg>
-
-				<x-offset-m type="double">0</x-offset-m>
-				<y-offset-m type="double">0</y-offset-m>
-				<z-offset-m type="double">0</z-offset-m>
-			</config>
-		</view>
-
-		<view n="124">
-			<name>FGCamera5</name>
-			<enabled type="bool" userarchive="y">false</enabled>
+		<view n="122">
+			<name>FGCamera2</name>
+			<enabled type="bool" userarchive="y">true</enabled>
 			<type>lookfrom</type>
 			<config>
-				<eye-lat-deg-path>/sim/fgcamera/tower/latitude-deg</eye-lat-deg-path>
-				<eye-lon-deg-path>/sim/fgcamera/tower/longitude-deg</eye-lon-deg-path>
-				<eye-alt-ft-path>/sim/fgcamera/tower/altitude-ft</eye-alt-ft-path>
-				<eye-roll-deg-path>/sim/fgcamera/tower/roll-deg</eye-roll-deg-path>
-				<eye-pitch-deg-path>/sim/fgcamera/tower/pitch-deg</eye-pitch-deg-path>
-				<eye-heading-deg-path>/sim/fgcamera/tower/heading-deg</eye-heading-deg-path>
+				<from-model type="bool">false</from-model>
+				<from-model-idx type="int">0</from-model-idx>
+				<eye-lat-deg-path>/sim/fgcamera/current-camera/latitude-deg</eye-lat-deg-path>
+				<eye-lon-deg-path>/sim/fgcamera/current-camera/longitude-deg</eye-lon-deg-path>
+				<eye-alt-ft-path>/sim/fgcamera/current-camera/altitude-ft</eye-alt-ft-path>
+				<eye-heading-deg-path>/world-camera/heading-deg</eye-heading-deg-path>
 
 				<at-model type="bool">true</at-model>
 				<at-model-idx type="int">0</at-model-idx>
+				<at-model-heading-damping type="double">0.0</at-model-heading-damping>
+				<target-z-offset-m type="double">0</target-z-offset-m>
 
-				<ground-level-nearplane-m type="double">10.0f</ground-level-nearplane-m>
+				<ground-level-nearplane-m type="double">0.5f</ground-level-nearplane-m>
 				<default-field-of-view-deg type="double">55.0</default-field-of-view-deg>
 
 				<x-offset-m type="double">0</x-offset-m>
 				<y-offset-m type="double">0</y-offset-m>
-				<z-offset-m type="double">0</z-offset-m>
+				<z-offset-m alias="/sim/chase-distance-m"/>
 			</config>
 		</view>
 	</sim>
+	<world-camera>
+		<raw>
+			<latitude-deg>37.4058</latitude-deg>
+			<longitude-deg>-122.0426</longitude-deg>
+		</raw>
+		<altitude-ft>500.0</altitude-ft>
+		<heading-deg>0.0</heading-deg>
+	</world-camera>
 </PropertyList>

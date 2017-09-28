@@ -21,7 +21,7 @@
 			<pref-height>16</pref-height>
 			<binding>
 				<command>dialog-show</command>
-				<dialog-name>current-camera-settings</dialog-name>
+				<dialog-name>fgcamera-main</dialog-name>
 			</binding>
 			<binding>
 				<command>dialog-close</command>
@@ -109,7 +109,7 @@
 			</binding>
 			<binding>
 				<command>nasal</command>
-				<script>toggle_edit()</script>
+				<script>update()</script>
 			</binding>
 		</checkbox>
 
@@ -122,13 +122,13 @@
 				<property>/sim/fgcamera/dialogs/RND/profile</property>
 			</enable>
 			<binding>
-				<command>nasal</command>
-				<script>fgcamera.RND_handler.GUI_mode = 0; update()</script>
-			</binding>
-			<binding>
 				<command>property-assign</command>
 				<property>/sim/fgcamera/dialogs/RND/profile</property>
 				<value>0</value>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>update()</script>
 			</binding>
 		</button>
 
@@ -143,13 +143,13 @@
 				</not>
 			</enable>
 			<binding>
-				<command>nasal</command>
-				<script>fgcamera.RND_handler.GUI_mode = 1; update()</script>
-			</binding>
-			<binding>
 				<command>property-assign</command>
 				<property>/sim/fgcamera/dialogs/RND/profile</property>
 				<value>1</value>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>update()</script>
 			</binding>
 		</button>
 	</group>
@@ -1000,57 +1000,65 @@
 
 	<nasal>
 		<open> <![CDATA[
+			var L = fgcamera.API().CameraList();
 			var path  = "/sim/fgcamera/dialogs/RND/mixer/";
 			var list1 = ["/GEN1", "/GEN2", "/GEN3", "/level"];
 			var list2 = ["x", "y", "z", "h", "p", "r"];
 			var mode  = nil;
-			var listener1 = setlistener( "/sim/fgcamera/current-camera/RND-updated", func {update()} );
+			var listener1 = setlistener( "/sim/fgcamera/signals/update", func update() );
+			var listener2 = setlistener("/sim/fgcamera/current-camera/camera-index", func update() ); #revise
 
 			var update = func {
-				mode  = get_mode();
+				var m = L.CurrentCamera().effect("RND").mixer( get_mode() );
 
 				foreach (var dof; list2) {
 					var i = 0;
 					foreach (var g; list1) {
-						setprop ( path ~ dof ~ g, fgcamera.rnd[mode].mixer[dof][i] );
+						setprop ( path ~ dof ~ g, m.scale(dof)[i] );
 						i += 1;
 					}
 				}
 
-				setprop("/sim/fgcamera/dialogs/RND/mixer/s", fgcamera.rnd[mode].mixer.s);
+				#setprop("/sim/fgcamera/dialogs/RND/mixer/s", m.scale("output")[0]);
 
 				fgcommand( "dialog-update", props.Node.new( {"dialog-name" : "RND-mixer"} ) );
 			}
 
 			var get_mode = func  {
-				var GUI_edit = fgcamera.RND_handler.GUI_edit;
-				var GUI_mode = fgcamera.RND_handler.GUI_mode;
-
-				if ( GUI_edit ) GUI_mode;
-				else fgcamera.RND_handler._mode;
+				if ( getprop("/sim/fgcamera/dialogs/RND/edit-mode") )
+					getprop("/sim/fgcamera/dialogs/RND/profile");
+				else getprop("/sim/fgcamera/state/wow");
 			}
 
 			var toggle_edit = func fgcamera.RND_handler.GUI_edit = getprop("/sim/fgcamera/dialogs/RND/edit-mode");
 
-			var set_scale = func fgcamera.rnd[mode].mixer.s = getprop("/sim/fgcamera/dialogs/RND/mixer/s");
+			var set_scale = func L.CurrentCamera().effect("RND").mixer(0).scale("output", [getprop("/sim/fgcamera/dialogs/RND/mixer/s")]);
 
-			var set_data = func (key, i, scale = 1) fgcamera.rnd[mode].mixer[key][i] = getprop ( path ~ key ~ list1[i] );
+			var set_data = func (key, i, scale = 1) {
+				var vec = [nil,nil,nil,nil];
+				vec[i] = getprop ( path ~ key ~ list1[i] ); # * scale;
+				L.CurrentCamera().effect("RND").mixer( get_mode() ).scale(key, vec);
+			}
 
 
-			fgcamera.rnd_effectN = props.Node.new();
+			var rnd_effectN = props.Node.new();
 			setprop(path ~ "clipboard-empty", 1);
 
 			var copy_effect = func {
-				fgcamera.rnd_effectN.removeAllChildren();
-				fgcamera.rnd_effectN.setValues(fgcamera.rnd[mode]);
+				rnd_effectN.removeAllChildren();
+				var ccN = props.getNode("/sim/fgcamera/current-camera/effects", 1).getChild("RND", get_mode());
+				props.copy(ccN, rnd_effectN);
 				setprop(path ~ "clipboard-empty", 0);
 			}
 
 			var paste_effect = func {
-				fgcamera.rnd[mode] = fgcamera.rnd_effectN.getValues();
-				fgcamera.update_rnd_data();
-				fgcamera.RND_handler._set_generators();
+				var cci = getprop("/sim/fgcamera/current-camera/camera-index");
+				var ccN = props.getNode("/sim/fgcamera/current-camera/effects", 1).getChild("RND", get_mode());
+				var cN = props.getNode("/sim/fgcamera", 1).getChild("camera", cci).getNode("effects").getChild("RND", get_mode());
+				props.copy(rnd_effectN, ccN);
+				props.copy(rnd_effectN, cN);
 				update();
+				#fgcamera.send_signal("update");
 			}
 
 
@@ -1060,6 +1068,8 @@
 		]]> </open>
 		<close>
 			removelistener(listener1);
+			removelistener(listener2);
+			fgcamera.rnd_effectN.remove();
 		</close>
 	</nasal>
 </PropertyList>

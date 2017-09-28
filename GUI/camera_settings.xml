@@ -6,6 +6,9 @@
 	<!--width>350</width-->
 	<x>20</x>
 	<y>-50</y>
+	<color>
+		<alpha>0.5</alpha>
+	</color>
 
 	<group>
 		<layout>hbox</layout>
@@ -320,6 +323,29 @@
 
 	</group>
 
+	<group>
+		<layout>hbox</layout>
+
+		<input>
+			<name>ai-object-name</name>
+			<halign>left</halign>
+			<pref-width>200</pref-width>
+			<height>25</height>
+			<property>/sim/fgcamera/dialogs/camera-settings/ai-object-name</property>
+			<label>AI object name</label>
+			<binding>
+				<command>dialog-apply</command>
+				<object-name>ai-object-name</object-name>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>ai_object_name()</script>
+			</binding>
+		</input>
+
+	</group>
+
+
 	<hrule/>
 
 	<group>
@@ -333,7 +359,7 @@
 			<pref-height>30</pref-height>
 			<binding>
 				<command>nasal</command>
-				<script>fgcamera.manager._save_offsets()</script>
+				<script>l.getCurrentCamera().storeOffsets()</script>
 			</binding>
 		</button>
 
@@ -351,6 +377,9 @@
 
 	<nasal>
 		<open> <![CDATA[
+			fgcamera.camera_settingsF = 1;
+			var l = fgcamera.getCameraList();
+
 			var listener = setlistener(fgcamera.my_node_path ~ "/current-camera/camera-id", func{update_values()});
 			#==================================================
 			#	Functions
@@ -363,6 +392,7 @@
 					[ "show-panel"                  , c["panel-show"]          ],
 					[ "show-dialog"                 , c["dialog-show"]         ],
 					[ "dialog-name"                 , c["dialog-name"]         ],
+					[ "ai-object-name"              , c["ai-object-name"]      ],
 					[ "enable-RND"                  , c["enable-RND"]          ],
 					[ "enable-DHM"                  , c["enable-DHM"]          ],
 					[ "field-of-view"               , c.fov                    ],
@@ -593,9 +623,21 @@
 				fgcamera.cameras[id]["enable-RND"] = value;
 			}
 			#==================================================
+			#	AI object name
+			#==================================================
+			var ai_object_name = func {
+				var id    = fgcamera.current[1];
+				var path  = "/sim/fgcamera/dialogs/camera-settings/ai-object-name";
+				var value = getprop(path);
+
+				fgcamera.cameras[id]["ai-object-name"] = value;
+				update_values();
+			}
+			#==================================================
 			update_values();
 		]]> </open>
 		<close>
+			fgcamera.camera_settingsF = 0;
 			removelistener(listener);
 		</close>
 	</nasal>

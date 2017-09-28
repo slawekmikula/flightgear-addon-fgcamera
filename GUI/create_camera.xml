@@ -58,6 +58,7 @@
 		<value>aircraft (look from)</value>
 		<value>world (look at) n/a</value>
 		<value>world (look from)</value>
+		<value>AI object (look from)</value>
 	</combo>
 
 	</group>
@@ -117,22 +118,28 @@
 			#==================================================
 			var select_type = func {
 				var selected = getprop("/sim/fgcamera/dialogs/create-camera/camera-type") or "cockpit";
-				var types    = [
-					["cockpit"              , "FGCamera1"],
-					["aircraft (look at)"   , "FGCamera2"],
-					["aircraft (look from)" , "FGCamera3"],
-					["world (look at)"      , "FGCamera4"],
-					["world (look from)"    , "FGCamera5"],
+				var types = [
+					["cockpit"               , "FGCamera1"],
+					["aircraft (look at)"    , "FGCamera2"],
+					["aircraft (look from)"  , "FGCamera3"],
+					["world (look at)"       , "FGCamera4"],
+					["world (look from)"     , "FGCamera5"],
+					["AI object (look from)" , "FGCamera6"],
 				];
-				foreach(var a; types)
-					if (selected == a[0])
-						(type = a[1]) and break;
+				var i = 0;
+				foreach(var a; types) { #revise
+					if (selected == a[0]) {
+						type = i;
+						break;
+					}
+					i += 1;
+				}
 				#print("selected:" ~ type);
 			}
 			#==================================================
 			#	Create new camera
 			#==================================================
-			var create_camera = func {
+			var ___create_camera = func {
 				var camera   = {};
 				camera       = cameraN.getChild("camera").getValues();
 				camera.name  = "new camera";
@@ -142,6 +149,9 @@
 					#camera.offsets = world_lookfrom_offsets();
 				append(fgcamera.cameras, camera);
 				setprop("/sim/fgcamera/current-camera/camera-id", size(fgcamera.cameras) - 1);
+			}
+			var create_camera = func {
+				fgcamera.getCameraList().addCamera("new camera", type).select();
 			}
 			#==================================================
 			select_type();

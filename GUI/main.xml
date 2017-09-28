@@ -3,9 +3,10 @@
 <PropertyList>
 	<name>fgcamera-main</name>
 	<layout>vbox</layout>
-	<width>450</width>
-	<x>-20</x>
-	<y>-20</y>
+	<!--width>650</width-->
+	<color>
+		<alpha>0.5</alpha>
+	</color>
 
 	<group>
 		<layout>hbox</layout>
@@ -13,7 +14,7 @@
 		<empty><stretch>1</stretch></empty>
 
 		<text>
-			<label>FGCamera v1.2</label>
+			<label>FGCamera v1.3</label>
 		</text>
 
 		<empty><stretch>1</stretch></empty>
@@ -34,166 +35,775 @@
 
 	<group>
 		<layout>hbox</layout>
+		<group>
+			<layout>hbox</layout>
+			<group>
+				<layout>vbox</layout>
+				<list>
+					<name>camera_list</name>
+					<color>
+						<alpha>0.7</alpha>
+					</color>
+					<pref-width>250</pref-width>
+					<halign>left</halign>
+					<valign>fill</valign>
+					<stretch>true</stretch>
+					<padding>6</padding>
+					<property>/sim/fgcamera/current-camera/name</property>
+					<binding>
+						<command>dialog-apply</command>
+					</binding>
+					<binding>
+						<command>nasal</command>
+						<script>select_camera()</script>
+					</binding>
+					<value>...</value>
+				</list>
+				<!--list>
+					<name>cmd_list</name>
+					<color>
+						<alpha>0.7</alpha>
+					</color>
+					<pref-width>250</pref-width>
+					<halign>left</halign>
+					<stretch>false</stretch>
+					<padding>6</padding>
+					<property>/sim/fgcamera/cmd</property>
+					<binding>
+						<command>dialog-apply</command>
+					</binding>
+					<value>Create cockpit camera</value>
+					<value>Create aircraft camera</value>
+					<value>Create world camera</value>
+					<value></value>
+					<value>Create aircraft camera</value>
+				</list-->
+				<group>
+					<layout>hbox</layout>
+					<button>
+						<legend>Add:</legend>
+						<height>30</height>
+						<halign>left</halign>
+						<binding>
+							<command>nasal</command>
+							<script>addCamera()</script>
+						</binding>
+					</button>
+					<combo>
+						<name>camera-types</name>
+						<halign>fill</halign>
+						<stretch>1</stretch>
+						<property>/sim/fgcamera/dialogs/main/camera-type</property>
+						<binding>
+							<command>dialog-apply</command>
+							<object-name>camera-types</object-name>
+						</binding>
+						<value>cockpit camera</value>
+						<value>aircraft camera</value>
+						<value>world camera</value>
+					</combo>
+				</group>
+				<group>
+					<layout>hbox</layout>
+					<button>
+						<legend>Copy</legend>
+						<height>30</height>
+						<halign>fill</halign>
+						<binding>
+							<command>nasal</command>
+							<script>L.CurrentCamera().copy()</script>
+						</binding>
+					</button>
+					<layout>hbox</layout>
+					<button>
+						<legend>Delete</legend>
+						<!--stretch>1</stretch-->
+						<height>30</height>
+						<halign>fill</halign>
+						<binding>
+							<command>nasal</command>
+							<script>L.CurrentCamera().delete()</script>
+						</binding>
+					</button>
+				</group>
+			</group>
+			<group>
+				<layout>vbox</layout>
+				<empty><stretch>1</stretch></empty>
+				<button>
+					<legend>U</legend>
+					<pref-width>30</pref-width>
+					<height>30</height>
+					<binding>
+						<command>nasal</command>
+						<script>reorder_cameras(-1)</script>
+					</binding>
+				</button>
+				<button>
+					<legend>D</legend>
+					<pref-width>30</pref-width>
+					<height>30</height>
+					<halign>left</halign>
+					<binding>
+						<command>nasal</command>
+						<script>reorder_cameras(1)</script>
+					</binding>
+				</button>
+				<empty><stretch>1</stretch></empty>
+			</group>
+		</group>
 
-		<button>
-			<legend>Options...</legend>
-			<pref-width>120</pref-width>
-			<pref-height>30</pref-height>
-			<binding>
-				<command>dialog-show</command>
-				<dialog-name>fgcamera-options</dialog-name>
-			</binding>
-		</button>
-
-		<button>
-			<legend>Copy</legend>
-			<pref-height>30</pref-height>
-			<binding>
-				<command>nasal</command>
-				<script>copy_camera()</script>
-			</binding>
-		</button>
-
-		<button>
-			<legend>Create new camera...</legend>
-			<pref-height>30</pref-height>
-			<binding>
-				<command>dialog-show</command>
-				<dialog-name>create-new-camera</dialog-name>
-			</binding>
-		</button>
-	</group>
-
-	<group>
-		<layout>hbox</layout>
-
-		<text>
-			<label>List of cameras</label>
-			<halign>left</halign>
-		</text>
-
-		<hrule><stretch>true</stretch></hrule>
-	</group>
-
-	<group>
-		<layout>hbox</layout>
-		<list>
-			<name>camera_list</name>
-			<pref-height>250</pref-height>
-			<halign>fill</halign>
-			<valign>fill</valign>
-			<stretch>true</stretch>
-			<padding>6</padding>
-			<property>/sim/fgcamera/current-camera/name</property>
-			<binding>
-				<command>dialog-apply</command>
-				<object-name>camera_list</object-name>
-			</binding>
-				<binding>
-					<command>nasal</command>
-					<script>select_camera()</script>
-				</binding>
-			<binding>
-
-			</binding>
-			<value>...</value>
-		</list>
+		<vrule><stretch>true</stretch></vrule>
 
 		<group>
 			<layout>vbox</layout>
+			<group>
+				<layout>hbox</layout>
+				<text>
+					<label>Camera name</label>
+					<halign>left</halign>
+				</text>
+				<input>
+					<halign>right</halign>
+					<property>/sim/fgcamera/current-camera/camera-name</property>
+					<live>1</live>
+					<pref-width>200</pref-width>
+					<height>25</height>
+					<binding>
+						<command>dialog-apply</command>
+					</binding>
+					<binding>
+						<command>nasal</command>
+						<script>rename_camera()</script>
+					</binding>
+				</input>
+			</group>
+			<group>
+				<layout>hbox</layout>
+				<text>
+					<label>Category</label>
+					<halign>left</halign>
+				</text>
+				<input>
+					<halign>right</halign>
+					<pref-width>200</pref-width>
+					<height>25</height>
+					<property>/sim/fgcamera/current-camera/category</property>
+					<live>1</live>
+					<binding>
+						<command>dialog-apply</command>
+					</binding>
+					<binding>
+						<command>nasal</command>
+						<script>set_category()</script>
+					</binding>
+				</input>
+			</group>
+			<group>
+				<layout>hbox</layout>
+				<text>
+					<label>View adjustment</label>
+				</text>
+				<hrule><stretch>true</stretch></hrule>
+			</group>
+			<group>
+				<layout>hbox</layout>
+				<text>
+					<label>FOV</label>
+					<halign>left</halign>
+				</text>
+				<input>
+					<halign>right</halign>
+					<pref-width>100</pref-width>
+					<property>/sim/fgcamera/dialogs/fgcamera-main/settings/field-of-view</property>
+					<live>1</live>
+					<height>25</height>
+					<binding>
+						<command>dialog-apply</command>
+					</binding>
+					<binding>
+						<command>nasal</command>
+						<script>set_value("field-of-view")</script>
+					</binding>
+				</input>
+			</group>
+			<group>
+				<layout>hbox</layout>
+				<text>
+					<label>Linear velocity [m/s]</label>
+					<halign>left</halign>
+				</text>
+				<input>
+					<halign>right</halign>
+					<pref-width>100</pref-width>
+					<property>/sim/fgcamera/dialogs/fgcamera-main/settings/adjustment-linear-velocity</property>
+					<live>1</live>
+					<height>25</height>
+					<binding>
+						<command>dialog-apply</command>
+					</binding>
+					<binding>
+						<command>nasal</command>
+						<script>set_value("adjustment-linear-velocity")</script>
+					</binding>
+				</input>
+			</group>
 
-			<empty><stretch>1</stretch></empty>
+			<group>
+				<layout>hbox</layout>
+				<text>
+					<label>Angular velocity [deg/s]</label>
+					<halign>left</halign>
+				</text>
+				<input>
+					<halign>right</halign>
+					<pref-width>100</pref-width>
+					<property>/sim/fgcamera/dialogs/fgcamera-main/settings/adjustment-angular-velocity</property>
+					<live>1</live>
+					<height>25</height>
+					<binding>
+						<command>dialog-apply</command>
+					</binding>
+					<binding>
+						<command>nasal</command>
+						<script>set_value("adjustment-angular-velocity")</script>
+					</binding>
+				</input>
+			</group>
 
-			<button>
-				<legend>U</legend>
-				<key>Esc</key>
-				<pref-width>30</pref-width>
-				<pref-height>30</pref-height>
-				<binding>
-					<command>nasal</command>
-					<script>reorder_cameras(-1)</script>
-				</binding>
-			</button>
+			<group>
+				<layout>hbox</layout>
+				<text>
+					<label>LP filter</label>
+					<halign>left</halign>
+				</text>
+				<input>
+					<halign>right</halign>
+					<pref-width>100</pref-width>
+					<property>/sim/fgcamera/dialogs/fgcamera-main/settings/adjustment-filter</property>
+					<live>1</live>
+					<height>25</height>
+					<binding>
+						<command>dialog-apply</command>
+					</binding>
+					<binding>
+						<command>nasal</command>
+						<script>set_value("adjustment-filter")</script>
+					</binding>
+				</input>
+			</group>
 
-			<button>
-				<legend>D</legend>
-				<key>Esc</key>
-				<pref-width>30</pref-width>
-				<pref-height>30</pref-height>
-				<binding>
-					<command>nasal</command>
-					<script>reorder_cameras(1)</script>
-				</binding>
-			</button>
+				<button>
+					<legend>Store current position</legend>
+					<height>30</height>
+					<binding>
+						<command>nasal</command>
+						<script>L.CurrentCamera().storeOffsets()</script>
+					</binding>
+				</button>
+
+			<group>
+				<layout>hbox</layout>
+				<text>
+					<label>View movement</label>
+				</text>
+				<hrule><stretch>true</stretch></hrule>
+			</group>
+
+			<group>
+				<layout>hbox</layout>
+				<checkbox>
+					<halign>left</halign>
+					<width>12</width>
+					<height>12</height>
+					<label>Linear interpolation</label>
+					<live>1</live>
+					<property>/sim/fgcamera/dialogs/fgcamera-main/settings/movement-linterp</property>
+					<binding>
+						<command>dialog-apply</command>
+					</binding>
+					<binding>
+						<command>nasal</command>
+						<script>set_value("movement-linterp")</script>
+					</binding>
+				</checkbox>
+			</group>
+
+			<group>
+				<layout>hbox</layout>
+				<checkbox>
+					<halign>left</halign>
+					<width>12</width>
+					<height>12</height>
+					<label>Chained</label>
+					<live>1</live>
+					<property>/sim/fgcamera/dialogs/fgcamera-main/settings/movement-chained</property>
+					<binding>
+						<command>dialog-apply</command>
+					</binding>
+					<binding>
+						<command>nasal</command>
+						<script>set_value("movement-chained")</script>
+					</binding>
+				</checkbox>
+			</group>
+
+			<group>
+				<layout>hbox</layout>
+				<checkbox>
+					<halign>left</halign>
+					<width>12</width>
+					<height>12</height>
+					<label>Popup message</label>
+					<live>1</live>
+					<property>/sim/fgcamera/dialogs/fgcamera-main/settings/movement-popup-tip</property>
+					<binding>
+						<command>dialog-apply</command>
+					</binding>
+					<binding>
+						<command>nasal</command>
+						<script>set_value("movement-popup-tip")</script>
+					</binding>
+				</checkbox>
+			</group>
+
+			<group>
+				<layout>hbox</layout>
+				<text>
+					<label>Transition time [s]</label>
+					<halign>left</halign>
+				</text>
+				<input>
+					<halign>right</halign>
+					<pref-width>100</pref-width>
+					<height>25</height>
+					<live>1</live>
+					<property>/sim/fgcamera/dialogs/fgcamera-main/settings/movement-transition-time</property>
+					<binding>
+						<command>dialog-apply</command>
+					</binding>
+					<binding>
+						<command>nasal</command>
+						<script>set_value("movement-transition-time")</script>
+					</binding>
+				</input>
+			</group>
+
+			<group>
+				<layout>hbox</layout>
+				<text>
+					<label>LP filter</label>
+					<halign>left</halign>
+				</text>
+				<input>
+					<halign>right</halign>
+					<pref-width>100</pref-width>
+					<height>25</height>
+					<live>1</live>
+					<property>/sim/fgcamera/dialogs/fgcamera-main/settings/movement-filter</property>
+					<binding>
+						<command>dialog-apply</command>
+					</binding>
+					<binding>
+						<command>nasal</command>
+						<script>set_value("movement-filter")</script>
+					</binding>
+				</input>
+			</group>
+
+			<group>
+				<layout>hbox</layout>
+				<text>
+					<label>Mouse look</label>
+				</text>
+				<hrule><stretch>true</stretch></hrule>
+			</group>
+			<group>
+				<layout>hbox</layout>
+				<text>
+					<label>Sensitivity</label>
+					<halign>left</halign>
+				</text>
+				<input>
+					<halign>right</halign>
+					<pref-width>100</pref-width>
+					<height>25</height>
+					<live>1</live>
+					<property>/sim/fgcamera/dialogs/fgcamera-main/settings/mlook-sensitivity</property>
+					<binding>
+						<command>dialog-apply</command>
+					</binding>
+					<binding>
+						<command>nasal</command>
+						<script>set_value("mlook-sensitivity")</script>
+					</binding>
+				</input>
+			</group>
+
+			<group>
+				<layout>hbox</layout>
+				<text>
+					<label>LP filter</label>
+					<halign>left</halign>
+				</text>
+				<input>
+					<halign>right</halign>
+					<pref-width>100</pref-width>
+					<height>25</height>
+					<live>1</live>
+					<property>/sim/fgcamera/dialogs/fgcamera-main/settings/mlook-filter</property>
+					<binding>
+						<command>dialog-apply</command>
+					</binding>
+					<binding>
+						<command>nasal</command>
+						<script>set_value("mlook-filter")</script>
+					</binding>
+				</input>
+			</group>
 
 			<empty><stretch>1</stretch></empty>
 		</group>
+		<vrule/>
 
-	</group>
-	<group>
-		<layout>hbox</layout>
+		<group>
+			<layout>vbox</layout>
+			<group>
+				<layout>hbox</layout>
+				<checkbox>
+					<halign>left</halign>
+					<width>12</width>
+					<height>12</height>
+					<label>Show dialog:</label>
+					<live>1</live>
+					<property>/sim/fgcamera/current-camera/config/dialog-show</property>
+					<binding>
+						<command>dialog-apply</command>
+					</binding>
+					<binding>
+						<command>nasal</command>
+						<script>
+							L.CurrentCamera().dialog(getprop("/sim/fgcamera/current-camera/config/dialog-show"));
+						</script>
+					</binding>
+				</checkbox>
+				<input>
+					<halign>right</halign>
+					<pref-width>200</pref-width>
+					<height>25</height>
+					<live>1</live>
+					<enable>
+						<property>/sim/fgcamera/current-camera/config/dialog-show</property>
+					</enable>
+					<property>/sim/fgcamera/current-camera/config/dialog-name</property>
+					<binding>
+						<command>dialog-apply</command>
+					</binding>
+					<binding>
+						<command>nasal</command>
+						<script>
+							L.CurrentCamera().dialog( ,getprop("/sim/fgcamera/current-camera/config/dialog-name"));
+						</script>
+					</binding>
+				</input>
+			</group>
+			<group>
+				<layout>hbox</layout>
+				<checkbox>
+					<halign>left</halign>
+					<width>12</width>
+					<height>12</height>
+					<label>Show 2d panel:</label>
+					<live>1</live>
+					<property>/sim/fgcamera/current-camera/config/panel-show</property>
+					<binding>
+						<command>dialog-apply</command>
+					</binding>
+					<binding>
+						<command>nasal</command>
+						<script>
+							L.CurrentCamera().panel(getprop("/sim/fgcamera/current-camera/config/panel-show"));
+						</script>
+					</binding>
+				</checkbox>
+				<input>
+					<halign>right</halign>
+					<pref-width>200</pref-width>
+					<height>25</height>
+					<live>1</live>
+					<enable>
+						<property>/sim/fgcamera/current-camera/config/panel-show</property>
+					</enable>
+					<property>/sim/fgcamera/current-camera/config/panel-name</property>
+					<binding>
+						<command>dialog-apply</command>
+					</binding>
+					<binding>
+						<command>nasal</command>
+						<script>
+							L.CurrentCamera().panel( ,getprop("/sim/fgcamera/current-camera/config/panel-name"));
+						</script>
+					</binding>
+				</input>
+			</group>
+			<group>
+				<layout>hbox</layout>
+				<checkbox>
+					<halign>left</halign>
+					<width>12</width>
+					<height>12</height>
+					<label>Select FGCursor group</label>
+					<live>1</live>
+					<property>/sim/fgcamera/current-camera/config/fgcursor-show</property>
+					<binding>
+						<command>dialog-apply</command>
+					</binding>
+					<binding>
+						<command>nasal</command>
+						<script>
+							L.CurrentCamera().fgcursor(getprop("/sim/fgcamera/current-camera/config/fgcursor-show"));
+						</script>
+					</binding>
+				</checkbox>
+				<input>
+					<halign>right</halign>
+					<pref-width>200</pref-width>
+					<height>25</height>
+					<live>1</live>
+					<enable>
+						<property>/sim/fgcamera/current-camera/config/fgcursor-show</property>
+					</enable>
+					<property>/sim/fgcamera/current-camera/config/fgcursor-group</property>
+					<binding>
+						<command>dialog-apply</command>
+					</binding>
+					<binding>
+						<command>nasal</command>
+						<script>
+							L.CurrentCamera().fgcursor( ,getprop("/sim/fgcamera/current-camera/config/fgcursor-group"));
+						</script>
+					</binding>
+				</input>
+			</group>
 
-		<text>
-			<label>Current camera</label>
-			<halign>left</halign>
-		</text>
+			<checkbox>
+				<halign>left</halign>
+				<width>12</width>
+				<height>12</height>
+				<label>"Look-at"</label>
+				<live>1</live>
+				<property>/sim/fgcamera/current-camera/config/look-at</property>
+				<binding>
+					<command>dialog-apply</command>
+				</binding>
+				<binding>
+					<command>nasal</command>
+					<script>
+						L.CurrentCamera().lookat(getprop("/sim/fgcamera/current-camera/config/look-at"));
+					</script>
+				</binding>
+			</checkbox>
+			<group>
+				<layout>hbox</layout>
+				<text>
+					<label>HeadTracker</label>
+				</text>
+				<hrule><stretch>true</stretch></hrule>
+			</group>
+			<group>
+				<layout>hbox</layout>
+				<checkbox>
+					<live>1</live>
+					<halign>left</halign>
+					<width>12</width>
+					<height>12</height>
+					<label>Enable</label>
+					<property>/sim/fgcamera/current-camera/config/head-tracker/enabled</property>
+					<binding>
+						<command>dialog-apply</command>
+					</binding>
+					<binding>
+						<command>nasal</command>
+						<script>
+							L.CurrentCamera().settings("head tracker").enabled(getprop("/sim/fgcamera/current-camera/config/head-tracker/enabled"));
+						</script>
+					</binding>
+				</checkbox>
+			</group>
 
-		<hrule><stretch>true</stretch></hrule>
-	</group>
+<!--
+			<group>
+				<layout>hbox</layout>
+				<checkbox>
+					<halign>left</halign>
+					<width>12</width>
+					<height>12</height>
+					<label>Movement limits:</label>
+					<binding>
+						<command>dialog-apply</command>
+					</binding>
+				</checkbox>
+			</group>
 
-	<group>
-		<layout>hbox</layout>
-		<input>
-			<name>camera_name</name>
-			<halign>left</halign>
-			<property>/sim/fgcamera/current-camera/camera-name</property>
-			<pref-width>200</pref-width>
-			<stretch>true</stretch>
-			<binding>
-				<command>dialog-apply</command>
-				<object-name>camera_name</object-name>
-			</binding>
-			<binding>
-				<command>nasal</command>
-				<script>rename_camera()</script>
-			</binding>
-		</input>
-
-		<input>
-			<name>camera_category</name>
-			<halign>left</halign>
-			<property>/sim/fgcamera/current-camera/category</property>
-			<pref-width>50</pref-width>
-			<stretch>true</stretch>
-			<binding>
-				<command>dialog-apply</command>
-				<object-name>camera_category</object-name>
-			</binding>
-			<binding>
-				<command>nasal</command>
-				<script>set_category()</script>
-			</binding>
-		</input>
-		
-		<empty><stretch>1</stretch></empty>
-
-		<button>
-			<legend>Del</legend>
-			<pref-height>30</pref-height>
-			<binding>
-				<command>nasal</command>
-				<script>delete_camera()</script>
-			</binding>
-		</button>
-
-		<button>
-			<legend>CFG...</legend>
-			<pref-height>30</pref-height>
+			<button>
+				<legend>set +Y</legend>
+				<height>30</height>
+				<binding>
+				</binding>
+			</button>
+			<group>
+				<layout>hbox</layout>
+				<button>
+					<legend>set -X</legend>
+					<halign>right</halign>
+					<height>30</height>
+					<binding>
+					</binding>
+				</button>
+				<button>
+					<legend>set -Y</legend>
+					<height>30</height>
+					<binding>
+					</binding>
+				</button>
+				<button>
+					<legend>set +X</legend>
+					<halign>left</halign>
+					<height>30</height>
+					<binding>
+					</binding>
+				</button>
+			</group>
+-->
+			<group>
+				<layout>hbox</layout>
+				<text>
+					<label>LP filter</label>
+					<halign>left</halign>
+				</text>
+				<input>
+					<live>1</live>
+					<halign>right</halign>
+					<pref-width>100</pref-width>
+					<height>25</height>
+					<property>/sim/fgcamera/current-camera/config/head-tracker/filter-time</property>
+					<binding>
+						<command>dialog-apply</command>
+					</binding>
+					<binding>
+						<command>nasal</command>
+						<script>
+							L.CurrentCamera().settings("head tracker").filter(getprop("/sim/fgcamera/current-camera/config/head-tracker/filter-time"));
+						</script>
+					</binding>
+				</input>
+			</group>
+			<group>
+				<layout>hbox</layout>
+				<text>
+					<label>Effects</label>
+				</text>
+				<hrule><stretch>true</stretch></hrule>
+			</group>
+			<group>
+				<layout>hbox</layout>
+				<checkbox>
+					<width>12</width>
+					<height>12</height>
+					<halign>left</halign>
+					<label>Dynamic head movement</label>
+					<enable>
+						<property></property>
+					</enable>
+					<binding>
+						<command>dialog-apply</command>
+					</binding>
+				</checkbox>
+				<button>
+					<legend>CFG...</legend>
+					<halign>right</halign>
+					<height>30</height>
+					<binding>
+						<command>dialog-show</command>
+						<dialog-name>DHM-settings</dialog-name>
+					</binding>
+					<binding>
+						<command>dialog-close</command>
+						<dialog-name>fgcamera-main</dialog-name>
+					</binding>
+				</button>
+			</group>
+			<group>
+				<layout>hbox</layout>
+				<checkbox>
+					<width>12</width>
+					<height>12</height>
+					<halign>left</halign>
+					<label>Random camera movement</label>
+					<enable>
+						<property></property>
+					</enable>
+					<binding>
+						<command>dialog-apply</command>
+					</binding>
+				</checkbox>
+				<button>
+					<legend>CFG...</legend>
+					<halign>right</halign>
+					<!--enable>
+						<property></property>
+					</enable-->
+					<height>30</height>
 			<binding>
 				<command>dialog-show</command>
-				<dialog-name>current-camera-settings</dialog-name>
+				<dialog-name>RND-mixer</dialog-name>
 			</binding>
-		</button>
+			<binding>
+				<command>dialog-close</command>
+				<dialog-name>fgcamera-main</dialog-name>
+			</binding>
+				</button>
+			</group>
+			<group>
+				<layout>hbox</layout>
+				<checkbox>
+					<live>1</live>
+					<width>12</width>
+					<height>12</height>
+					<halign>left</halign>
+					<label>Power-plant vibration</label>
+					<property>/sim/fgcamera/dialogs/fgcamera-main/settings/enable-power-plant-vibration</property>
+					<binding>
+						<command>dialog-apply</command>
+					</binding>
+					<binding>
+						<command>nasal</command>
+						<script>
+							L.CurrentCamera().effect("Power-plant vibration")
+								.enable( getprop("/sim/fgcamera/dialogs/fgcamera-main/settings/enable-power-plant-vibration") );
+						</script>
+					</binding>
+				</checkbox>
+				<button>
+					<legend>CFG...</legend>
+					<halign>right</halign>
+					<height>30</height>
+					<enable>
+						<property>/sim/fgcamera/dialogs/fgcamera-main/settings/enable-power-plant-vibration</property>
+					</enable>
+					<binding>
+						<command>dialog-show</command>
+						<dialog-name>power-plant-vibration</dialog-name>
+					</binding>
+					<binding>
+						<command>dialog-close</command>
+						<dialog-name>fgcamera-main</dialog-name>
+					</binding>
+				</button>
+			</group>
+			<empty><stretch>1</stretch></empty>
+		</group>
+
 	</group>
 
 	<hrule/>
@@ -201,21 +811,28 @@
 	<group>
 		<layout>hbox</layout>
 
+		<button>
+			<legend>Options...</legend>
+			<pref-height>30</pref-height>
+			<binding>
+				<command>dialog-show</command>
+				<dialog-name>fgcamera-options</dialog-name>
+			</binding>
+		</button>
+
 		<empty><stretch>1</stretch></empty>
 
 		<button>
 			<legend>Save</legend>
-			<key>Esc</key>
 			<pref-height>30</pref-height>
 			<binding>
 				<command>nasal</command>
-				<script>fgcamera.save_cameras()</script>
+				<script>L.saveToXML()</script>
 			</binding>
 		</button>
 
 		<button>
 			<legend>Close</legend>
-			<key>Esc</key>
 			<pref-height>30</pref-height>
 			<binding>
 				<command>dialog-close</command>
@@ -227,23 +844,55 @@
 
 	<nasal>
 		<open> <![CDATA[
-			var list        = cmdarg().getNode("group[3]/list");
-			var dlg_path    = fgcamera.my_node_path ~ "/dialogs/fgcamera-main";
+			var list        = cmdarg().getNode("group[1]/group/group/list");
+			var dlg_path    = "/sim/fgcamera/dialogs/fgcamera-main";
+			var path        = "/sim/fgcamera/dialogs/fgcamera-main/settings/";
+			var L           = fgcamera.API("1.0-devel").CameraList();
 			var names       = [];
-			var listener    = setlistener(fgcamera.my_node_path ~ "/current-camera/camera-id", func{update_list()});
-			#==================================================
-			#	Functions
-			#==================================================
-			var compress_vector = func (v) {
-				var s = size(v);
-				var new_vector = [];
-				if (s != 0) {
-					forindex (var i; v) {
-						if (v[i] != nil)
-							append(new_vector, v[i]);
-					}
+			var listener1   = setlistener("/sim/fgcamera/current-camera/camera-index", func{update_list()}); #revise
+			var listener2   = setlistener("/sim/fgcamera/signals/update",              func{update_list()}); #revise
+
+			var calc_data = func {
+				var c  = L.CurrentCamera();
+				var s  = c.settings("view adjustment");
+				var s1 = c.settings("view movement");
+				var s2 = c.settings("mouse look");
+				var s3 = c.effect("Power-plant vibration");
+				return [
+					[ "show-panel"                  , func (v = nil) 0                    ],
+					[ "show-dialog"                 , func (v = nil) 0                    ],
+					[ "dialog-name"                 , func (v = nil) 0                    ],
+					[ "ai-object-name"              , func (v = nil) 0                    ],
+					[ "enable-RND"                  , func (v = nil) 0                    ],
+					[ "enable-DHM"                  , func (v = nil) 0                    ],
+					[ "field-of-view"               , func (v = nil) s.FOV(v)             ],
+					[ "movement-transition-time"    , func (v = nil) s1.time(v)           ],
+					[ "movement-linterp"            , func (v = nil) s1.linear(v)         ],
+					[ "movement-filter"             , func (v = nil) s1.filter(v)         ],
+					[ "movement-popup-tip"          , func (v = nil) s1.popupTip(v)       ],
+					[ "movement-chained"            , func (v = nil) s1.chained(v)        ],
+					[ "adjustment-linear-velocity"  , func (v = nil) s.LinearVelocity(v)  ],
+					[ "adjustment-angular-velocity" , func (v = nil) s.AngularVelocity(v) ],
+					[ "adjustment-filter"           , func (v = nil) s.filter(v)          ],
+					[ "mlook-sensitivity"           , func (v = nil) s2.sensitivity(v)    ],
+					[ "mlook-filter"                , func (v = nil) s2.filter(v)         ],
+					[ "enable-power-plant-vibration", func (v = nil) s3.enable(v)         ],
+				];
+			}
+			#--------------------------------------------------
+			var update_values = func {
+				foreach (var a; var data = calc_data()) { #?
+					setprop(path ~ a[0], a[1]() );
+					#dialog_update(a[0]);
 				}
-				return new_vector;
+			}
+			#--------------------------------------------------
+			var set_value = func(fld) {
+				foreach ( var a; var data = calc_data() )
+					if ( a[0] == fld )
+						a[1]( getprop(path ~ fld) );
+
+				return nil
 			}
 			#--------------------------------------------------
 			var dialog_update = func () {
@@ -258,68 +907,26 @@
 			#--------------------------------------------------
 			var update_list = func {
 				list.removeChildren("value");
-				var i = 0;
-				foreach (var v; fgcamera.cameras) {
-					var name = v.name;
-					if (i == fgcamera.current[1]) {
+
+				var n = L.CameraCount() - 1;
+				var current_id = L.CurrentCamera().id();
+
+				for (var i = 1; i <= n; i += 1){
+					var camera   = L.CameraByID(i);
+					var name     = camera.name();
+					var category = camera.category();
+
+					if (i == current_id) {
 						setprop("/sim/fgcamera/current-camera/camera-name", name);
-						setprop("/sim/fgcamera/current-camera/category", v.category);
+						setprop("/sim/fgcamera/current-camera/category", category);
 						name = "[" ~ name ~ "]";
 					}
-					list.addChild("value").setValue(i ~ ". " ~ name  ~ "[" ~ v.category ~ "]");
-					i += 1;
+
+					if ( i > 0 )
+						list.addChild("value").setValue(i ~ ". " ~ name  ~ "[" ~ category ~ "]");
 				}
-				dialog_update("camera_list", "camera_name", "camera_category");
-				#print("updating list");
-			}
-			#==================================================
-			#	Copy camera
-			#==================================================
-			var return_new_camera = func(c) {
-				c.name ~= "-copy";
-				return c;
-			}
-			var copy_camera = func () {
-				var cameraN = props.Node.new();
-				cameraN.setValues(fgcamera.cameras[fgcamera.current[1]]);
-				var new_camera = cameraN.getValues();
-				new_camera.name ~= "-copy";
-				append(fgcamera.cameras, new_camera);
-				setprop(fgcamera.my_node_path ~ "/current-camera/camera-id", size(fgcamera.cameras) - 1);
-				update_list();
-				cameraN.remove();
-			}
-			#==================================================
-			#	Up / Down
-			#==================================================
-			var reorder_cameras = func (dir) {
-				var vec = fgcamera.cameras;
-				var id1 = fgcamera.current[1];
-				var id2 = id1 + math.sgn(dir);
-				if ( (id2 >= 0) and (id2 < size(vec)) ) {
-					var tmp  = vec[id1];
-					vec[id1] = vec[id2];
-					vec[id2] = tmp;
-					fgcamera.cameras = vec;
-					fgcamera.current[1] = id2;
-					update_list();
-				}
-			}
-			#==================================================
-			#	Rename camera
-			#==================================================
-			var rename_camera = func {
-				var id = fgcamera.current[1];
-				fgcamera.cameras[id].name = getprop("/sim/fgcamera/current-camera/camera-name");
-				update_list();
-			}
-			#==================================================
-			#	Set category
-			#==================================================
-			var set_category = func {
-				var id = fgcamera.current[1];
-				fgcamera.cameras[id].category = getprop("/sim/fgcamera/current-camera/category");
-				update_list();
+				dialog_update("camera_list");
+				update_values();
 			}
 			#==================================================
 			#	Select camera
@@ -328,34 +935,64 @@
 				var name = getprop("/sim/fgcamera/current-camera/name");
 				var i = 0;
 				foreach (var a; list.getChildren("value")) {
-					if (a.getValue() == name)
-						setprop(fgcamera.my_node_path ~ "/current-camera/camera-id", i) and return;
+					if (a.getValue() == name) {
+						L.CameraByID(i + 1).select();
+						return;
+					}
 					i += 1;
 				}
-				setprop(fgcamera.my_node_path ~ "/current-camera/camera-id", 0);
+				L.camera(0).select();
 			}
 			#==================================================
-			#	Delete camera
+			#	Create camera
 			#==================================================
-			var delete_camera = func {
-				var id     = fgcamera.current[1];
-				var new_id = id;
-				var n      = size(fgcamera.cameras);
-				if (n == 1)
-					return;
-				if (new_id == (n - 1))
-					new_id -= 1;
-				fgcamera.cameras[id] = nil;
-				fgcamera.cameras     = compress_vector(fgcamera.cameras);
-				fgcamera.current[1]  = new_id;
-				setprop(fgcamera.my_node_path ~ "/current-camera/camera-id", new_id);
+			setprop("/sim/fgcamera/dialogs/main/camera-type", "cockpit camera");
+			var addCamera = func {
+				var type = nil;
+				var type_str = getprop("/sim/fgcamera/dialogs/main/camera-type");
+				if (type_str == "aircraft camera")
+					type = 1;
+				elsif (type_str == "world camera")
+					type = 2;
+				else type = 0;
+				L.newCamera( , type).select();
 			}
 			#==================================================
+			#	Copy camera
+			#==================================================
+			var copy_camera = func {
+				L.CurrentCamera().copy();
+			}
+			#==================================================
+			#	Up / Down
+			#==================================================
+			var reorder_cameras = func (dir) {
+				var c = L.CurrentCamera();
+				c.id(c.id() + dir);
+			}
+			#==================================================
+			#	Rename camera
+			#==================================================
+			var rename_camera = func {
+				L.CurrentCamera()
+					.name( getprop("/sim/fgcamera/current-camera/camera-name") );
+			}
+			#==================================================
+			#	Set category
+			#==================================================
+			var set_category = func {
+				L.CurrentCamera()
+					.category( getprop("/sim/fgcamera/current-camera/category") );
+			}
+
 			update_list();
+			setprop("/sim/fgcamera/gui-opened", 1);
 		]]> </open>
 
 		<close>
-			removelistener(listener);
+			setprop("/sim/fgcamera/gui-opened", 0);
+			removelistener(listener1);
+			removelistener(listener2);
 		</close>
 	</nasal>
 
