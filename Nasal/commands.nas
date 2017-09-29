@@ -18,16 +18,21 @@ var _old_select_camera = func (i) { #del?
 }
 
 var commands = {
+#--------------------------------------------------
 	"fgcamera-select": func {
 		var data = cmdarg().getValues();
 
-		if ( !getprop("/sim/fgcamera/fgcamera-enabled") ) return;
+		if ( !getprop("/sim/fgcamera/fgcamera-enabled") ) {
+            return;
+        }
 
-		if ( contains(data, "slot") )
+		if ( contains(data, "slot") ) {
 			API().CameraList().CameraBySlot(data["slot"]).select();
-		elsif ( contains(data, "camera-id") )
+		} elsif ( contains(data, "camera-id") ) {
 			API().CameraList().CameraByID(data["camera-id"]).select();
+        }
 
+        # FIXME SM TODELETE ?
 		#select_camera(data["camera-id"]); # revise; check if contains "name", "camera-id", or "camera-index"
 	},
 #--------------------------------------------------
@@ -36,6 +41,7 @@ var commands = {
 
 		setprop ("/sim/fgcamera/view-adjustment/raw/" ~ data.dof ~ "-velocity", data.velocity); #/sim/fgcamera/view-adjustment/raw/fov-velocity
 	},
+# FIXME SM TODELETE ? implemented in /nas/commands.nas
 #--------------------------------------------------
 #	"fgcamera-save": func {
 #		setprop (my_node_path ~ "/save-cameras", 1);
@@ -61,6 +67,7 @@ var commands = {
 	"fgcamera-prev-in-category": func {
 		cycle_category(-1, 1);
 	},
+# FIXME SM TODELETE ? implemented in /nas/commands.nas
 #--------------------------------------------------
 #	"fgcamera-next-ai-object": func {
 #		AI_object.cycle_ai_object(1);

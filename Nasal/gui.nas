@@ -1,24 +1,28 @@
 #==================================================
 #	GUI
 #==================================================
+var root_path = getprop("/sim/fgcamera/root_path");
+
 var load_gui = func {
 	var dialogs   = ["fgcamera-main", "create-new-camera", "current-camera",  "fgcamera-options", "DHM-settings", "RND-mixer", "RND-generator", "RND-curves", "vibration-curves", "RND-import", "power-plant-vibration", "timestamps-import"];
 	var filenames = ["main",          "create_camera",     "camera_settings", "fgcamera_options", "DHM_settings", "RND_mixer", "RND_generator", "RND_curves", "vibration_curves", "RND_import", "power_plant_vibration", "timestamps_import"];
 
-	forindex (var i; dialogs)
-		gui.Dialog.new("/sim/gui/dialogs/" ~ dialogs[i] ~ "/dialog", "Nasal/fgcamera/GUI/" ~ filenames[i] ~ ".xml");
+	forindex (var i; dialogs) {
+		gui.Dialog.new("/sim/gui/dialogs/" ~ dialogs[i] ~ "/dialog", root_path ~ "/GUI/" ~ filenames[i] ~ ".xml");
+    }
 
 	#reset handling
-	foreach(var item; props.getNode("/sim/menubar/default/menu[1]").getChildren("item"))
-		if (item.getValue("name") == "fgcamera")
+	foreach(var item; props.getNode("/sim/menubar/default/menu[1]").getChildren("item")) {
+		if (item.getValue("name") == "fgcamera") {
 			return;
-	#/reset handling
+        }
+    }
 
 	var data = {
 		label   : "FGCamera (experimental)",
 		name    : "fgcamera",
 		binding : { command : "dialog-show", "dialog-name" : "fgcamera-main" },
-		enabled : { property : "/sim/fgcamera/fgcamera-enabled" },#??? FIX
+		enabled : { property : "/sim/fgcamera/fgcamera-enabled" }, #??? FIX
 	};
 
 	props.globals.getNode("/sim/menubar/default/menu[1]").addChild("item").setValues(data);
@@ -35,8 +39,9 @@ var calc_screen_ysize = func y_size = getprop("/sim/startup/ysize");
 setlistener("/sim/startup/xsize", func calc_screen_xsize());
 setlistener("/sim/startup/ysize", func calc_screen_ysize());
 
-#var fgcamera_dlg = gui.Dialog.new("/sim/gui/dialogs/fgcamera-mini-dialog/dialog", "Nasal/fgcamera/GUI/mini_dialog.xml");
-var fgcamera_dlg2 = gui.Dialog.new("/sim/gui/dialogs/fgcamera-mini-dialog-slots/dialog", "Nasal/fgcamera/GUI/mini_dialog_slots.xml");
+# FIXME SM TODELETE ?
+#var fgcamera_dlg = gui.Dialog.new("/sim/gui/dialogs/fgcamera-mini-dialog/dialog", root_path ~ "/GUI/mini_dialog.xml");
+var fgcamera_dlg2 = gui.Dialog.new("/sim/gui/dialogs/fgcamera-mini-dialog-slots/dialog", root_path ~ "/GUI/mini_dialog_slots.xml");
 
 var __mouse = {
 	x: func getprop("/devices/status/mice/mouse/x") or 0,

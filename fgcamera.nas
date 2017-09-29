@@ -1,4 +1,4 @@
-var my_version   = "v1.2";
+var my_version   = "v1.3";
 var my_node_path = "/sim/fgcamera";
 var my_views     = ["FGCamera1", "FGCamera2", "FGCamera3", "FGCamera4", "FGCamera5"];
 var my_settings  = {};
@@ -15,6 +15,7 @@ var timeF        = 0;
 var helicopterF  = nil;
 
 var mouse_enabled = 0;
+
 #==================================================
 #	"Shortcuts"
 #==================================================
@@ -111,6 +112,7 @@ var Bezier2 = func (p1, x) {
 	var p2 = [1.0, 1.0];
 
 	var t = (-p1[0] + math.sqrt(p1[0] * p1[0] + (1 - 2 * p1[0]) * x)) / (1 - 2 * p1[0]);
+    # FIXME SM TODELETE ?
 	#var y = (1 - t) * (1 - t) * p0[1] + 2 * (1 - t) * t * p1[1] + t * t * p2[1];
 	var y = 2 * (1 - t) * t * p1[1] + t * t;
 
@@ -175,29 +177,36 @@ var rotate3d = func (coord, angle) {
 #--------------------------------------------------
 var play_sound = func {
 	var hash = {
-		path   : getprop("/sim/fg-root") ~ "/Nasal/fgcamera/",
+		path   : getprop("/sim/fgcamera/root_path") ~ "/Sounds/",
 		file   : "start.wav",
 		volume : 1.0
 	};
 	fgcommand ("play-audio-sample", props.Node.new(hash));
 }
 #--------------------------------------------------
-var show_panel = func(path = "Nasal/fgcamera/Panels/generic-vfr-panel.xml") {
-	if ( !cameras[current[1]]["panel-show"] )
+var show_panel = func(path = "Panels/generic-vfr-panel.xml") {
+	if ( !cameras[current[1]]["panel-show"] ) {
 		return;
+    }
 
 	setprop("/sim/panel/path", path);
 	setprop("/sim/panel/visibility", 1);
 }
 #--------------------------------------------------
-var hide_panel = func { setprop("/sim/panel/visibility", 0) }
+var hide_panel = func {
+    setprop("/sim/panel/visibility", 0)
+}
 
-var check_helicopter = func props.globals.getNode("/rotors", 0, 0) != nil ? 1 : 0;
+#--------------------------------------------------
+var check_helicopter = func {
+    props.globals.getNode("/rotors", 0, 0) != nil ? 1 : 0;
+}
 
 #==================================================
 #	Template for handlers
 #==================================================
 var t_handler = {
+#--------------------------------------------------
 	new: func {
 		var m = { parents: [t_handler] };
 
@@ -219,6 +228,7 @@ var t_handler = {
 
 		return m;
 	},
+
 #--------------------------------------------------
 	stop: func {
 		if ( size(me._listeners) ) {
@@ -277,6 +287,7 @@ var adjustment_handler = {
 			var filter  = cameras[current[1]].adjustment.filter;
 
 			me._rotate();
+# FIXME SM TODELETE ?
 #			forindex (var dof; me.offsets) {
 #				me._offsets_raw[dof] += me._v_t[dof] * dt;
 #				me.offsets[dof]       = me._lp[dof].filter(me._offsets_raw[dof], filter);
@@ -288,6 +299,7 @@ var adjustment_handler = {
 			forindex (var dof; me.offsets) {
 				var v = me._lp[dof].filter(me._v_t[dof], filter);
 				me.offsets[dof] += v * dt;
+# FIXME SM TODELETE ?
 #				me.offsets[dof]       = me._lp[dof].filter(me._offsets_raw[dof], filter);
 
 				if ( v != 0 )
@@ -306,6 +318,7 @@ var adjustment_handler = {
 		}
 	},
 };
+
 #==================================================
 #	fgcamera.mouse
 #
@@ -453,27 +466,30 @@ var mouse_look_handler = {
 #	Start
 #==================================================
 var FGcycleMouseMode = nil;
+#--------------------------------------------------
 var configure_FG = func (mode = "start") {
 	var path = "/sim/mouse/right-button-mode-cycle-enabled";
-	if ( FGcycleMouseMode == nil ) FGcycleMouseMode = getprop(path);
+	if ( FGcycleMouseMode == nil ) {
+        FGcycleMouseMode = getprop(path);
+    }
 	if ( mode == "start" ) {
-
 		setprop(path, 1);
 	} else
 		setprop(path, FGcycleMouseMode);
 }
-
+#--------------------------------------------------
 var fgcamera_view_handler = {
 	init   : func { manager.init() },
 	start  : func { manager.start(); configure_FG("start") },
 	update : func { return manager.update() },
 	stop   : func { manager.stop(); configure_FG("stop") }
 };
-
-var load_nasal = func (v) {
-	var path = getprop("/sim/fg-root");
-	foreach (var script; v)
-		io.load_nasal ( path ~ "/Nasal/fgcamera/nas/" ~ script ~ ".nas", "fgcamera" );
+#--------------------------------------------------
+var load_nasal = func {
+	var path = getprop("/sim/fgcamera/root_path");
+	foreach (var script; arg) {
+		io.load_nasal ( path ~ "/Nasal/" ~ script ~ ".nas", "fgcamera" );
+    }
 }
 #--------------------------------------------------
 var fdm_init_listener = _setlistener("/sim/signals/fdm-initialized", func {
@@ -486,7 +502,7 @@ var fdm_init_listener = _setlistener("/sim/signals/fdm-initialized", func {
 		"io",
 		"view_movement",
 		"DHM",
-		"RND_",
+		"RND",
 		"headtracker",
 		"offsets_manager",
 	]);
@@ -494,16 +510,19 @@ var fdm_init_listener = _setlistener("/sim/signals/fdm-initialized", func {
 	add_commands();
 	load_cameras();
 	load_gui();
+
 	helicopterF = check_helicopter();
 
-	foreach (var a; my_views)
+	foreach (var a; my_views) {
 		view.manager.register(a, fgcamera_view_handler);
+    }
 
-	if ( getprop("/sim/fgcamera/enable") )
+	if ( getprop("/sim/fgcamera/enable") ) {
 		setprop (my_node_path ~ "/current-camera/camera-id", 0);
+    }
 });
 
-
+#--------------------------------------------------
 var reinit_listener = setlistener("/sim/signals/reinit", func {
 	fgcommand("gui-redraw");
 	fgcommand("fgcamera-reset-view");

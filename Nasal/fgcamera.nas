@@ -86,6 +86,7 @@ var hide_panel = func {
 var select_camera = func(i, popupTip = nil) {
 	close_dialog();
 	hide_panel();
+# FIXME SM TODELETE ?
 #	set_fgcursor_group( getprop("/sim/fgcamera/current-camera/camera-index") );
 
 	var sourceN = props.getNode("sim/fgcamera", 1).getChild("camera", i);
@@ -97,6 +98,7 @@ var select_camera = func(i, popupTip = nil) {
 	props.copy(sourceN, destN);
 
 #change view
+    # FIXME SM TODELETE ?
 	#setprop("/sim/fgcamera/view-movement/snap", 0);
 	var n = view.indexof("FGCamera0");
 	var type = getprop("/sim/fgcamera/current-camera/config/camera-type");
@@ -109,6 +111,7 @@ var select_camera = func(i, popupTip = nil) {
 	setprop("/sim/fgcamera/view-movement/moving", 1);
 	setprop("/sim/fgcamera/view-movement/start-moving", 1);
 
+# FIXME SM TODELETE ?
 #	select_fgcursor_group();
 }
 
@@ -195,6 +198,8 @@ var load_cameras = func {
 	io.read_properties(path ~ "/" ~ file2, "/sim/fgcamera/effects");
 	cameraN.remove();
 }
+
+# FIXME SM TODELETE ?
 #########################################################################
 # Prototyping
 #
