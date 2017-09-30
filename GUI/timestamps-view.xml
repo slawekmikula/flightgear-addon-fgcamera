@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 
 <PropertyList>
-	<name>time-stamps</name>
+	<name>time-stamps-view</name>
 	<layout>vbox</layout>
 	<modal>false</modal>
 	<x>-10</x>
