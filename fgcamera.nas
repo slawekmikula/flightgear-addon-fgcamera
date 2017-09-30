@@ -184,7 +184,7 @@ var play_sound = func {
 	fgcommand ("play-audio-sample", props.Node.new(hash));
 }
 #--------------------------------------------------
-var show_panel = func(path = "Panels/generic-vfr-panel.xml") {
+var show_panel = func(path = "Panels/generic-vfr-panel1.xml") {
 	if ( !cameras[current[1]]["panel-show"] ) {
 		return;
     }

@@ -178,19 +178,19 @@ var load_cameras = func {
 
 	if (dir == nil) { # FIX! (use more appropriate assumption)
 		return;
-		path = getprop("/sim/fg-root") ~ "/Nasal/fgcamera";
-		file = "default-cameras.xml";
+		path = getprop("/sim/fgcamera/root_path");
+		file = "prop_default-cameras.xml";
 	}
 
 	var srcN = io.read_properties(path ~ "/" ~ file);
-	if (srcN == nil)
+	if (srcN == nil) {
 		return;
+    }
 
 	props.copy(srcN, cameraN); #?
 	foreach (var c; cameraN.getChildren("camera")) {
 		if ( c.getIndex() > 0 ) {
 			props.copy ( c, var node = destN.addChild("camera") );
-
 			copy(props.getNode("/sim/fgcamera/camera"), node);
 		}
 	}

@@ -284,7 +284,7 @@ Slawek Mikula, October 2017
                 <view-number>0</view-number>
             </current-camera>
             <panel n="0">
-                <path>Panels/generic-vfr-panel.xml</path>
+                <path>Panels/generic-vfr-panel1.xml</path>
                 <name>vfr panel 1</name>
             </panel>
             <panel n="2">
@@ -662,7 +662,7 @@ Slawek Mikula, October 2017
         </fgcamera>
 
         <panel>
-            <path>./Panels/generic-vfr-panel.xml</path>
+            <path>Panels/generic-vfr-panel1.xml</path>
             <visibility archive="y">false</visibility>
             <hide-nonzero-heading-offset type="bool">false</hide-nonzero-heading-offset>
             <hide-nonzero-view type="bool">false</hide-nonzero-view>

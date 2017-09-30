@@ -32,6 +32,8 @@ var switch_to_mouse = func {
 	if (b2) {
 		prev_mode = mouse.mode();
 		mouse.mode(2);
-	} else mouse.mode(prev_mode);
+	} else {
+        mouse.mode(prev_mode);
+    }
 }
 #-------------------------------------------------

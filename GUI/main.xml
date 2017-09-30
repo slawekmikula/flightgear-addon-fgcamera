@@ -922,8 +922,9 @@
 						name = "[" ~ name ~ "]";
 					}
 
-					if ( i > 0 )
+					if ( i > 0 ) {
 						list.addChild("value").setValue(i ~ ". " ~ name  ~ "[" ~ category ~ "]");
+                    }
 				}
 				dialog_update("camera_list");
 				update_values();

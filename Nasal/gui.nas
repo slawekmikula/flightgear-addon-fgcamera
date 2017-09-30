@@ -4,8 +4,32 @@
 var root_path = getprop("/sim/fgcamera/root_path");
 
 var load_gui = func {
-	var dialogs   = ["fgcamera-main", "create-new-camera", "current-camera",  "fgcamera-options", "DHM-settings", "RND-mixer", "RND-generator", "RND-curves", "vibration-curves", "RND-import", "power-plant-vibration", "timestamps-import"];
-	var filenames = ["main",          "create_camera",     "camera_settings", "fgcamera_options", "DHM_settings", "RND_mixer", "RND_generator", "RND_curves", "vibration_curves", "RND_import", "power_plant_vibration", "timestamps_import"];
+	var dialogs   = [
+        "fgcamera-main",
+        "create-new-camera",
+        "current-camera",
+        "fgcamera-options",
+        "DHM-settings",
+        "RND-mixer",
+        "RND-generator",
+        "RND-curves",
+        "vibration-curves",
+        "RND-import",
+        "power-plant-vibration",
+        "timestamps-import"];
+	var filenames = [
+        "main",
+        "create_camera",
+        "camera_settings",
+        "fgcamera_options",
+        "DHM_settings",
+        "RND_mixer",
+        "RND_generator",
+        "RND_curves",
+        "vibration_curves",
+        "RND_import",
+        "power_plant_vibration",
+        "timestamps_import"];
 
 	forindex (var i; dialogs) {
 		gui.Dialog.new("/sim/gui/dialogs/" ~ dialogs[i] ~ "/dialog", root_path ~ "/GUI/" ~ filenames[i] ~ ".xml");
@@ -19,7 +43,7 @@ var load_gui = func {
     }
 
 	var data = {
-		label   : "FGCamera (experimental)",
+		label   : "FGCamera",
 		name    : "fgcamera",
 		binding : { command : "dialog-show", "dialog-name" : "fgcamera-main" },
 		enabled : { property : "/sim/fgcamera/fgcamera-enabled" }, #??? FIX
@@ -76,7 +100,7 @@ var show_dialog = func (show = 0) {
 var close_dialog = func (close = 0) {
 	#if (cameras[current[1]]["dialog-show"] or close)
 	var h = {"dialog-name" : getprop("/sim/fgcamera/current-camera/config/dialog-name") or return};
-		fgcommand ( "dialog-close", {"dialog-name" : getprop("/sim/fgcamera/current-camera/config/dialog-name")} );
+    fgcommand ( "dialog-close", {"dialog-name" : getprop("/sim/fgcamera/current-camera/config/dialog-name")} );
 	setprop("/sim/fgcamera/current-camera/dialog-opened", 0);
 }
 

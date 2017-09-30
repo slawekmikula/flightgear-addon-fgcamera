@@ -7,7 +7,9 @@
 #==================================================
 var _old_select_camera = func (i) { #del?
 	var data = cmdarg().getValues();
-	if ( cameras[i] == nil ) i = 0;
+	if ( cameras[i] == nil ) {
+        i = 0;
+    }
 
 	popupTipF = 1;
 
