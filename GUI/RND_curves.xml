@@ -199,11 +199,13 @@
 					return m;
 				},
 
+
 				reset: func {
 					me._chart.setTranslation(me.margins.left, me.view_y - me.graph_height - me.margins.bottom);
 					me._xAxis.setTranslation(me.margins.left, me.view_y - me.margins.bottom);
 					me._yAxis.setTranslation(me.margins.left, me.view_y - me.graph_height - me.margins.bottom);
 				},
+
 
 				refresh: func {
 					me.h_res        = me.h_grid / me.h_spacing;

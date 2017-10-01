@@ -2,51 +2,49 @@
 
 <PropertyList>
 
-	<version>v1.2</version>
+	<!--version>v1.2</version>
 
-	<camera>
-		<name>default</name>
-		<type>FGCamera1</type>
+	<camera-->
+	<config>
+		<camera-id>1</camera-id>
+		<camera-name>default2</camera-name>
+		<camera-type>0</camera-type>
 		<category>0</category>
-		<popupTip>1</popupTip>
 		<panel-show>0</panel-show>
 		<dialog-show>0</dialog-show>
 		<dialog-name></dialog-name>
+		<ai-object-name></ai-object-name>
 		<head-tracker>0</head-tracker>
 		<enable-RND>1</enable-RND>
 		<enable-DHM>1</enable-DHM>
 		<fov>65</fov>
 
-		<offsets>0</offsets>
-		<offsets>0</offsets>
-		<offsets>0</offsets>
-		<offsets>0</offsets>
-		<offsets>0</offsets>
-		<offsets>0</offsets>
+		<x-offset-m type="double"></x-offset-m>
+		<y-offset-m type="double"></y-offset-m>
+		<z-offset-m type="double"></z-offset-m>
+		<heading-offset-deg type="double"></heading-offset-deg>
+		<pitch-offset-deg type="double"></pitch-offset-deg>
+		<roll-offset-deg type="double"></roll-offset-deg>
 
-		<adjustment>
-			<v>0.1</v>
-			<v>30.0</v>
-			<filter>0.2</filter>
-		</adjustment>
+		<view-adjustment>
+			<linear-velocity type="double">0.2</linear-velocity>
+			<angular-velocity type="double">30</angular-velocity>
+			<filter-time type="double">0.2</filter-time>
+		</view-adjustment>
 
-		<mouse_look>
-			<sensitivity>2.0</sensitivity>
-			<filter>0.1</filter>
-		</mouse_look>
+		<mouse-look>
+			<sensitivity>0.2</sensitivity>
+			<filter-time>0.1</filter-time>
+		</mouse-look>
 
-		<movement>
-			<time>1.0</time>
-		</movement>
-
-		<tower>
-			<latitude-deg>0</latitude-deg>
-			<longitude-deg>0</longitude-deg>
-			<altitude-ft>0</altitude-ft>
-			<heading-deg>0</heading-deg>
-			<pitch-deg>0</pitch-deg>
-			<roll-deg>0</roll-deg>
-		</tower>
+		<view-movement>
+			<movement-time type="double">2</movement-time>
+			<linear-interpolation type="bool">false</linear-interpolation>
+			<filter-time type="double">0.2</filter-time>
+			<chained>0</chained>
+			<popupTip>1</popupTip>
+		</view-movement>
+	</config>
 
 		<RND>
 			<GEN>
@@ -373,6 +371,6 @@
 				<filter>0</filter>
 			</curves>
 		</RND>
-	</camera>
+	<!--/camera-->
 
 </PropertyList>

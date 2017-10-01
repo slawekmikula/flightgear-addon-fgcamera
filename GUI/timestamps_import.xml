@@ -23,7 +23,7 @@
 			<pref-height>16</pref-height>
 				<binding>
 					<command>dialog-show</command>
-					<dialog-name>timestamps-view</dialog-name>
+					<dialog-name>time-stamps</dialog-name>
 				</binding>
 				<binding>
 					<command>dialog-close</command>
@@ -60,7 +60,7 @@
 	<nasal>
 		<open> <![CDATA[
 			var listN    = cmdarg().getNode("group[1]/list");
-			var path     = getprop("/sim/fgcamera/root_path") ~ "/replay";
+			var path     = getprop("/sim/fg-root") ~ "/Nasal/fgcamera/replay";
 			var dir      = directory(path);
 			var list     = [];
 

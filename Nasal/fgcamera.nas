@@ -22,11 +22,8 @@ var send_signal = func {
 
 	var h = func (s) setprop ("/sim/fgcamera/signals/" ~ s, 1);
 
-	foreach (var a; arg) {
-		if ( a == "update" ) {
-            h(a);
-        }
-    }
+	foreach (var a; arg)
+		if ( a == "update" ) h(a);
 }
 
 var set_fgcursor_group = func (i) {
@@ -89,7 +86,6 @@ var hide_panel = func {
 var select_camera = func(i, popupTip = nil) {
 	close_dialog();
 	hide_panel();
-# FIXME SM TODELETE ?
 #	set_fgcursor_group( getprop("/sim/fgcamera/current-camera/camera-index") );
 
 	var sourceN = props.getNode("sim/fgcamera", 1).getChild("camera", i);
@@ -101,7 +97,6 @@ var select_camera = func(i, popupTip = nil) {
 	props.copy(sourceN, destN);
 
 #change view
-    # FIXME SM TODELETE ?
 	#setprop("/sim/fgcamera/view-movement/snap", 0);
 	var n = view.indexof("FGCamera0");
 	var type = getprop("/sim/fgcamera/current-camera/config/camera-type");
@@ -114,7 +109,6 @@ var select_camera = func(i, popupTip = nil) {
 	setprop("/sim/fgcamera/view-movement/moving", 1);
 	setprop("/sim/fgcamera/view-movement/start-moving", 1);
 
-# FIXME SM TODELETE ?
 #	select_fgcursor_group();
 }
 
@@ -181,19 +175,19 @@ var load_cameras = func {
 
 	if (dir == nil) { # FIX! (use more appropriate assumption)
 		return;
-		path = getprop("/sim/fgcamera/root_path");
-		file = "prop_default-cameras.xml";
+		path = getprop("/sim/fg-root") ~ "/Nasal/fgcamera";
+		file = "default-cameras.xml";
 	}
 
 	var srcN = io.read_properties(path ~ "/" ~ file);
-	if (srcN == nil) {
+	if (srcN == nil)
 		return;
-    }
 
 	props.copy(srcN, cameraN); #?
 	foreach (var c; cameraN.getChildren("camera")) {
 		if ( c.getIndex() > 0 ) {
 			props.copy ( c, var node = destN.addChild("camera") );
+
 			copy(props.getNode("/sim/fgcamera/camera"), node);
 		}
 	}
@@ -201,5 +195,27 @@ var load_cameras = func {
 	io.read_properties(path ~ "/" ~ file2, "/sim/fgcamera/effects");
 	cameraN.remove();
 }
+#########################################################################
+# Prototyping
+#
+#var blade_length       = 6;
+#var blade_position_deg = nil;
+
+#var mounted_camera = func {
+#	var coordinates = [0, 0, 0, 0, 0, 0];
+#	var blade_position_deg = getprop("/rotors/main/blade");
+#	coordinates[4] = getprop;
+
+
+#	setprop("/cam/x", coordinates[0]);
+#	setprop("/cam/y", coordinates[1]);
+#	setprop("/cam/z", coordinates[2]);
+#	setprop("/cam/h", coordinates[3]);
+#	setprop("/cam/p", coordinates[4]);
+#	setprop("/cam/r", coordinates[5]);
+#}
+
+#########################################################################
+
 
 print("FGCamera: main script loaded");
