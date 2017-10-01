@@ -146,8 +146,9 @@ var cycle_category = func(dir, mode = nil) {
 
 
 var add_commands = func {
-	foreach (var name; keys(commands))
+	foreach (var name; keys(commands)) {
 		addcommand(name, commands[name]);
+    }
 }
 
 add_commands();

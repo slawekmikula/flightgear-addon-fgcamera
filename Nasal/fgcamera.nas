@@ -22,8 +22,11 @@ var send_signal = func {
 
 	var h = func (s) setprop ("/sim/fgcamera/signals/" ~ s, 1);
 
-	foreach (var a; arg)
-		if ( a == "update" ) h(a);
+	foreach (var a; arg) {
+		if ( a == "update" ) {
+            h(a);
+        }
+    }
 }
 
 var set_fgcursor_group = func (i) {
@@ -198,29 +201,5 @@ var load_cameras = func {
 	io.read_properties(path ~ "/" ~ file2, "/sim/fgcamera/effects");
 	cameraN.remove();
 }
-
-# FIXME SM TODELETE ?
-#########################################################################
-# Prototyping
-#
-#var blade_length       = 6;
-#var blade_position_deg = nil;
-
-#var mounted_camera = func {
-#	var coordinates = [0, 0, 0, 0, 0, 0];
-#	var blade_position_deg = getprop("/rotors/main/blade");
-#	coordinates[4] = getprop;
-
-
-#	setprop("/cam/x", coordinates[0]);
-#	setprop("/cam/y", coordinates[1]);
-#	setprop("/cam/z", coordinates[2]);
-#	setprop("/cam/h", coordinates[3]);
-#	setprop("/cam/p", coordinates[4]);
-#	setprop("/cam/r", coordinates[5]);
-#}
-
-#########################################################################
-
 
 print("FGCamera: main script loaded");

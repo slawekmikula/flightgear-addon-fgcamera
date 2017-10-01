@@ -1,13 +1,12 @@
-var ht_filter = 0.1;
-
 #==================================================
 #	Headtracker inputs handler
 #==================================================
+
+var ht_filter = 0.1;
+
 var HeadTracker = {
 	parents  : [ t_handler.new() ],
-
 	free     : 1,
-
 	_updateF : 1,
 	_effect  : 1,
 #--------------------------------------------------

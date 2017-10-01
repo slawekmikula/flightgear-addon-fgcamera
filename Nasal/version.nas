@@ -21,10 +21,13 @@ var create_version_vector = func (v) {
 
 var update_cam_version = func (v) {
 	var vec = create_version_vector(v);
-	foreach (var _v; vec)
-		foreach ( var item; keys(version_items[_v]) )
-			forindex (var i; cameras)
+	foreach (var _v; vec) {
+		foreach ( var item; keys(version_items[_v]) ) {
+			forindex (var i; cameras) {
 				cameras[i][item] = version_items[_v][item];
+            }
+        }
+    }
 };
 
 print("Version script loaded");

@@ -53,7 +53,7 @@ var calc_screen_ysize = func y_size = getprop("/sim/startup/ysize");
 setlistener("/sim/startup/xsize", func calc_screen_xsize());
 setlistener("/sim/startup/ysize", func calc_screen_ysize());
 
-# FIXME SM TODELETE ?
+# FIXME SM - add option to show simple/slots dialogs
 #var fgcamera_dlg = gui.Dialog.new("/sim/gui/dialogs/fgcamera-mini-dialog-simple/dialog", root_path ~ "/GUI/mini-dialog-simple.xml");
 var fgcamera_dlg2 = gui.Dialog.new("/sim/gui/dialogs/fgcamera-mini-dialog-slots/dialog", root_path ~ "/GUI/mini-dialog-slots.xml");
 

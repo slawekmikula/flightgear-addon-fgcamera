@@ -1,6 +1,7 @@
 #==================================================
 #	Data Input/Output
 #==================================================
+
 var load_cameras = func {
 	var aircraft  = getprop("/sim/aircraft");
 	var path      = getprop("/sim/fg-home") ~ "/aircraft-data/FGCamera/" ~ aircraft;
@@ -12,7 +13,6 @@ var load_cameras = func {
 	if (dir == nil) { # FIX! (use more appropriate assumption)
 		path = getprop("/sim/fgcamera/root_path");
 		file = "prop_default-cameras.xml";
-
 		setF = 1;
 	}
 
@@ -23,13 +23,15 @@ var load_cameras = func {
 		append( cameras, vec[i].getValues() );
 	}
 
-	if ( setF )
+	if ( setF ) {
 		set_default_offsets();
+    }
 
 	var cam_version = cameraN.getChild("version", 0, 1).getValue() or "v1.0";
 	print("cameras version: " ~ cam_version);
-	if (cam_version != my_version)
+	if (cam_version != my_version) {
 		update_cam_version(cam_version);
+    }
 
 	var spring_loaded_mouse = cameraN.getChild("spring-loaded-mouse", 0, 1).getValue() or "0";
 	setprop("/sim/fgcamera/mouse/spring-loaded", spring_loaded_mouse);
@@ -38,10 +40,12 @@ var load_cameras = func {
 	return size(cameras);
 }
 
+#--------------------------------------------------
 var set_default_offsets = func {
 	forindex (var i; manager._list)
 		cameras[0].offsets[i] = num(getprop( "/sim/view/config/" ~ manager._list[i] )) or 0;
 }
+
 #--------------------------------------------------
 var save_cameras = func {
 	var aircraft = getprop("/sim/aircraft");
@@ -54,7 +58,6 @@ var save_cameras = func {
 		foreach (var a; keys(cameras[i]) ) {
 			var data = {};
 			data[a]  = cameras[i][a];
-
 			node.getChild("camera", i, 1).setValues(data);
 		}
 	}

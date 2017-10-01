@@ -1,13 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
- FGCamera addon
-
- Started by ....
- Started ....
-
-Converted to a FlightGear addon by
-Slawek Mikula, October 2017
--->
 <PropertyList>
     <fgcam>
         <rnd>0</rnd>
