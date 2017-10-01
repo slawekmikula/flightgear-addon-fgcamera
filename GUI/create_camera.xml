@@ -88,13 +88,13 @@
 		</button>
 		<empty><stretch>1</stretch></empty>
 	</group>
-	
+
 	<nasal>
 		<open> <![CDATA[
 			if (getprop("/sim/fgcamera/dialogs/create-camera/camera-type") == nil)
 				setprop("/sim/fgcamera/dialogs/create-camera/camera-type", "cockpit");
 			var cameraN   = props.Node.new();
-			var path      = getprop("/sim/fg-root") ~ "/Nasal/fgcamera/default-cameras.xml";
+			var path      = getprop("/sim/fgcamera/root_path") ~ "/prop_default-cameras.xml";
 			var type      = nil;
 			props.copy(io.read_properties(path), cameraN);
 			#==================================================

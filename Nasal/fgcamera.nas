@@ -173,10 +173,9 @@ var load_cameras = func {
 	var cameraN   = props.Node.new();
 	var destN     = props.getNode("sim/fgcamera", 1);
 
-	if (dir == nil) { # FIX! (use more appropriate assumption)
-		return;
-		path = getprop("/sim/fg-root") ~ "/Nasal/fgcamera";
-		file = "default-cameras.xml";
+	if (dir == nil) {
+		path = getprop("/sim/fgcamera/root_path");
+		file = "/prop_default-cameras.xml";
 	}
 
 	var srcN = io.read_properties(path ~ "/" ~ file);

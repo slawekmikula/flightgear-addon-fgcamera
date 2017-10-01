@@ -5,9 +5,12 @@
 #		fgcamera-adjust (<dof>, <velocity>)
 #		fgcamera-save   ()
 #==================================================
+
 var _old_select_camera = func (i) { #del?
-	var data = cmdarg().getValues();
-	if ( cameras[i] == nil ) i = 0;
+    var data = cmdarg().getValues();
+	if ( cameras[i] == nil ) {
+        i = 0;
+    }
 
 	popupTipF = 1;
 
@@ -21,12 +24,15 @@ var commands = {
 	"fgcamera-select": func {
 		var data = cmdarg().getValues();
 
-		if ( !getprop("/sim/fgcamera/fgcamera-enabled") ) return;
+		if ( !getprop("/sim/fgcamera/fgcamera-enabled") ) {
+            return;
+        }
 
-		if ( contains(data, "slot") )
+		if ( contains(data, "slot") ) {
 			API().CameraList().CameraBySlot(data["slot"]).select();
-		elsif ( contains(data, "camera-id") )
+		} elsif ( contains(data, "camera-id") ) {
 			API().CameraList().CameraByID(data["camera-id"]).select();
+        }
 
 		#select_camera(data["camera-id"]); # revise; check if contains "name", "camera-id", or "camera-index"
 	},

@@ -11,7 +11,7 @@
 	</fgcam>
 	<input>
 		<keyboard>
-			<!--key n="32">
+			<key n="32">
 				<name>Space</name>
 				<desc>toggle mouse mode</desc>
 				<repeatable>0</repeatable>
@@ -19,12 +19,12 @@
 					<command>nasal</command>
 					<script>fgcamera.toggleYoke()</script>
 				</binding>
-			</key-->
+			</key>
 
 			<key n="360">
 				<mod-shift>
-					<!-- name> PageUp </name>
-					<desc>Camera Up</desc -->
+					<name> PageUp </name>
+					<desc>Camera Up</desc>
 					<binding>
 						<command>fgcamera-adjust</command>
 						<velocity>1</velocity>
@@ -42,8 +42,8 @@
 
 			<key n="361">
 				<mod-shift>
-					<!--name> PageDown </name>
-					<desc>Camera Down</desc-->
+					<name> PageDown </name>
+					<desc>Camera Down</desc>
 					<binding>
 						<command>fgcamera-adjust</command>
 						<velocity>-1</velocity>
@@ -266,7 +266,7 @@
 			<right-button-mode-cycle-enabled>true</right-button-mode-cycle-enabled>
 		</mouse>
 		<fgcamera>
-			<camera n="0" include="default-camera.xml"/>
+			<camera n="0" include="prop_default-camera.xml"/>
 			<fgcamera-enabled type="bool">true</fgcamera-enabled>
 			<!--mouse>
 				<spring-loaded type="bool">true</spring-loaded>
@@ -275,7 +275,7 @@
 				<view-number>0</view-number>
 			</current-camera>
 			<panel n="0">
-				<path>Nasal/fgcamera/Panels/generic-vfr-panel.xml</path>
+				<path>Nasal/fgcamera/Panels/generic-vfr-panel1.xml</path>
 				<name>vfr panel 1</name>
 			</panel>
 			<panel n="2">
@@ -553,7 +553,7 @@
 		</fgcamera>
 
 		<panel>
-			<path>Nasal/fgcamera/Panels/generic-vfr-panel.xml</path>
+			<path>Nasal/fgcamera/Panels/generic-vfr-panel1.xml</path>
 			<visibility archive="y">false</visibility>
 			<hide-nonzero-heading-offset type="bool">false</hide-nonzero-heading-offset>
 			<hide-nonzero-view type="bool">false</hide-nonzero-view>
@@ -577,9 +577,6 @@
 			</property-rule>
 			<property-rule n="147"> <!-- 149 -->
 				<path>/Nasal/fgcamera/property-rules/DHM/dhm.xml</path>
-			</property-rule>
-			<property-rule n="200">
-				<path>MyPropertyRules.xml</path>
 			</property-rule>
 		</systems>
 

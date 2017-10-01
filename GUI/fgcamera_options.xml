@@ -48,7 +48,7 @@
 				<command>dialog-apply</command>
 			</binding>
 		</checkbox>
-		<!--checkbox>
+		<checkbox>
 			<halign>right</halign>
 			<enable>
 				<property>/sim/fgcamera/enable-mini-dialog</property>

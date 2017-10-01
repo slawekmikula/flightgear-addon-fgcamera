@@ -1,11 +1,7 @@
 <PropertyList>
-
 	<params include="params.xml"/>
 
-<!-- Resonance generator -->
-
-
-
+    <!-- Resonance generator -->
 	<filter>
 		<type>exponential</type>
 		<filter-time>
