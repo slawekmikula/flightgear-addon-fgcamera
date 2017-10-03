@@ -3,7 +3,6 @@
 <PropertyList>
 	<name>fgcamera-mini-dialog-slots</name>
 	<layout>vbox</layout>
-	<!--width>650</width-->
 	<color>
 		<alpha>0</alpha>
 	</color>
@@ -11,7 +10,6 @@
 	<y>5</y>
 	<draggable>false</draggable>
 	<resizable>false</resizable>
-
 
 	<group>
 		<layout>hbox</layout>
@@ -173,7 +171,7 @@
 
 	<nasal>
 		<open><![CDATA[
-			var L = fgcamera.API().CameraList();
+			var L = fgcamera.API("1.0-devel").CameraList();
 
 			var slot = func (s) {
 				if ( getprop("/devices/status/keyboard/shift") )

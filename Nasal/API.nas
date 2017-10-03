@@ -20,9 +20,13 @@ var _API = {
 			},
 
 			"CameraBySlot": func (slot) {
-				foreach(var c; props.getNode("sim/fgcamera", 1).getChildren("camera"))
-					if ( c != nil )
-						if ( c.getValue("config/slot") == slot ) return _camera.new( c.getIndex() );
+				foreach(var c; props.getNode("sim/fgcamera", 1).getChildren("camera")) {
+					if ( c != nil ) {
+						if ( c.getValue("config/slot") == slot ) {
+                            return _camera.new( c.getIndex() );
+                        }
+                    }
+                }
 
 				return _camera.new(0)
 			},
@@ -87,9 +91,9 @@ var _camera = {
 	},
 
 	"select": func {
-		if ( me._node.getValue("config/view-movement/popupTip") )
+		if ( me._node.getValue("config/view-movement/popupTip") ) {
 			gui.popupTip(me._node.getValue("config/camera-name"), 1);
-
+        }
 		select_camera(me._index);
 	},
 
@@ -454,7 +458,6 @@ _effects["RND"] = {
 			}
 		},
 
-# FIXME SM TODELETE ?
 #		"generator": func (dof, i, v = nil) {
 #			foreach (var a; ["x", "y", "z", "h", "p", "r"])
 #				if (a == dof) {

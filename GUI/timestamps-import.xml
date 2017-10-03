@@ -23,7 +23,7 @@
 			<pref-height>16</pref-height>
 				<binding>
 					<command>dialog-show</command>
-					<dialog-name>timestamps-view</dialog-name>
+					<dialog-name>time-stamps</dialog-name>
 				</binding>
 				<binding>
 					<command>dialog-close</command>

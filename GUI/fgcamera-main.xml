@@ -3,7 +3,6 @@
 <PropertyList>
 	<name>fgcamera-main</name>
 	<layout>vbox</layout>
-	<!--width>650</width-->
 	<color>
 		<alpha>0.5</alpha>
 	</color>
@@ -526,25 +525,31 @@
 						</script>
 					</binding>
 				</checkbox>
-				<input>
-					<halign>right</halign>
-					<pref-width>200</pref-width>
-					<height>25</height>
-					<live>1</live>
-					<enable>
-						<property>/sim/fgcamera/current-camera/config/panel-show</property>
-					</enable>
-					<property>/sim/fgcamera/current-camera/config/panel-name</property>
-					<binding>
-						<command>dialog-apply</command>
-					</binding>
-					<binding>
-						<command>nasal</command>
-						<script>
-							L.CurrentCamera().panel( ,getprop("/sim/fgcamera/current-camera/config/panel-name"));
-						</script>
-					</binding>
-				</input>
+                <combo>
+						<name>camera-types</name>
+						<halign>right</halign>
+                        <height>25</height>
+                        <pref-width>200</pref-width>
+						<stretch>1</stretch>
+                        <live>1</live>
+                        <enable>
+                            <property>/sim/fgcamera/current-camera/config/panel-show</property>
+                        </enable>
+						<property>/sim/fgcamera/current-camera/config/panel-name</property>
+						<binding>
+							<command>dialog-apply</command>
+							<object-name>camera-types</object-name>
+						</binding>
+                        <binding>
+                            <command>nasal</command>
+                            <script>
+                                L.CurrentCamera().panel( ,getprop("/sim/fgcamera/current-camera/config/panel-name"));
+                            </script>
+                        </binding>
+                        <value></value>
+						<value>vfr panel 1</value>
+						<value>vfr panel 2</value>
+                </combo>
 			</group>
 			<group>
 				<layout>hbox</layout>
@@ -922,9 +927,8 @@
 						name = "[" ~ name ~ "]";
 					}
 
-					if ( i > 0 ) {
+					if ( i > 0 )
 						list.addChild("value").setValue(i ~ ". " ~ name  ~ "[" ~ category ~ "]");
-                    }
 				}
 				dialog_update("camera_list");
 				update_values();

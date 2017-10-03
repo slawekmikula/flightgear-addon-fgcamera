@@ -5,8 +5,9 @@
 #		fgcamera-adjust (<dof>, <velocity>)
 #		fgcamera-save   ()
 #==================================================
+
 var _old_select_camera = func (i) { #del?
-	var data = cmdarg().getValues();
+    var data = cmdarg().getValues();
 	if ( cameras[i] == nil ) {
         i = 0;
     }
@@ -20,7 +21,6 @@ var _old_select_camera = func (i) { #del?
 }
 
 var commands = {
-#--------------------------------------------------
 	"fgcamera-select": func {
 		var data = cmdarg().getValues();
 
@@ -34,7 +34,6 @@ var commands = {
 			API().CameraList().CameraByID(data["camera-id"]).select();
         }
 
-        # FIXME SM TODELETE ?
 		#select_camera(data["camera-id"]); # revise; check if contains "name", "camera-id", or "camera-index"
 	},
 #--------------------------------------------------
@@ -43,7 +42,6 @@ var commands = {
 
 		setprop ("/sim/fgcamera/view-adjustment/raw/" ~ data.dof ~ "-velocity", data.velocity); #/sim/fgcamera/view-adjustment/raw/fov-velocity
 	},
-# FIXME SM TODELETE ? implemented in /nas/commands.nas
 #--------------------------------------------------
 #	"fgcamera-save": func {
 #		setprop (my_node_path ~ "/save-cameras", 1);
@@ -69,7 +67,6 @@ var commands = {
 	"fgcamera-prev-in-category": func {
 		cycle_category(-1, 1);
 	},
-# FIXME SM TODELETE ? implemented in /nas/commands.nas
 #--------------------------------------------------
 #	"fgcamera-next-ai-object": func {
 #		AI_object.cycle_ai_object(1);
@@ -146,9 +143,8 @@ var cycle_category = func(dir, mode = nil) {
 
 
 var add_commands = func {
-	foreach (var name; keys(commands)) {
+	foreach (var name; keys(commands))
 		addcommand(name, commands[name]);
-    }
 }
 
 add_commands();

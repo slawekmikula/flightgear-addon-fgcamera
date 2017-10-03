@@ -1,85 +1,113 @@
 <?xml version="1.0"?>
 
 <PropertyList>
-	<name>fgcamera-options</name>
-	<layout>vbox</layout>
-	<width>330</width>
-	<group>
-		<layout>hbox</layout>
+    <name>fgcamera-options</name>
+    <layout>vbox</layout>
+    <width>450</width>
+    <group>
+        <layout>hbox</layout>
 
-		<empty><stretch>1</stretch></empty>
+        <empty>
+            <stretch>1</stretch>
+        </empty>
 
-		<text>
-			<label>FGCamera options</label>
-		</text>
+        <text>
+            <label>FGCamera options</label>
+        </text>
 
-		<empty><stretch>1</stretch></empty>
+        <empty>
+            <stretch>1</stretch>
+        </empty>
 
-		<button>
-			<legend> </legend>
-			<key>Esc</key>
-			<pref-width>16</pref-width>
-			<pref-height>16</pref-height>
-			<binding>
-				<command>dialog-close</command>
-			</binding>
-		</button>
+        <button>
+            <legend> </legend>
+            <key>Esc</key>
+            <pref-width>16</pref-width>
+            <pref-height>16</pref-height>
+            <binding>
+                <command>dialog-close</command>
+            </binding>
+        </button>
 
-	</group>
+    </group>
 
-	<hrule/>
+    <hrule/>
 
-	<checkbox>
-		<halign>left</halign>
-		<label>"spring loaded" mouse mode</label>
-		<property>/sim/fgcamera/mouse/spring-loaded</property>
-		<binding>
-			<command>dialog-apply</command>
-		</binding>
-	</checkbox>
+    <checkbox>
+        <halign>left</halign>
+        <label>"spring loaded" mouse mode</label>
+        <property>/sim/fgcamera/mouse/spring-loaded</property>
+        <binding>
+            <command>dialog-apply</command>
+        </binding>
+    </checkbox>
 
-	<group>
-		<layout>hbox</layout>
-		<checkbox>
-			<halign>left</halign>
-			<label>Enable mini dialog</label>
-			<property>/sim/fgcamera/enable-mini-dialog</property>
-			<binding>
-				<command>dialog-apply</command>
-			</binding>
-		</checkbox>
-		<!--checkbox>
-			<halign>right</halign>
-			<enable>
-				<property>/sim/fgcamera/enable-mini-dialog</property>
-			</enable>
-			<label>Auto-hide</label>
-			<property>/sim/fgcamera/mini-dialog-autohide</property>
-			<binding>
-				<command>dialog-apply</command>
-			</binding>
-		</checkbox-->
-	</group>
+    <group>
+        <layout>hbox</layout>
+        <checkbox>
+            <halign>left</halign>
+            <label>Enable mini dialog</label>
+            <property>/sim/fgcamera/mini-dialog-enable</property>
+            <binding>
+                <command>dialog-apply</command>
+            </binding>
+        </checkbox>
+        <checkbox>
+            <halign>right</halign>
+            <enable>
+                <property>/sim/fgcamera/mini-dialog-enable</property>
+            </enable>
+            <label>Auto-hide</label>
+            <property>/sim/fgcamera/mini-dialog-autohide</property>
+            <binding>
+                <command>dialog-apply</command>
+            </binding>
+        </checkbox>
+    </group>
 
-	<hrule/>
+    <group>
+        <layout>hbox</layout>
+        <text>
+            <label>Mini dialog type</label>
+            <halign>left</halign>
+        </text>
+        <combo>
+            <name>mini-dialog-type</name>
+            <halign>fill</halign>
+            <stretch>1</stretch>
+            <property>/sim/fgcamera/mini-dialog-type</property>
+            <binding>
+                <command>dialog-apply</command>
+                <object-name>mini-dialog-type</object-name>
+            </binding>
+            <value>simple</value>
+            <value>slots</value>
+        </combo>
+    </group>
 
-	<group>
-		<layout>hbox</layout>
-		<empty><stretch>1</stretch></empty>
-		<button>
-			<legend>Save</legend>
-			<pref-width>90</pref-width>
-			<pref-height>30</pref-height>
-		</button>
+    <text>
+        <label>Options need application restart</label>
+        <halign>left</halign>
+    </text>
 
-		<button>
-			<legend>Close</legend>
-			<pref-width>90</pref-width>
-			<pref-height>30</pref-height>
-			<binding>
-				<command>dialog-close</command>
-			</binding>
-		</button>
-		<empty><stretch>1</stretch></empty>
-	</group>
+    <hrule/>
+
+    <group>
+        <layout>hbox</layout>
+        <empty>
+            <stretch>1</stretch>
+        </empty>
+
+        <button>
+            <legend>Close</legend>
+            <pref-width>90</pref-width>
+            <pref-height>30</pref-height>
+            <binding>
+                <command>dialog-close</command>
+            </binding>
+        </button>
+        <empty>
+            <stretch>1</stretch>
+        </empty>
+    </group>
 </PropertyList>

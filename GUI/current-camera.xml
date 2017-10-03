@@ -445,11 +445,14 @@
 				var id    = fgcamera.current[1];
 				var path  = "/sim/fgcamera/dialogs/camera-settings/show-panel";
 				var value = getprop(path);
+                var root_path = getprop("/sim/fgcamera/root_path");
 
 				fgcamera.cameras[id]["panel-show"] = value;
-				if (value)
-					fgcamera.show_panel("Nasal/fgcamera/Panels/generic-vfr-panel.xml");
-				else fgcamera.hide_panel();
+				if (value) {
+					fgcamera.show_panel(root_path ~ "/Panels/generic-vfr-panel1.xml");
+                } else {
+                    fgcamera.hide_panel();
+                }
 			}
 			#==================================================
 			#	Toggle dialog

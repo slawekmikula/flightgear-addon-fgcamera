@@ -22,11 +22,8 @@ var send_signal = func {
 
 	var h = func (s) setprop ("/sim/fgcamera/signals/" ~ s, 1);
 
-	foreach (var a; arg) {
-		if ( a == "update" ) {
-            h(a);
-        }
-    }
+	foreach (var a; arg)
+		if ( a == "update" ) h(a);
 }
 
 var set_fgcursor_group = func (i) {
@@ -66,16 +63,19 @@ var panel = {
 };
 #--------------------------------------------------------------------------------------------------
 var panels = [];
-foreach (var a; props.getNode("sim/fgcamera").getChildren("panel"))
+foreach (var a; props.getNode("sim/fgcamera").getChildren("panel")) {
 	append(panels, panel.new(a));
+}
 #--------------------------------------------------------------------------------------------------
 var show_panel = func {
 	setprop("/sim/fgcamera/current-camera/panel-opened", 1);
 
 	var name = getprop("/sim/fgcamera/current-camera/config/panel-name");
-	foreach (var a; panels)
-		if (a.name == name)
+	foreach (var a; panels) {
+		if (a.name == name) {
 			return a.show();
+        }
+    }
 
 	print("FGCamera: panel not found");
 }
@@ -89,7 +89,6 @@ var hide_panel = func {
 var select_camera = func(i, popupTip = nil) {
 	close_dialog();
 	hide_panel();
-# FIXME SM TODELETE ?
 #	set_fgcursor_group( getprop("/sim/fgcamera/current-camera/camera-index") );
 
 	var sourceN = props.getNode("sim/fgcamera", 1).getChild("camera", i);
@@ -101,7 +100,6 @@ var select_camera = func(i, popupTip = nil) {
 	props.copy(sourceN, destN);
 
 #change view
-    # FIXME SM TODELETE ?
 	#setprop("/sim/fgcamera/view-movement/snap", 0);
 	var n = view.indexof("FGCamera0");
 	var type = getprop("/sim/fgcamera/current-camera/config/camera-type");
@@ -114,7 +112,6 @@ var select_camera = func(i, popupTip = nil) {
 	setprop("/sim/fgcamera/view-movement/moving", 1);
 	setprop("/sim/fgcamera/view-movement/start-moving", 1);
 
-# FIXME SM TODELETE ?
 #	select_fgcursor_group();
 }
 
@@ -129,12 +126,17 @@ var save_cameras = func {
 	var node     = props.Node.new();
 	var cameras  = props.getNode("sim/fgcamera").getChildren("camera");
 
-	forindex (var i; cameras)
-		if (i != 0)
+	forindex (var i; cameras) {
+		if (i != 0) {
 			props.copy (cameras[i], node.getChild("camera", i, 1));
+        }
+    }
 
-	foreach (var n; node.getChildren("camera"))
+	foreach (var n; node.getChildren("camera")) {
 		n.removeChild("previous-cursor-group", 0);
+        # FIXME - SM - do we really need it ?
+        n.removeChild("slot", 0);
+    }
 
 	io.write_properties(path ~ "/" ~ file, node);
 
@@ -179,16 +181,14 @@ var load_cameras = func {
 	var cameraN   = props.Node.new();
 	var destN     = props.getNode("sim/fgcamera", 1);
 
-	if (dir == nil) { # FIX! (use more appropriate assumption)
-		return;
+	if (dir == nil) {
 		path = getprop("/sim/fgcamera/root_path");
-		file = "prop_default-cameras.xml";
+		file = "/prop_default-cameras.xml";
 	}
 
 	var srcN = io.read_properties(path ~ "/" ~ file);
-	if (srcN == nil) {
+	if (srcN == nil)
 		return;
-    }
 
 	props.copy(srcN, cameraN); #?
 	foreach (var c; cameraN.getChildren("camera")) {
@@ -197,6 +197,17 @@ var load_cameras = func {
 			copy(props.getNode("/sim/fgcamera/camera"), node);
 		}
 	}
+
+    # set slots
+    # FIXME SM - do we really need it ?
+    var cameras  = props.getNode("/sim/fgcamera").getChildren("camera");
+    forindex (var i; cameras) {
+		if (i != 0) {
+            var camera = node.getChild("camera", i, 1);
+            camera.setValue("config/slot", i);
+            setprop("/sim/fgcamera/camera[" ~ i ~ "]/config/slot", i);
+        }
+    }
 
 	io.read_properties(path ~ "/" ~ file2, "/sim/fgcamera/effects");
 	cameraN.remove();

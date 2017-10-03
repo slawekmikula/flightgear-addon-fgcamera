@@ -13,7 +13,7 @@ var main = func( root ) {
     setprop("/sim/fgcamera/root_path", root);
 
     # load scripts
-    foreach(var f; ['loader.nas','fgcamera.nas'] ) {
+    foreach(var f; ['loader.nas','mouse.nas'] ) {
         io.load_nasal( root ~ "/" ~ f, "fgcamera" );
     }
 
@@ -21,3 +21,4 @@ var main = func( root ) {
     io.read_properties(root ~ "/prop_CR.xml", "/fgcamera/cr");
     io.read_properties(root ~ "/prop_RND.xml", "/fgcamera/rnd");
 }
+
