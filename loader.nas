@@ -22,8 +22,8 @@ var reload = func {
 #-------------------------------------------------
 var fdm_init_listener = _setlistener("/sim/signals/fdm-initialized", func {
 	removelistener(fdm_init_listener);
-	load_nasal("gui");
 	reload();
+	load_nasal("gui");
 	start_fgcamera();
 	setlistener("/sim/fgcamera/fgcamera-enabled", func {
         #revise

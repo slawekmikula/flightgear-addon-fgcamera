@@ -92,8 +92,9 @@ var register_gui_mini_dialogs = func {
     }
 }
 
-register_gui_mini_dialogs();
 load_gui();
+register_gui_mini_dialogs();
+
 
 var show_dialog = func (show = 0) {
     gui.showDialog( getprop("/sim/fgcamera/current-camera/config/dialog-name") );

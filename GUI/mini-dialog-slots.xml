@@ -171,7 +171,7 @@
 
 	<nasal>
 		<open><![CDATA[
-			var L = fgcamera.API().CameraList();
+			var L = fgcamera.API("1.0-devel").CameraList();
 
 			var slot = func (s) {
 				if ( getprop("/devices/status/keyboard/shift") )
