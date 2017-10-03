@@ -275,11 +275,11 @@
 				<view-number>0</view-number>
 			</current-camera>
 			<panel n="0">
-				<path>Nasal/fgcamera/Panels/generic-vfr-panel1.xml</path>
+				<path>/Aircraft/Panels/generic-vfr-panel1.xml</path>
 				<name>vfr panel 1</name>
 			</panel>
 			<panel n="2">
-				<path>Nasal/fgcamera/Panels/generic-vfr-panel2.xml</path>
+				<path>/Aircraft/Panels/generic-vfr-panel2.xml</path>
 				<name>vfr panel 2</name>
 			</panel>
 
@@ -553,7 +553,7 @@
 		</fgcamera>
 
 		<panel>
-			<path>Nasal/fgcamera/Panels/generic-vfr-panel1.xml</path>
+			<path>/Aircraft/Panels/generic-vfr-panel1.xml</path>
 			<visibility archive="y">false</visibility>
 			<hide-nonzero-heading-offset type="bool">false</hide-nonzero-heading-offset>
 			<hide-nonzero-view type="bool">false</hide-nonzero-view>
@@ -561,22 +561,22 @@
 
 		<systems>
 			<property-rule n="150">
-				<path>/Nasal/fgcamera/property-rules/fgcamera.xml</path>
+				<path>/Aircraft/property-rules/fgcamera.xml</path>
 			</property-rule>
 			<property-rule n="142">
-				<path>/Nasal/fgcamera/property-rules/RND/RND-air.xml</path>
+				<path>/Aircraft/property-rules/RND/RND-air.xml</path>
 			</property-rule>
 			<property-rule n="141">
-				<path>/Nasal/fgcamera/property-rules/RND/RND-ground.xml</path>
+				<path>/Aircraft/property-rules/RND/RND-ground.xml</path>
 			</property-rule>
 			<property-rule n="140">
-				<path>/Nasal/fgcamera/property-rules/RND/RND-main.xml</path>
+				<path>/Aircraft/property-rules/RND/RND-main.xml</path>
 			</property-rule>
 			<property-rule n="148">
-				<path>/Nasal/fgcamera/property-rules/power-plant-vibration/power_plant_vibration.xml</path>
+				<path>/Aircraft/property-rules/power-plant-vibration/power_plant_vibration.xml</path>
 			</property-rule>
 			<property-rule n="147"> <!-- 149 -->
-				<path>/Nasal/fgcamera/property-rules/DHM/dhm.xml</path>
+				<path>/Aircraft/property-rules/DHM/dhm.xml</path>
 			</property-rule>
 		</systems>
 
