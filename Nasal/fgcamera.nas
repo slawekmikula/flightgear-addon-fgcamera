@@ -123,12 +123,17 @@ var save_cameras = func {
 	var node     = props.Node.new();
 	var cameras  = props.getNode("sim/fgcamera").getChildren("camera");
 
-	forindex (var i; cameras)
-		if (i != 0)
+	forindex (var i; cameras) {
+		if (i != 0) {
 			props.copy (cameras[i], node.getChild("camera", i, 1));
+        }
+    }
 
-	foreach (var n; node.getChildren("camera"))
+	foreach (var n; node.getChildren("camera")) {
 		n.removeChild("previous-cursor-group", 0);
+        # FIXME - SM - do we really need it ?
+        n.removeChild("slot", 0);
+    }
 
 	io.write_properties(path ~ "/" ~ file, node);
 
@@ -186,35 +191,23 @@ var load_cameras = func {
 	foreach (var c; cameraN.getChildren("camera")) {
 		if ( c.getIndex() > 0 ) {
 			props.copy ( c, var node = destN.addChild("camera") );
-
 			copy(props.getNode("/sim/fgcamera/camera"), node);
 		}
 	}
 
+    # set slots
+    # FIXME SM - do we really need it ?
+    var cameras  = props.getNode("/sim/fgcamera").getChildren("camera");
+    forindex (var i; cameras) {
+		if (i != 0) {
+            var camera = node.getChild("camera", i, 1);
+            camera.setValue("config/slot", i);
+            setprop("/sim/fgcamera/camera[" ~ i ~ "]/config/slot", i);
+        }
+    }
+
 	io.read_properties(path ~ "/" ~ file2, "/sim/fgcamera/effects");
 	cameraN.remove();
 }
-#########################################################################
-# Prototyping
-#
-#var blade_length       = 6;
-#var blade_position_deg = nil;
-
-#var mounted_camera = func {
-#	var coordinates = [0, 0, 0, 0, 0, 0];
-#	var blade_position_deg = getprop("/rotors/main/blade");
-#	coordinates[4] = getprop;
-
-
-#	setprop("/cam/x", coordinates[0]);
-#	setprop("/cam/y", coordinates[1]);
-#	setprop("/cam/z", coordinates[2]);
-#	setprop("/cam/h", coordinates[3]);
-#	setprop("/cam/p", coordinates[4]);
-#	setprop("/cam/r", coordinates[5]);
-#}
-
-#########################################################################
-
 
 print("FGCamera: main script loaded");
