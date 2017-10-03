@@ -63,16 +63,19 @@ var panel = {
 };
 #--------------------------------------------------------------------------------------------------
 var panels = [];
-foreach (var a; props.getNode("sim/fgcamera").getChildren("panel"))
+foreach (var a; props.getNode("sim/fgcamera").getChildren("panel")) {
 	append(panels, panel.new(a));
+}
 #--------------------------------------------------------------------------------------------------
 var show_panel = func {
 	setprop("/sim/fgcamera/current-camera/panel-opened", 1);
 
 	var name = getprop("/sim/fgcamera/current-camera/config/panel-name");
-	foreach (var a; panels)
-		if (a.name == name)
+	foreach (var a; panels) {
+		if (a.name == name) {
 			return a.show();
+        }
+    }
 
 	print("FGCamera: panel not found");
 }
