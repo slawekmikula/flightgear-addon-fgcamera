@@ -3,7 +3,6 @@
 <PropertyList>
 	<name>fgcamera-main</name>
 	<layout>vbox</layout>
-	<!--width>650</width-->
 	<color>
 		<alpha>0.5</alpha>
 	</color>

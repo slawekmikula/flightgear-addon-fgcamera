@@ -64,7 +64,6 @@ var start_fgcamera = func {
 	setprop("/sim/systems/property-rule[148]/serviceable", 1);
 	setprop("/sim/systems/property-rule[147]/serviceable", 1);
 
-
 	#Create listeners:
 	add_listener ("/devices/status/mice/mouse/button[2]", func switch_to_mouse());
 	add_listener ("/fgcam/next-in-category", func cycle_category(1, 1));
@@ -99,6 +98,8 @@ var stop_fgcamera = func {
 	return 0;
 }
 
-props.getNode("sim/fgcamera/mouse/spring-loaded", 1).setAttribute("userarchive", "y");
-props.getNode("sim/fgcamera/enable-mini-dialog", 1).setAttribute("userarchive", "y");
-props.getNode("sim/fgcamera/mini-dialog-autohide", 1).setAttribute("userarchive", "y");
+# properties to persistent save
+props.getNode("/sim/fgcamera/mouse/spring-loaded", 1).setAttribute("userarchive", "y");
+props.getNode("/sim/fgcamera/mini-dialog-enable", 1).setAttribute("userarchive", "y");
+props.getNode("/sim/fgcamera/mini-dialog-autohide", 1).setAttribute("userarchive", "y");
+props.getNode("/sim/fgcamera/mini-dialog-type", 1).setAttribute("userarchive", "y");
