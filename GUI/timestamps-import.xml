@@ -1,64 +1,68 @@
 <?xml version="1.0"?>
 
 <PropertyList>
-	<name>timestamps-import</name>
-	<layout>vbox</layout>
-	<x>-10</x>
-	<y>10</y>
-	<group>
-		<layout>hbox</layout>
+    <name>timestamps-import</name>
+    <layout>vbox</layout>
+    <x>-10</x>
+    <y>10</y>
+    <group>
+        <layout>hbox</layout>
 
-		<empty><stretch>1</stretch></empty>
+        <empty>
+            <stretch>1</stretch>
+        </empty>
 
-		<text>
-			<label>Load timestamp table</label>
-		</text>
+        <text>
+            <label>Load timestamp table</label>
+        </text>
 
-		<empty><stretch>1</stretch></empty>
+        <empty>
+            <stretch>1</stretch>
+        </empty>
 
-		<button>
-			<legend> </legend>
-			<key>Esc</key>
-			<pref-width>16</pref-width>
-			<pref-height>16</pref-height>
-				<binding>
-					<command>dialog-show</command>
-					<dialog-name>time-stamps</dialog-name>
-				</binding>
-				<binding>
-					<command>dialog-close</command>
-					<dialog-name>timestamps-import</dialog-name>
-				</binding>
-		</button>
+        <button>
+            <legend> </legend>
+            <key>Esc</key>
+            <pref-width>16</pref-width>
+            <pref-height>16</pref-height>
+            <binding>
+                <command>dialog-show</command>
+                <dialog-name>time-stamps</dialog-name>
+            </binding>
+            <binding>
+                <command>dialog-close</command>
+                <dialog-name>timestamps-import</dialog-name>
+            </binding>
+        </button>
 
-	</group>
+    </group>
 
-	<hrule/>
+    <hrule/>
 
-	<group>
-		<layout>vbox</layout>
-		<list>
-			<name>file-list</name>
-			<pref-height>150</pref-height>
-			<pref-width>100</pref-width>
-			<halign>fill</halign>
-			<valign>fill</valign>
-			<stretch>true</stretch>
-			<padding>6</padding>
-			<property>/sim/fgcamera/dialogs/replay/import/selected-list</property>
-			<binding>
-				<command>dialog-apply</command>
-			</binding>
-			<binding>
-				<command>nasal</command>
-				<script>import_timestamps()</script>
-			</binding>
-			<value>...</value>
-		</list>
-	</group>
+    <group>
+        <layout>vbox</layout>
+        <list>
+            <name>file-list</name>
+            <pref-height>150</pref-height>
+            <pref-width>100</pref-width>
+            <halign>fill</halign>
+            <valign>fill</valign>
+            <stretch>true</stretch>
+            <padding>6</padding>
+            <property>/sim/fgcamera/dialogs/replay/import/selected-list</property>
+            <binding>
+                <command>dialog-apply</command>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>import_timestamps()</script>
+            </binding>
+            <value>...</value>
+        </list>
+    </group>
 
-	<nasal>
-		<open> <![CDATA[
+    <nasal>
+        <open> <![CDATA[
 			var listN    = cmdarg().getNode("group[1]/list");
 			var path     = getprop("/sim/fgcamera/root_path") ~ "/replay";
 			var dir      = directory(path);
@@ -96,8 +100,8 @@
 			dialog_update("file-list");
 		]]> </open>
 
-		<close> <![CDATA[
+        <close> <![CDATA[
 
 		]]> </close>
-	</nasal>
+    </nasal>
 </PropertyList>

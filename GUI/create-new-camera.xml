@@ -1,96 +1,104 @@
 <?xml version="1.0"?>
 
 <PropertyList>
-	<name>create-new-camera</name>
-	<layout>vbox</layout>
-	<width>330</width>
-	<height>130</height>
+    <name>create-new-camera</name>
+    <layout>vbox</layout>
+    <width>330</width>
+    <height>130</height>
 
-	<group>
-		<layout>hbox</layout>
+    <group>
+        <layout>hbox</layout>
 
-		<empty><stretch>1</stretch></empty>
+        <empty>
+            <stretch>1</stretch>
+        </empty>
 
-		<text>
-			<label>Create new camera</label>
-		</text>
+        <text>
+            <label>Create new camera</label>
+        </text>
 
-		<empty><stretch>1</stretch></empty>
+        <empty>
+            <stretch>1</stretch>
+        </empty>
 
-		<button>
-			<legend> </legend>
-			<key>Esc</key>
-			<pref-width>16</pref-width>
-			<pref-height>16</pref-height>
-			<binding>
-				<command>dialog-close</command>
-			</binding>
-		</button>
+        <button>
+            <legend> </legend>
+            <key>Esc</key>
+            <pref-width>16</pref-width>
+            <pref-height>16</pref-height>
+            <binding>
+                <command>dialog-close</command>
+            </binding>
+        </button>
 
-	</group>
+    </group>
 
-	<hrule/>
+    <hrule/>
 
-	<group>
-		<layout>hbox</layout>
+    <group>
+        <layout>hbox</layout>
 
-		<text>
-			<label>Camera type:</label>
-			<valign>fill</valign>
-			<halign>left</halign>
-		</text>
+        <text>
+            <label>Camera type:</label>
+            <valign>fill</valign>
+            <halign>left</halign>
+        </text>
 
-	<combo>
-		<name>camera-types</name>
-		<halign>fill</halign>
-		<stretch>1</stretch>
-		<property>/sim/fgcamera/dialogs/create-camera/camera-type</property>
-		<binding>
-			<command>dialog-apply</command>
-			<object-name>camera-types</object-name>
-		</binding>
-		<binding>
-			<command>nasal</command>
-			<script>select_type()</script>
-		</binding>
-		<value>cockpit</value>
-		<value>aircraft (look at)</value>
-		<value>aircraft (look from)</value>
-		<value>world (look at) n/a</value>
-		<value>world (look from)</value>
-		<value>AI object (look from)</value>
-	</combo>
+        <combo>
+            <name>camera-types</name>
+            <halign>fill</halign>
+            <stretch>1</stretch>
+            <property>/sim/fgcamera/dialogs/create-camera/camera-type</property>
+            <binding>
+                <command>dialog-apply</command>
+                <object-name>camera-types</object-name>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>select_type()</script>
+            </binding>
+            <value>cockpit</value>
+            <value>aircraft (look at)</value>
+            <value>aircraft (look from)</value>
+            <value>world (look at) n/a</value>
+            <value>world (look from)</value>
+            <value>AI object (look from)</value>
+        </combo>
 
-	</group>
+    </group>
 
-	<hrule/>
+    <hrule/>
 
-	<group>
-		<layout>hbox</layout>
-		<empty><stretch>1</stretch></empty>
-		<button>
-			<legend>Create</legend>
-			<pref-width>90</pref-width>
-			<pref-height>30</pref-height>
-			<binding>
-				<command>nasal</command>
-				<script>create_camera()</script>
-			</binding>
-		</button>
+    <group>
+        <layout>hbox</layout>
+        <empty>
+            <stretch>1</stretch>
+        </empty>
+        <button>
+            <legend>Create</legend>
+            <pref-width>90</pref-width>
+            <pref-height>30</pref-height>
+            <binding>
+                <command>nasal</command>
+                <script>create_camera()</script>
+            </binding>
+        </button>
 
-		<button>
-			<legend>Cancel</legend>
-			<pref-width>90</pref-width>
-			<pref-height>30</pref-height>
-			<binding>
-				<command>dialog-close</command>
-			</binding>
-		</button>
-		<empty><stretch>1</stretch></empty>
-	</group>
+        <button>
+            <legend>Cancel</legend>
+            <pref-width>90</pref-width>
+            <pref-height>30</pref-height>
+            <binding>
+                <command>dialog-close</command>
+            </binding>
+        </button>
+        <empty>
+            <stretch>1</stretch>
+        </empty>
+    </group>
 
-	<nasal>
-		<open> <![CDATA[
+    <nasal>
+        <open> <![CDATA[
 			if (getprop("/sim/fgcamera/dialogs/create-camera/camera-type") == nil)
 				setprop("/sim/fgcamera/dialogs/create-camera/camera-type", "cockpit");
 			var cameraN   = props.Node.new();
@@ -156,5 +164,5 @@
 			#==================================================
 			select_type();
 		]]> </open>
-	</nasal>
+    </nasal>
 </PropertyList>

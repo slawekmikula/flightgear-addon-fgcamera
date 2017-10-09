@@ -1,12 +1,11 @@
 #
 # FGCamera addon
 #
-# Started by ....
-# Started ....
+# Started by Marius_A
+# Started on December 2013
 #
 # Converted to a FlightGear addon by
 # Slawek Mikula, October 2017
-
 
 var main = func( root ) {
     # setting root path to addon

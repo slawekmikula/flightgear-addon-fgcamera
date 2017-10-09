@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Keyboard bindings for fgcamera -->
+<PropertyList>
+    <key n="32">
+        <name>Space</name>
+        <desc>toggle mouse mode</desc>
+        <repeatable>0</repeatable>
+        <binding>
+            <command>nasal</command>
+            <script>fgcamera.toggleYoke()</script>
+        </binding>
+    </key>
+
+    <key n="360">
+        <mod-shift>
+            <name> PageUp </name>
+            <desc>Camera Up</desc>
+            <binding>
+                <command>fgcamera-adjust</command>
+                <velocity>1</velocity>
+                <dof>y</dof>
+            </binding>
+            <mod-up>
+                <binding>
+                    <command>fgcamera-adjust</command>
+                    <velocity>0</velocity>
+                    <dof>y</dof>
+                </binding>
+            </mod-up>
+        </mod-shift>
+    </key>
+
+    <key n="361">
+        <mod-shift>
+            <name> PageDown </name>
+            <desc>Camera Down</desc>
+            <binding>
+                <command>fgcamera-adjust</command>
+                <velocity>-1</velocity>
+                <dof>y</dof>
+            </binding>
+            <mod-up>
+                <binding>
+                    <command>fgcamera-adjust</command>
+                    <velocity>0</velocity>
+                    <dof>y</dof>
+                </binding>
+            </mod-up>
+        </mod-shift>
+    </key>
+
+    <key n="48">
+        <name> 0 </name>
+        <repeatable type="bool">false</repeatable>
+        <desc>Slot 0</desc>
+        <binding>
+            <command>fgcamera-select</command>
+            <slot>0</slot>
+        </binding>
+    </key>
+
+    <key n="49">
+        <name> 1 </name>
+        <repeatable type="bool">false</repeatable>
+        <desc>Preset view 5</desc>
+        <binding>
+            <command>fgcamera-select</command>
+            <slot>1</slot>
+        </binding>
+    </key>
+    <key n="50">
+        <name> 2 </name>
+        <desc>Preset view 2</desc>
+        <binding>
+            <command>fgcamera-select</command>
+            <slot>2</slot>
+        </binding>
+    </key>
+
+    <key n="51">
+        <name> 3 </name>
+        <desc>Preset view 3</desc>
+        <binding>
+            <command>fgcamera-select</command>
+            <slot>3</slot>
+        </binding>
+    </key>
+
+    <key n="52">
+        <name> 4 </name>
+        <repeatable>0</repeatable>
+        <desc>Preset view 4</desc>
+        <binding>
+            <command>fgcamera-select</command>
+            <slot>4</slot>
+        </binding>
+    </key>
+
+    <key n="53">
+        <name> 5 </name>
+        <desc>Preset view 5</desc>
+        <binding>
+            <command>fgcamera-select</command>
+            <slot>5</slot>
+        </binding>
+    </key>
+
+    <key n="54">
+        <name> 6 </name>
+        <desc>Preset view 6</desc>
+        <binding>
+            <command>fgcamera-select</command>
+            <slot>6</slot>
+        </binding>
+    </key>
+
+    <key n="55">
+        <name> 7 </name>
+        <desc>Preset view 7</desc>
+        <binding>
+            <command>fgcamera-select</command>
+            <slot>7</slot>
+        </binding>
+    </key>
+
+    <key n="56">
+        <name> 8 </name>
+        <desc>Preset view 8</desc>
+        <binding>
+            <command>fgcamera-select</command>
+            <slot>8</slot>
+        </binding>
+    </key>
+
+    <key n="57">
+        <name> 9 </name>
+        <desc>Preset view 9</desc>
+        <binding>
+            <command>fgcamera-select</command>
+            <slot>9</slot>
+        </binding>
+    </key>
+
+    <key n="357">
+        <name> Up </name>
+        <desc>Camera forward</desc>
+        <repeatable>0</repeatable>
+        <binding>
+            <command>fgcamera-adjust</command>
+            <velocity>-1</velocity>
+            <dof>z</dof>
+        </binding>
+        <mod-up>
+            <binding>
+                <command>fgcamera-adjust</command>
+                <velocity>0</velocity>
+                <dof>z</dof>
+            </binding>
+        </mod-up>
+        <mod-shift>
+            <binding>
+                <command>property-assign</command>
+                <property>/sim/fgcamera/view-adjustment/raw/fov-velocity</property>
+                <value>-1</value>
+            </binding>
+            <mod-up>
+                <binding>
+                    <command>property-assign</command>
+                    <property>/sim/fgcamera/view-adjustment/raw/fov-velocity</property>
+                    <value>0</value>
+                </binding>
+            </mod-up>
+        </mod-shift>
+    </key>
+
+    <key n="359">
+        <name> Down </name>
+        <desc>camera back</desc>
+        <repeatable>0</repeatable>
+        <binding>
+            <command>fgcamera-adjust</command>
+            <velocity>1</velocity>
+            <dof>z</dof>
+        </binding>
+        <mod-up>
+            <binding>
+                <command>fgcamera-adjust</command>
+                <velocity>0</velocity>
+                <dof>z</dof>
+            </binding>
+        </mod-up>
+        <mod-shift>
+            <binding>
+                <command>property-assign</command>
+                <property>/sim/fgcamera/view-adjustment/raw/fov-velocity</property>
+                <value>1</value>
+            </binding>
+            <mod-up>
+                <binding>
+                    <command>property-assign</command>
+                    <property>/sim/fgcamera/view-adjustment/raw/fov-velocity</property>
+                    <value>0</value>
+                </binding>
+            </mod-up>
+        </mod-shift>
+    </key>
+
+    <key n="356">
+        <name> Left </name>
+        <desc>Camera left</desc>
+        <repeatable>0</repeatable>
+        <binding>
+            <command>property-assign</command>
+            <property>/sim/fgcamera/view-adjustment/raw/x-velocity</property>
+            <value>-1</value>
+        </binding>
+        <mod-up>
+            <binding>
+                <command>property-assign</command>
+                <property>/sim/fgcamera/view-adjustment/raw/x-velocity</property>
+                <value>0</value>
+            </binding>
+        </mod-up>
+    </key>
+
+    <key n="358">
+        <name> Right </name>
+        <desc>Camera right</desc>
+        <repeatable>0</repeatable>
+        <binding>
+            <command>property-assign</command>
+            <property>/sim/fgcamera/view-adjustment/raw/x-velocity</property>
+            <value>1</value>
+        </binding>
+        <mod-up>
+            <binding>
+                <command>property-assign</command>
+                <property>/sim/fgcamera/view-adjustment/raw/x-velocity</property>
+                <value>0</value>
+            </binding>
+        </mod-up>
+    </key>
+</PropertyList>

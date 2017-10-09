@@ -1,13 +1,13 @@
 <?xml version="1.0"?>
 
 <PropertyList>
-	<name>vibration-curves</name>
-	<layout>vbox</layout>
-	<x>-20</x>
-	<y>-50</y>
+    <name>vibration-curves</name>
+    <layout>vbox</layout>
+    <x>-20</x>
+    <y>-50</y>
 
-	<nasal>
-		<open><![CDATA[
+    <nasal>
+        <open><![CDATA[
 			var self = cmdarg();
 			var listeners = [];
 
@@ -482,57 +482,59 @@
 
 		]]></open>
 
-		<close><![CDATA[
+        <close><![CDATA[
 			#TestMap.del();
 			foreach (var l; listeners)
 				removelistener(l);
 			setsize(listeners, 0);
 		]]></close>
-	</nasal>
+    </nasal>
 
-<!-- Title -->
-	<group>
-		<layout>hbox</layout>
+    <!-- Title -->
+    <group>
+        <layout>hbox</layout>
 
-		<empty><stretch>1</stretch></empty>
+        <empty>
+            <stretch>1</stretch>
+        </empty>
 
-		<button>
-			<legend> </legend>
-			<key>Esc</key>
-			<pref-width>16</pref-width>
-			<pref-height>16</pref-height>
-			<!--binding>
-				<command>dialog-show</command>
-				<dialog-name>RND-mixer</dialog-name>
-			</binding-->
-			<binding>
-				<command>dialog-show</command>
-				<dialog-name>power-plant-vibration</dialog-name>
-			</binding>
-			<binding>
-				<command>dialog-close</command>
-				<dialog-name>vibration-curves</dialog-name>
-			</binding>
-		</button>
-	</group>
+        <button>
+            <legend> </legend>
+            <key>Esc</key>
+            <pref-width>16</pref-width>
+            <pref-height>16</pref-height>
+            <!--binding>
+                <command>dialog-show</command>
+                <dialog-name>RND-mixer</dialog-name>
+            </binding-->
+            <binding>
+                <command>dialog-show</command>
+                <dialog-name>power-plant-vibration</dialog-name>
+            </binding>
+            <binding>
+                <command>dialog-close</command>
+                <dialog-name>vibration-curves</dialog-name>
+            </binding>
+        </button>
+    </group>
 
-	<hrule/>
+    <hrule/>
 
 
-	<group>
-		<layout>hbox</layout>
+    <group>
+        <layout>hbox</layout>
 
-		<group>
-			<layout>vbox</layout>
-			<canvas>
-				<name>level-curve</name>
-				<valign>fill</valign>
-				<halign>fill</halign>
-				<!-- stretch>true</stretch -->
-				<pref-width>600</pref-width>
-				<pref-height>280</pref-height>
-				<nasal>
-					<load> <![CDATA[
+        <group>
+            <layout>vbox</layout>
+            <canvas>
+                <name>level-curve</name>
+                <valign>fill</valign>
+                <halign>fill</halign>
+                <!-- stretch>true</stretch -->
+                <pref-width>600</pref-width>
+                <pref-height>280</pref-height>
+                <nasal>
+                    <load> <![CDATA[
 						var myCanvas1 = canvas.get( cmdarg() );
 						myCanvas1.setColorBackground(0,0,0,1); # transparent
 
@@ -559,39 +561,39 @@
 						append(listeners, setlistener( "/sim/fgcamera/current-camera/RND-updated", func { myChart1.update( { x: "v1", y: "level"} ) } ) );
 
 					]]> </load>
-				</nasal>
-			</canvas>
-		</group>
-		<!--input>
-			<halign>right</halign>
-			<property>/curves/h_spacing</property>
-			<live>1</live>
-			<pref-width>200</pref-width>
-			<height>25</height>
-			<binding>
-				<command>dialog-apply</command>
-			</binding>
-			<binding>
-				<command>nasal</command>
-				<script>myChart1.hSpacing( getprop("/curves/h_spacing") )</script>
-			</binding>
-		</input-->
-	</group>
+                </nasal>
+            </canvas>
+        </group>
+        <!--input>
+            <halign>right</halign>
+            <property>/curves/h_spacing</property>
+            <live>1</live>
+            <pref-width>200</pref-width>
+            <height>25</height>
+            <binding>
+                <command>dialog-apply</command>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>myChart1.hSpacing( getprop("/curves/h_spacing") )</script>
+            </binding>
+        </input-->
+    </group>
 
-	<hrule/>
+    <hrule/>
 
-	<group>
-		<layout>hbox</layout>
-		<group>
-			<layout>vbox</layout>
-			<canvas>
-				<name>filter-curve</name>
-				<valign>fill</valign>
-				<halign>fill</halign>
-				<pref-width>600</pref-width>
-				<pref-height>280</pref-height>
-				<nasal>
-					<load> <![CDATA[
+    <group>
+        <layout>hbox</layout>
+        <group>
+            <layout>vbox</layout>
+            <canvas>
+                <name>filter-curve</name>
+                <valign>fill</valign>
+                <halign>fill</halign>
+                <pref-width>600</pref-width>
+                <pref-height>280</pref-height>
+                <nasal>
+                    <load> <![CDATA[
 						var myCanvas2 = canvas.get( cmdarg() );
 						myCanvas2.setColorBackground(0, 0, 0, 1);
 
@@ -615,9 +617,9 @@
 						;
 						#append(listeners, setlistener( "/sim/fgcamera/current-camera/RND-updated", func { myChart2.update( { x: "v2", y: "filter"} ) } ) );
 					]]> </load>
-				</nasal>
-			</canvas>
-		</group>
-	</group>
+                </nasal>
+            </canvas>
+        </group>
+    </group>
 
 </PropertyList>

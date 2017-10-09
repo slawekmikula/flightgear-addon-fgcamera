@@ -1,382 +1,402 @@
 <?xml version="1.0"?>
 
 <PropertyList>
-	<name>current-camera-settings</name>
-	<layout>vbox</layout>
-	<!--width>350</width-->
-	<x>20</x>
-	<y>-50</y>
-	<color>
-		<alpha>0.5</alpha>
-	</color>
+    <name>current-camera-settings</name>
+    <layout>vbox</layout>
+    <!--width>350</width-->
+    <x>20</x>
+    <y>-50</y>
+    <color>
+        <alpha>0.5</alpha>
+    </color>
 
-	<group>
-		<layout>hbox</layout>
+    <group>
+        <layout>hbox</layout>
 
-		<empty><stretch>1</stretch></empty>
+        <empty>
+            <stretch>1</stretch>
+        </empty>
 
-		<text>
-			<label>Current camera settings</label>
-		</text>
+        <text>
+            <label>Current camera settings</label>
+        </text>
 
-		<empty><stretch>1</stretch></empty>
+        <empty>
+            <stretch>1</stretch>
+        </empty>
 
-		<button>
-			<legend> </legend>
-			<key>Esc</key>
-			<pref-width>16</pref-width>
-			<pref-height>16</pref-height>
-			<binding>
-				<command>dialog-close</command>
-			</binding>
-		</button>
+        <button>
+            <legend> </legend>
+            <key>Esc</key>
+            <pref-width>16</pref-width>
+            <pref-height>16</pref-height>
+            <binding>
+                <command>dialog-close</command>
+            </binding>
+        </button>
 
-	</group>
+    </group>
 
-	<hrule/>
+    <hrule/>
 
-	<checkbox>
-		<name>popup-tip</name>
-		<halign>left</halign>
-		<width>12</width>
-		<height>12</height>
-		<property>/sim/fgcamera/dialogs/camera-settings/popup-tip</property>
-		<label>Show popupTip</label>
-		<binding>
-			<command>dialog-apply</command>
-			<object-name>popup-tip</object-name>
-		</binding>
-		<binding>
-			<command>nasal</command>
-			<script>toggle_popupTip()</script>
-		</binding>
-	</checkbox>
+    <checkbox>
+        <name>popup-tip</name>
+        <halign>left</halign>
+        <width>12</width>
+        <height>12</height>
+        <property>/sim/fgcamera/dialogs/camera-settings/popup-tip</property>
+        <label>Show popupTip</label>
+        <binding>
+            <command>dialog-apply</command>
+            <object-name>popup-tip</object-name>
+        </binding>
+        <binding>
+            <command>nasal</command>
+            <script>toggle_popupTip()</script>
+        </binding>
+    </checkbox>
 
-	<checkbox>
-		<name>show-panel</name>
-		<halign>left</halign>
-		<width>12</width>
-		<height>12</height>
-		<property>/sim/fgcamera/dialogs/camera-settings/show-panel</property>
-		<label>Show 2d panel</label>
-		<binding>
-			<command>dialog-apply</command>
-			<object-name>show-panel</object-name>
-		</binding>
-		<binding>
-			<command>nasal</command>
-			<script>toggle_panel()</script>
-		</binding>
-	</checkbox>
+    <checkbox>
+        <name>show-panel</name>
+        <halign>left</halign>
+        <width>12</width>
+        <height>12</height>
+        <property>/sim/fgcamera/dialogs/camera-settings/show-panel</property>
+        <label>Show 2d panel</label>
+        <binding>
+            <command>dialog-apply</command>
+            <object-name>show-panel</object-name>
+        </binding>
+        <binding>
+            <command>nasal</command>
+            <script>toggle_panel()</script>
+        </binding>
+    </checkbox>
 
-<group>
-	<layout>hbox</layout>
-	<checkbox>
-		<name>show-dialog</name>
-		<halign>left</halign>
-		<width>12</width>
-		<height>12</height>
-		<property>/sim/fgcamera/dialogs/camera-settings/show-dialog</property>
-		<label>Show dialog:</label>
-		<binding>
-			<command>dialog-apply</command>
-			<object-name>show-dialog</object-name>
-		</binding>
-		<binding>
-			<command>nasal</command>
-			<script>toggle_dialog()</script>
-		</binding>
-	</checkbox>
+    <group>
+        <layout>hbox</layout>
+        <checkbox>
+            <name>show-dialog</name>
+            <halign>left</halign>
+            <width>12</width>
+            <height>12</height>
+            <property>/sim/fgcamera/dialogs/camera-settings/show-dialog</property>
+            <label>Show dialog:</label>
+            <binding>
+                <command>dialog-apply</command>
+                <object-name>show-dialog</object-name>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>toggle_dialog()</script>
+            </binding>
+        </checkbox>
 
-	<input>
-		<name>dialog-name</name>
-		<halign>right</halign>
-		<pref-width>200</pref-width>
-		<height>25</height>
-		<property>/sim/fgcamera/dialogs/camera-settings/dialog-name</property>
-		<binding>
-			<command>dialog-apply</command>
-			<object-name>dialog-name</object-name>
-		</binding>
-		<binding>
-			<command>nasal</command>
-			<script>dialog_name()</script>
-		</binding>
-	</input>
-</group>
+        <input>
+            <name>dialog-name</name>
+            <halign>right</halign>
+            <pref-width>200</pref-width>
+            <height>25</height>
+            <property>/sim/fgcamera/dialogs/camera-settings/dialog-name</property>
+            <binding>
+                <command>dialog-apply</command>
+                <object-name>dialog-name</object-name>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>dialog_name()</script>
+            </binding>
+        </input>
+    </group>
 
-	<hrule/>
+    <hrule/>
 
-	<input>
-		<name>field-of-view</name>
-		<halign>left</halign>
-		<pref-width>100</pref-width>
-		<height>25</height>
-		<property>/sim/fgcamera/dialogs/camera-settings/field-of-view</property>
-		<label>FOV</label>
-		<binding>
-			<command>dialog-apply</command>
-			<object-name>field-of-view</object-name>
-		</binding>
-		<binding>
-			<command>nasal</command>
-			<script>apply_fov()</script>
-		</binding>
-	</input>
+    <input>
+        <name>field-of-view</name>
+        <halign>left</halign>
+        <pref-width>100</pref-width>
+        <height>25</height>
+        <property>/sim/fgcamera/dialogs/camera-settings/field-of-view</property>
+        <label>FOV</label>
+        <binding>
+            <command>dialog-apply</command>
+            <object-name>field-of-view</object-name>
+        </binding>
+        <binding>
+            <command>nasal</command>
+            <script>apply_fov()</script>
+        </binding>
+    </input>
 
-	<group>
-		<layout>hbox</layout>
-		<text>
-			<label>View movement</label>
-		</text>
-		<hrule><stretch>true</stretch></hrule>
-	</group>
+    <group>
+        <layout>hbox</layout>
+        <text>
+            <label>View movement</label>
+        </text>
+        <hrule>
+            <stretch>true</stretch>
+        </hrule>
+    </group>
 
-	<input>
-		<name>movement-transition-time</name>
-		<halign>left</halign>
-		<pref-width>100</pref-width>
-		<height>25</height>
-		<property>/sim/fgcamera/dialogs/camera-settings/movement-transition-time</property>
-		<label>Transition time, s</label>
-		<binding>
-			<command>dialog-apply</command>
-			<object-name>movement-transition-time</object-name>
-		</binding>
-		<binding>
-			<command>nasal</command>
-			<script>apply_movement_time()</script>
-		</binding>
-	</input>
+    <input>
+        <name>movement-transition-time</name>
+        <halign>left</halign>
+        <pref-width>100</pref-width>
+        <height>25</height>
+        <property>/sim/fgcamera/dialogs/camera-settings/movement-transition-time</property>
+        <label>Transition time, s</label>
+        <binding>
+            <command>dialog-apply</command>
+            <object-name>movement-transition-time</object-name>
+        </binding>
+        <binding>
+            <command>nasal</command>
+            <script>apply_movement_time()</script>
+        </binding>
+    </input>
 
-	<group>
-		<layout>hbox</layout>
-		<text>
-			<label>View adjustment</label>
-		</text>
-		<hrule><stretch>true</stretch></hrule>
-	</group>
+    <group>
+        <layout>hbox</layout>
+        <text>
+            <label>View adjustment</label>
+        </text>
+        <hrule>
+            <stretch>true</stretch>
+        </hrule>
+    </group>
 
-	<input>
-		<name>adjustment-linear-velocity</name>
-		<halign>left</halign>
-		<pref-width>100</pref-width>
-		<height>25</height>
-		<property>/sim/fgcamera/dialogs/camera-settings/adjustment-linear-velocity</property>
-		<label>Linear velocity, m/s</label>
-		<binding>
-			<command>dialog-apply</command>
-			<object-name>adjustment-linear-velocity</object-name>
-		</binding>
-		<binding>
-			<command>nasal</command>
-			<script>apply_adjustment_linear_velocity()</script>
-		</binding>
-	</input>
-	<input>
-		<name>adjustment-angular-velocity</name>
-		<halign>left</halign>
-		<pref-width>100</pref-width>
-		<height>25</height>
-		<property>/sim/fgcamera/dialogs/camera-settings/adjustment-angular-velocity</property>
-		<label>Angular velocity, deg/s</label>
-		<binding>
-			<command>dialog-apply</command>
-			<object-name>adjustment-angular-velocity</object-name>
-		</binding>
-		<binding>
-			<command>nasal</command>
-			<script>apply_adjustment_angular_velocity()</script>
-		</binding>
-	</input>
-	<input>
-		<name>adjustment-filter</name>
-		<halign>left</halign>
-		<pref-width>100</pref-width>
-		<height>25</height>
-		<property>/sim/fgcamera/dialogs/camera-settings/adjustment-filter</property>
-		<label>Lowpass filter</label>
-		<binding>
-			<command>dialog-apply</command>
-			<object-name>adjustment-filter</object-name>
-		</binding>
-		<binding>
-			<command>nasal</command>
-			<script>apply_adjustment_filter()</script>
-		</binding>
-	</input>
+    <input>
+        <name>adjustment-linear-velocity</name>
+        <halign>left</halign>
+        <pref-width>100</pref-width>
+        <height>25</height>
+        <property>/sim/fgcamera/dialogs/camera-settings/adjustment-linear-velocity</property>
+        <label>Linear velocity, m/s</label>
+        <binding>
+            <command>dialog-apply</command>
+            <object-name>adjustment-linear-velocity</object-name>
+        </binding>
+        <binding>
+            <command>nasal</command>
+            <script>apply_adjustment_linear_velocity()</script>
+        </binding>
+    </input>
+    <input>
+        <name>adjustment-angular-velocity</name>
+        <halign>left</halign>
+        <pref-width>100</pref-width>
+        <height>25</height>
+        <property>/sim/fgcamera/dialogs/camera-settings/adjustment-angular-velocity</property>
+        <label>Angular velocity, deg/s</label>
+        <binding>
+            <command>dialog-apply</command>
+            <object-name>adjustment-angular-velocity</object-name>
+        </binding>
+        <binding>
+            <command>nasal</command>
+            <script>apply_adjustment_angular_velocity()</script>
+        </binding>
+    </input>
+    <input>
+        <name>adjustment-filter</name>
+        <halign>left</halign>
+        <pref-width>100</pref-width>
+        <height>25</height>
+        <property>/sim/fgcamera/dialogs/camera-settings/adjustment-filter</property>
+        <label>Lowpass filter</label>
+        <binding>
+            <command>dialog-apply</command>
+            <object-name>adjustment-filter</object-name>
+        </binding>
+        <binding>
+            <command>nasal</command>
+            <script>apply_adjustment_filter()</script>
+        </binding>
+    </input>
 
-	<group>
-		<layout>hbox</layout>
-		<text>
-			<label>Mouse look</label>
-		</text>
-		<hrule><stretch>true</stretch></hrule>
-	</group>
+    <group>
+        <layout>hbox</layout>
+        <text>
+            <label>Mouse look</label>
+        </text>
+        <hrule>
+            <stretch>true</stretch>
+        </hrule>
+    </group>
 
-	<input>
-		<name>mlook-sensitivity</name>
-		<halign>left</halign>
-		<pref-width>100</pref-width>
-		<height>25</height>
-		<property>/sim/fgcamera/dialogs/camera-settings/mlook-sensitivity</property>
-		<label>Mouse sensitivity</label>
-		<binding>
-			<command>dialog-apply</command>
-			<object-name>mlook-sensitivity</object-name>
-		</binding>
-		<binding>
-			<command>nasal</command>
-			<script>apply_mlook_sensitivity()</script>
-		</binding>
-	</input>
-	<input>
-		<name>mlook-filter</name>
-		<halign>left</halign>
-		<pref-width>100</pref-width>
-		<height>25</height>
-		<property>/sim/fgcamera/dialogs/camera-settings/mlook-filter</property>
-		<label>Lowpass filter</label>
-		<binding>
-			<command>dialog-apply</command>
-			<object-name>mlook-filter</object-name>
-		</binding>
-		<binding>
-			<command>nasal</command>
-			<script>apply_mlook_filter()</script>
-		</binding>
-	</input>
+    <input>
+        <name>mlook-sensitivity</name>
+        <halign>left</halign>
+        <pref-width>100</pref-width>
+        <height>25</height>
+        <property>/sim/fgcamera/dialogs/camera-settings/mlook-sensitivity</property>
+        <label>Mouse sensitivity</label>
+        <binding>
+            <command>dialog-apply</command>
+            <object-name>mlook-sensitivity</object-name>
+        </binding>
+        <binding>
+            <command>nasal</command>
+            <script>apply_mlook_sensitivity()</script>
+        </binding>
+    </input>
+    <input>
+        <name>mlook-filter</name>
+        <halign>left</halign>
+        <pref-width>100</pref-width>
+        <height>25</height>
+        <property>/sim/fgcamera/dialogs/camera-settings/mlook-filter</property>
+        <label>Lowpass filter</label>
+        <binding>
+            <command>dialog-apply</command>
+            <object-name>mlook-filter</object-name>
+        </binding>
+        <binding>
+            <command>nasal</command>
+            <script>apply_mlook_filter()</script>
+        </binding>
+    </input>
 
-	<hrule/>
+    <hrule/>
 
-	<group>
-		<layout>hbox</layout>
-		<empty><stretch>1</stretch></empty>
-		<checkbox>
-			<name>enable-DHM</name>
-			<halign>left</halign>
-			<width>12</width>
-			<height>12</height>
-			<property>/sim/fgcamera/dialogs/camera-settings/enable-DHM</property>
-			<binding>
-				<command>dialog-apply</command>
-			</binding>
-			<binding>
-				<command>nasal</command>
-				<script>toggle_DHM()</script>
-			</binding>
-		</checkbox>
+    <group>
+        <layout>hbox</layout>
+        <empty>
+            <stretch>1</stretch>
+        </empty>
+        <checkbox>
+            <name>enable-DHM</name>
+            <halign>left</halign>
+            <width>12</width>
+            <height>12</height>
+            <property>/sim/fgcamera/dialogs/camera-settings/enable-DHM</property>
+            <binding>
+                <command>dialog-apply</command>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>toggle_DHM()</script>
+            </binding>
+        </checkbox>
 
-		<button>
-			<legend>DHM...</legend>
-			<pref-width>70</pref-width>
-			<pref-height>30</pref-height>
-			<enable>
-				<property></property>
-			</enable>
-			<binding>
-				<command>dialog-show</command>
-				<dialog-name>DHM-settings</dialog-name>
-			</binding>
-			<binding>
-				<command>dialog-close</command>
-				<dialog-name>current-camera-settings</dialog-name>
-			</binding>
-		</button>
+        <button>
+            <legend>DHM...</legend>
+            <pref-width>70</pref-width>
+            <pref-height>30</pref-height>
+            <enable>
+                <property></property>
+            </enable>
+            <binding>
+                <command>dialog-show</command>
+                <dialog-name>DHM-settings</dialog-name>
+            </binding>
+            <binding>
+                <command>dialog-close</command>
+                <dialog-name>current-camera-settings</dialog-name>
+            </binding>
+        </button>
 
-		<empty><stretch>1</stretch></empty>
+        <empty>
+            <stretch>1</stretch>
+        </empty>
 
-		<checkbox>
-			<name>enable-RND</name>
-			<halign>left</halign>
-			<width>12</width>
-			<height>12</height>
-			<property>/sim/fgcamera/dialogs/camera-settings/enable-RND</property>
-			<binding>
-				<command>dialog-apply</command>
-				<object-name>enable-RND</object-name>
-			</binding>
-			<binding>
-				<command>nasal</command>
-				<script>toggle_RND()</script>
-			</binding>
-		</checkbox>
+        <checkbox>
+            <name>enable-RND</name>
+            <halign>left</halign>
+            <width>12</width>
+            <height>12</height>
+            <property>/sim/fgcamera/dialogs/camera-settings/enable-RND</property>
+            <binding>
+                <command>dialog-apply</command>
+                <object-name>enable-RND</object-name>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>toggle_RND()</script>
+            </binding>
+        </checkbox>
 
-		<button>
-			<legend>RND...</legend>
-			<pref-width>70</pref-width>
-			<pref-height>30</pref-height>
-			<enable>
-				<property>/sim/fgcamera/dialogs/camera-settings/enable-RND</property>
-			</enable>
-			<binding>
-				<command>dialog-show</command>
-				<dialog-name>RND-mixer</dialog-name>
-			</binding>
-			<binding>
-				<command>dialog-close</command>
-				<dialog-name>current-camera-settings</dialog-name>
-			</binding>
-		</button>
+        <button>
+            <legend>RND...</legend>
+            <pref-width>70</pref-width>
+            <pref-height>30</pref-height>
+            <enable>
+                <property>/sim/fgcamera/dialogs/camera-settings/enable-RND</property>
+            </enable>
+            <binding>
+                <command>dialog-show</command>
+                <dialog-name>RND-mixer</dialog-name>
+            </binding>
+            <binding>
+                <command>dialog-close</command>
+                <dialog-name>current-camera-settings</dialog-name>
+            </binding>
+        </button>
 
-		<empty><stretch>1</stretch></empty>
+        <empty>
+            <stretch>1</stretch>
+        </empty>
 
-	</group>
+    </group>
 
-	<group>
-		<layout>hbox</layout>
+    <group>
+        <layout>hbox</layout>
 
-		<input>
-			<name>ai-object-name</name>
-			<halign>left</halign>
-			<pref-width>200</pref-width>
-			<height>25</height>
-			<property>/sim/fgcamera/dialogs/camera-settings/ai-object-name</property>
-			<label>AI object name</label>
-			<binding>
-				<command>dialog-apply</command>
-				<object-name>ai-object-name</object-name>
-			</binding>
-			<binding>
-				<command>nasal</command>
-				<script>ai_object_name()</script>
-			</binding>
-		</input>
+        <input>
+            <name>ai-object-name</name>
+            <halign>left</halign>
+            <pref-width>200</pref-width>
+            <height>25</height>
+            <property>/sim/fgcamera/dialogs/camera-settings/ai-object-name</property>
+            <label>AI object name</label>
+            <binding>
+                <command>dialog-apply</command>
+                <object-name>ai-object-name</object-name>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>ai_object_name()</script>
+            </binding>
+        </input>
 
-	</group>
+    </group>
 
 
-	<hrule/>
+    <hrule/>
 
-	<group>
-		<layout>hbox</layout>
+    <group>
+        <layout>hbox</layout>
 
-		<empty><stretch>1</stretch></empty>
+        <empty>
+            <stretch>1</stretch>
+        </empty>
 
-		<button>
-			<legend>Store position</legend>
-			<pref-width>130</pref-width>
-			<pref-height>30</pref-height>
-			<binding>
-				<command>nasal</command>
-				<script>l.getCurrentCamera().storeOffsets()</script>
-			</binding>
-		</button>
+        <button>
+            <legend>Store position</legend>
+            <pref-width>130</pref-width>
+            <pref-height>30</pref-height>
+            <binding>
+                <command>nasal</command>
+                <script>l.getCurrentCamera().storeOffsets()</script>
+            </binding>
+        </button>
 
-		<button>
-			<legend>Close</legend>
-			<pref-width>90</pref-width>
-			<pref-height>30</pref-height>
-			<binding>
-				<command>dialog-close</command>
-			</binding>
-		</button>
+        <button>
+            <legend>Close</legend>
+            <pref-width>90</pref-width>
+            <pref-height>30</pref-height>
+            <binding>
+                <command>dialog-close</command>
+            </binding>
+        </button>
 
-		<empty><stretch>1</stretch></empty>
-	</group>
+        <empty>
+            <stretch>1</stretch>
+        </empty>
+    </group>
 
-	<nasal>
-		<open> <![CDATA[
+    <nasal>
+        <open> <![CDATA[
 			fgcamera.camera_settingsF = 1;
 			var l = fgcamera.getCameraList();
 
@@ -639,9 +659,9 @@
 			#==================================================
 			update_values();
 		]]> </open>
-		<close>
-			fgcamera.camera_settingsF = 0;
-			removelistener(listener);
-		</close>
-	</nasal>
+        <close>
+            fgcamera.camera_settingsF = 0;
+            removelistener(listener);
+        </close>
+    </nasal>
 </PropertyList>

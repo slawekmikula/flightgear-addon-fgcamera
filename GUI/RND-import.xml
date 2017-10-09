@@ -1,73 +1,81 @@
 <?xml version="1.0"?>
 
 <PropertyList>
-	<name>RND-import</name>
-	<layout>vbox</layout>
-	<group>
-		<layout>hbox</layout>
+    <name>RND-import</name>
+    <layout>vbox</layout>
+    <group>
+        <layout>hbox</layout>
 
-		<empty><stretch>1</stretch></empty>
+        <empty>
+            <stretch>1</stretch>
+        </empty>
 
-		<text>
-			<label>Import effect</label>
-		</text>
+        <text>
+            <label>Import effect</label>
+        </text>
 
-		<empty><stretch>1</stretch></empty>
+        <empty>
+            <stretch>1</stretch>
+        </empty>
 
-		<button>
-			<legend> </legend>
-			<key>Esc</key>
-			<pref-width>16</pref-width>
-			<pref-height>16</pref-height>
-			<binding>
-				<command>dialog-close</command>
-			</binding>
-		</button>
+        <button>
+            <legend> </legend>
+            <key>Esc</key>
+            <pref-width>16</pref-width>
+            <pref-height>16</pref-height>
+            <binding>
+                <command>dialog-close</command>
+            </binding>
+        </button>
 
-	</group>
+    </group>
 
-	<hrule/>
+    <hrule/>
 
-	<group>
-		<layout>vbox</layout>
-		<list>
-			<name>file-list</name>
-			<pref-height>250</pref-height>
-			<pref-width>300</pref-width>
-			<halign>fill</halign>
-			<valign>fill</valign>
-			<stretch>true</stretch>
-			<padding>6</padding>
-			<property>/sim/fgcamera/dialogs/RND/mixer/import/selected-effect</property>
-			<binding>
-				<command>dialog-apply</command>
-			</binding>
-			<binding>
-				<command>nasal</command>
-				<script>import_effect()</script>
-			</binding>
-			<value>...</value>
-		</list>
-	</group>
+    <group>
+        <layout>vbox</layout>
+        <list>
+            <name>file-list</name>
+            <pref-height>250</pref-height>
+            <pref-width>300</pref-width>
+            <halign>fill</halign>
+            <valign>fill</valign>
+            <stretch>true</stretch>
+            <padding>6</padding>
+            <property>/sim/fgcamera/dialogs/RND/mixer/import/selected-effect</property>
+            <binding>
+                <command>dialog-apply</command>
+            </binding>
+            <binding>
+                <command>nasal</command>
+                <script>import_effect()</script>
+            </binding>
+            <value>...</value>
+        </list>
+    </group>
 
-	<hrule/>
+    <hrule/>
 
-	<group>
-		<layout>hbox</layout>
-		<empty><stretch>1</stretch></empty>
-		<button>
-			<legend>Close</legend>
-			<pref-width>90</pref-width>
-			<pref-height>30</pref-height>
-			<binding>
-				<command>dialog-close</command>
-			</binding>
-		</button>
-		<empty><stretch>1</stretch></empty>
-	</group>
+    <group>
+        <layout>hbox</layout>
+        <empty>
+            <stretch>1</stretch>
+        </empty>
+        <button>
+            <legend>Close</legend>
+            <pref-width>90</pref-width>
+            <pref-height>30</pref-height>
+            <binding>
+                <command>dialog-close</command>
+            </binding>
+        </button>
+        <empty>
+            <stretch>1</stretch>
+        </empty>
+    </group>
 
-	<nasal>
-		<open> <![CDATA[
+    <nasal>
+        <open> <![CDATA[
 			var listN    = cmdarg().getNode("group[1]/list");
 			var path     = getprop("/sim/fgcamera/root_path") ~ "/RND";
 			var dir      = directory(path);
@@ -122,8 +130,8 @@
 			update_mode();
 		]]> </open>
 
-		<close> <![CDATA[
+        <close> <![CDATA[
 			removelistener(listener);
 		]]> </close>
-	</nasal>
+    </nasal>
 </PropertyList>

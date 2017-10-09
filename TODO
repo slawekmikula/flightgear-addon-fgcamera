@@ -2,4 +2,5 @@
 - clean code, remove commented out code
 - remove "old" directory with unneeded code
 - resolve "Aircraft" prefix with resources in config.xml (in flightgear src)
-- somehow make exchange of mice.xml not needed
+- somehow make exchange of mice.xml in fgdata not needed
+- after reset (shift+esc) addon does not reload itself

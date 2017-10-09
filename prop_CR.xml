@@ -1,5 +1,5 @@
 <PropertyList>
-	<params include="params.xml"/>
+	<params include="property-rules/params.xml"/>
 
     <!-- Resonance generator -->
 	<filter>

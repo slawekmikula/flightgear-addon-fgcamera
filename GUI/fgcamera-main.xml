@@ -650,205 +650,213 @@
 				</checkbox>
 			</group>
 
-			<button>
-				<legend>set +Y</legend>
-				<height>30</height>
-				<binding>
-				</binding>
-			</button>
-			<group>
-				<layout>hbox</layout>
-				<button>
-					<legend>set -X</legend>
-					<halign>right</halign>
-					<height>30</height>
-					<binding>
-					</binding>
-				</button>
-				<button>
-					<legend>set -Y</legend>
-					<height>30</height>
-					<binding>
-					</binding>
-				</button>
-				<button>
-					<legend>set +X</legend>
-					<halign>left</halign>
-					<height>30</height>
-					<binding>
-					</binding>
-				</button>
-			</group>
--->
-			<group>
-				<layout>hbox</layout>
-				<text>
-					<label>LP filter</label>
-					<halign>left</halign>
-				</text>
-				<input>
-					<live>1</live>
-					<halign>right</halign>
-					<pref-width>100</pref-width>
-					<height>25</height>
-					<property>/sim/fgcamera/current-camera/config/head-tracker/filter-time</property>
-					<binding>
-						<command>dialog-apply</command>
-					</binding>
-					<binding>
-						<command>nasal</command>
-						<script>
-							L.CurrentCamera().settings("head tracker").filter(getprop("/sim/fgcamera/current-camera/config/head-tracker/filter-time"));
-						</script>
-					</binding>
-				</input>
-			</group>
-			<group>
-				<layout>hbox</layout>
-				<text>
-					<label>Effects</label>
-				</text>
-				<hrule><stretch>true</stretch></hrule>
-			</group>
-			<group>
-				<layout>hbox</layout>
-				<checkbox>
-					<width>12</width>
-					<height>12</height>
-					<halign>left</halign>
-					<label>Dynamic head movement</label>
-					<enable>
-						<property></property>
-					</enable>
-					<binding>
-						<command>dialog-apply</command>
-					</binding>
-				</checkbox>
-				<button>
-					<legend>CFG...</legend>
-					<halign>right</halign>
-					<height>30</height>
-					<binding>
-						<command>dialog-show</command>
-						<dialog-name>DHM-settings</dialog-name>
-					</binding>
-					<binding>
-						<command>dialog-close</command>
-						<dialog-name>fgcamera-main</dialog-name>
-					</binding>
-				</button>
-			</group>
-			<group>
-				<layout>hbox</layout>
-				<checkbox>
-					<width>12</width>
-					<height>12</height>
-					<halign>left</halign>
-					<label>Random camera movement</label>
-					<enable>
-						<property></property>
-					</enable>
-					<binding>
-						<command>dialog-apply</command>
-					</binding>
-				</checkbox>
-				<button>
-					<legend>CFG...</legend>
-					<halign>right</halign>
-					<!--enable>
-						<property></property>
-					</enable-->
-					<height>30</height>
-			<binding>
-				<command>dialog-show</command>
-				<dialog-name>RND-mixer</dialog-name>
-			</binding>
-			<binding>
-				<command>dialog-close</command>
-				<dialog-name>fgcamera-main</dialog-name>
-			</binding>
-				</button>
-			</group>
-			<group>
-				<layout>hbox</layout>
-				<checkbox>
-					<live>1</live>
-					<width>12</width>
-					<height>12</height>
-					<halign>left</halign>
-					<label>Power-plant vibration</label>
-					<property>/sim/fgcamera/dialogs/fgcamera-main/settings/enable-power-plant-vibration</property>
-					<binding>
-						<command>dialog-apply</command>
-					</binding>
-					<binding>
-						<command>nasal</command>
-						<script>
-							L.CurrentCamera().effect("Power-plant vibration")
-								.enable( getprop("/sim/fgcamera/dialogs/fgcamera-main/settings/enable-power-plant-vibration") );
-						</script>
-					</binding>
-				</checkbox>
-				<button>
-					<legend>CFG...</legend>
-					<halign>right</halign>
-					<height>30</height>
-					<enable>
-						<property>/sim/fgcamera/dialogs/fgcamera-main/settings/enable-power-plant-vibration</property>
-					</enable>
-					<binding>
-						<command>dialog-show</command>
-						<dialog-name>power-plant-vibration</dialog-name>
-					</binding>
-					<binding>
-						<command>dialog-close</command>
-						<dialog-name>fgcamera-main</dialog-name>
-					</binding>
-				</button>
-			</group>
-			<empty><stretch>1</stretch></empty>
-		</group>
+                        <button>
+                            <legend>set +Y</legend>
+                            <height>30</height>
+                            <binding>
+                            </binding>
+                        </button>
+                        <group>
+                            <layout>hbox</layout>
+                            <button>
+                                <legend>set -X</legend>
+                                <halign>right</halign>
+                                <height>30</height>
+                                <binding>
+                                </binding>
+                            </button>
+                            <button>
+                                <legend>set -Y</legend>
+                                <height>30</height>
+                                <binding>
+                                </binding>
+                            </button>
+                            <button>
+                                <legend>set +X</legend>
+                                <halign>left</halign>
+                                <height>30</height>
+                                <binding>
+                                </binding>
+                            </button>
+                        </group>
+            -->
+            <group>
+                <layout>hbox</layout>
+                <text>
+                    <label>LP filter</label>
+                    <halign>left</halign>
+                </text>
+                <input>
+                    <live>1</live>
+                    <halign>right</halign>
+                    <pref-width>100</pref-width>
+                    <height>25</height>
+                    <property>/sim/fgcamera/current-camera/config/head-tracker/filter-time</property>
+                    <binding>
+                        <command>dialog-apply</command>
+                    </binding>
+                    <binding>
+                        <command>nasal</command>
+                        <script>
+                            L.CurrentCamera().settings("head tracker").filter(getprop("/sim/fgcamera/current-camera/config/head-tracker/filter-time"));
+                        </script>
+                    </binding>
+                </input>
+            </group>
+            <group>
+                <layout>hbox</layout>
+                <text>
+                    <label>Effects</label>
+                </text>
+                <hrule>
+                    <stretch>true</stretch>
+                </hrule>
+            </group>
+            <group>
+                <layout>hbox</layout>
+                <checkbox>
+                    <width>12</width>
+                    <height>12</height>
+                    <halign>left</halign>
+                    <label>Dynamic head movement</label>
+                    <enable>
+                        <property></property>
+                    </enable>
+                    <binding>
+                        <command>dialog-apply</command>
+                    </binding>
+                </checkbox>
+                <button>
+                    <legend>CFG...</legend>
+                    <halign>right</halign>
+                    <height>30</height>
+                    <binding>
+                        <command>dialog-show</command>
+                        <dialog-name>DHM-settings</dialog-name>
+                    </binding>
+                    <binding>
+                        <command>dialog-close</command>
+                        <dialog-name>fgcamera-main</dialog-name>
+                    </binding>
+                </button>
+            </group>
+            <group>
+                <layout>hbox</layout>
+                <checkbox>
+                    <width>12</width>
+                    <height>12</height>
+                    <halign>left</halign>
+                    <label>Random camera movement</label>
+                    <enable>
+                        <property></property>
+                    </enable>
+                    <binding>
+                        <command>dialog-apply</command>
+                    </binding>
+                </checkbox>
+                <button>
+                    <legend>CFG...</legend>
+                    <halign>right</halign>
+                    <!--enable>
+                        <property></property>
+                    </enable-->
+                    <height>30</height>
+                    <binding>
+                        <command>dialog-show</command>
+                        <dialog-name>RND-mixer</dialog-name>
+                    </binding>
+                    <binding>
+                        <command>dialog-close</command>
+                        <dialog-name>fgcamera-main</dialog-name>
+                    </binding>
+                </button>
+            </group>
+            <group>
+                <layout>hbox</layout>
+                <checkbox>
+                    <live>1</live>
+                    <width>12</width>
+                    <height>12</height>
+                    <halign>left</halign>
+                    <label>Power-plant vibration</label>
+                    <property>/sim/fgcamera/dialogs/fgcamera-main/settings/enable-power-plant-vibration</property>
+                    <binding>
+                        <command>dialog-apply</command>
+                    </binding>
+                    <binding>
+                        <command>nasal</command>
+                        <script>
+                            L.CurrentCamera().effect("Power-plant vibration")
+                            .enable( getprop("/sim/fgcamera/dialogs/fgcamera-main/settings/enable-power-plant-vibration") );
+                        </script>
+                    </binding>
+                </checkbox>
+                <button>
+                    <legend>CFG...</legend>
+                    <halign>right</halign>
+                    <height>30</height>
+                    <enable>
+                        <property>/sim/fgcamera/dialogs/fgcamera-main/settings/enable-power-plant-vibration</property>
+                    </enable>
+                    <binding>
+                        <command>dialog-show</command>
+                        <dialog-name>power-plant-vibration</dialog-name>
+                    </binding>
+                    <binding>
+                        <command>dialog-close</command>
+                        <dialog-name>fgcamera-main</dialog-name>
+                    </binding>
+                </button>
+            </group>
+            <empty>
+                <stretch>1</stretch>
+            </empty>
+        </group>
 
-	</group>
+    </group>
 
-	<hrule/>
+    <hrule/>
 
-	<group>
-		<layout>hbox</layout>
+    <group>
+        <layout>hbox</layout>
 
-		<button>
-			<legend>Options...</legend>
-			<pref-height>30</pref-height>
-			<binding>
-				<command>dialog-show</command>
-				<dialog-name>fgcamera-options</dialog-name>
-			</binding>
-		</button>
+        <button>
+            <legend>Options...</legend>
+            <pref-height>30</pref-height>
+            <binding>
+                <command>dialog-show</command>
+                <dialog-name>fgcamera-options</dialog-name>
+            </binding>
+        </button>
 
-		<empty><stretch>1</stretch></empty>
+        <empty>
+            <stretch>1</stretch>
+        </empty>
 
-		<button>
-			<legend>Save</legend>
-			<pref-height>30</pref-height>
-			<binding>
-				<command>nasal</command>
-				<script>L.saveToXML()</script>
-			</binding>
-		</button>
+        <button>
+            <legend>Save</legend>
+            <pref-height>30</pref-height>
+            <binding>
+                <command>nasal</command>
+                <script>L.saveToXML()</script>
+            </binding>
+        </button>
 
-		<button>
-			<legend>Close</legend>
-			<pref-height>30</pref-height>
-			<binding>
-				<command>dialog-close</command>
-			</binding>
-		</button>
+        <button>
+            <legend>Close</legend>
+            <pref-height>30</pref-height>
+            <binding>
+                <command>dialog-close</command>
+            </binding>
+        </button>
 
-		<empty><stretch>1</stretch></empty>
-	</group>
+        <empty>
+            <stretch>1</stretch>
+        </empty>
+    </group>
 
-	<nasal>
-		<open> <![CDATA[
+    <nasal>
+        <open> <![CDATA[
 			var list        = cmdarg().getNode("group[1]/group/group/list");
 			var dlg_path    = "/sim/fgcamera/dialogs/fgcamera-main";
 			var path        = "/sim/fgcamera/dialogs/fgcamera-main/settings/";
@@ -994,11 +1002,11 @@
 			setprop("/sim/fgcamera/gui-opened", 1);
 		]]> </open>
 
-		<close>
-			setprop("/sim/fgcamera/gui-opened", 0);
-			removelistener(listener1);
-			removelistener(listener2);
-		</close>
-	</nasal>
+        <close>
+            setprop("/sim/fgcamera/gui-opened", 0);
+            removelistener(listener1);
+            removelistener(listener2);
+        </close>
+    </nasal>
 
 </PropertyList>
