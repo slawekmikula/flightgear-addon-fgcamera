@@ -5,8 +5,6 @@
         <keyboard include="fgkeyboard.xml" />
         <mice include="fgmouse.xml" />
     </input>
-    <params include="fgkeyboard.xml"/>
-    <params include="fgmouse.xml"/>
 
     <fgcam>
         <rnd>0</rnd>
