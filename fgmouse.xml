@@ -19,13 +19,6 @@
                     <property>/sim/menubar/visibility</property>
                     <value type="bool">false</value>
                 </binding>
-                <binding>
-                    <condition>
-                        <property>/fgcamera/dev</property>
-                    </condition>
-                    <command>nasal</command>
-                    <script>fgcamera.copy_lat_lon()</script>
-                </binding>
             </button>
 
             <button n="2">
@@ -45,6 +38,38 @@
                     </condition>
                     <command>cycle-mouse-mode</command>
                     <reason>right-click</reason>
+                </binding>
+            </button>
+
+            <!-- extra buttons control FoV -->
+            <!-- these are often assigned to mouse-wheel motion in Linux -->
+            <button n="3">
+                <binding>
+                    <condition>
+                        <and>
+                            <property>/devices/status/mice/mouse[0]/button[2]</property>
+                            <not>
+                                <property>/sim/mouse/right-button-mode-cycle-enabled</property>
+                            </not>
+                        </and>
+                    </condition>
+                    <command>nasal</command>
+                    <script>view.decrease()</script>
+                </binding>
+            </button>
+
+            <button n="4">
+                <binding>
+                    <condition>
+                        <and>
+                            <property>/devices/status/mice/mouse[0]/button[2]</property>
+                            <not>
+                                <property>/sim/mouse/right-button-mode-cycle-enabled</property>
+                            </not>
+                        </and>
+                    </condition>
+                    <command>nasal</command>
+                    <script>view.increase()</script>
                 </binding>
             </button>
         </mode>
@@ -78,15 +103,17 @@
             <!-- these are often assigned to mouse-wheel motion in Linux -->
             <button n="3">
                 <binding>
-                    <command>nasal</command>
-                    <script>controls.incThrottle(0.05, 1.0)</script>
+                    <command>property-adjust</command>
+                    <property>/controls/flight/elevator-trim</property>
+                    <step type="double">0.01</step>
                 </binding>
             </button>
 
             <button n="4">
                 <binding>
-                    <command>nasal</command>
-                    <script>controls.incThrottle(-0.05, -1.0)</script>
+                    <command>property-adjust</command>
+                    <property>/controls/flight/elevator-trim</property>
+                    <step type="double">-0.01</step>
                 </binding>
             </button>
 
@@ -400,6 +427,16 @@
                     <max type="double">360</max>
                     <wrap type="bool">true</wrap>
                 </binding>
+                <!-- Middle button pressed: move the view position left or right -->
+                <binding>
+                    <condition>
+                        <property>/devices/status/mice/mouse[0]/button[1]</property>
+                    </condition>
+                    <command>property-adjust</command>
+                    <property>/sim/current-view/x-offset-m</property>
+                    <factor type="double">1</factor>
+                    <wrap type="bool">false</wrap>
+                </binding>
             </x-axis>
 
             <!-- Mouse up/down motion -->
@@ -427,6 +464,51 @@
                     <max type="double">90</max>
                     <wrap type="bool">false</wrap>
                 </binding>
+
+                <!-- Middle button pressed move the view up and down -->
+                <binding>
+                    <condition>
+                        <property>/devices/status/mice/mouse[0]/button[1]</property>
+                    </condition>
+                    <command>property-adjust</command>
+                    <property>/sim/current-view/y-offset-m</property>
+                    <factor type="double">-1</factor>
+                    <wrap type="bool">false</wrap>
+                </binding>
+
+                <y-axis-ctrl>
+                    <!-- Middle button and Ctrl pressed: move the view forward and backward -->
+                    <binding>
+                        <condition>
+                            <property>/devices/status/mice/mouse[0]/button[1]</property>
+                        </condition>
+                        <command>property-adjust</command>
+                        <property>/sim/current-view/z-offset-m</property>
+                        <factor type="double">1</factor>
+                        <wrap type="bool">false</wrap>
+                    </binding>
+
+                    <binding>
+                        <condition>
+                            <not>
+                                <property>/devices/status/mice/mouse[0]/button[1]</property>
+                            </not>
+                        </condition>
+                        <command>property-adjust</command>
+                        <property>/sim/current-view/y-offset-m</property>
+                        <factor type="double">-1</factor>
+                        <wrap type="bool">false</wrap>
+                    </binding>
+                </y-axis-ctrl>
+
+                <x-axis-ctrl>
+                    <binding>
+                        <command>property-adjust</command>
+                        <property>/sim/current-view/x-offset-m</property>
+                        <factor type="double">1</factor>
+                        <wrap type="bool">false</wrap>
+                    </binding>
+                </x-axis-ctrl>
             </y-axis>
         </mode>
     </mouse> <!-- of mouse 0 -->

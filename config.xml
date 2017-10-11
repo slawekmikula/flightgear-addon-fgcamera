@@ -3,7 +3,6 @@
 <PropertyList>
     <input>
         <keyboard include="fgkeyboard.xml" />
-        <mice include="fgmouse.xml" />
     </input>
 
     <fgcam>

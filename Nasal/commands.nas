@@ -43,14 +43,14 @@ var commands = {
 		setprop ("/sim/fgcamera/view-adjustment/raw/" ~ data.dof ~ "-velocity", data.velocity); #/sim/fgcamera/view-adjustment/raw/fov-velocity
 	},
 #--------------------------------------------------
-#	"fgcamera-save": func {
-#		setprop (my_node_path ~ "/save-cameras", 1);
-#	},
+	"fgcamera-save": func {
+		setprop (my_node_path ~ "/save-cameras", 1);
+	},
 #--------------------------------------------------
-#	"fgcamera-reset-view": func {
-#		popupTipF = 0;
-#		setprop (my_node_path ~ "/current-camera/camera-index", current[1]);
-#	},
+	"fgcamera-reset-view": func {
+		popupTipF = 0;
+		setprop (my_node_path ~ "/current-camera/camera-index", current[1]);
+	},
 #--------------------------------------------------
 	"fgcamera-next-category": func {
 		cycle_category(1);
@@ -68,13 +68,13 @@ var commands = {
 		cycle_category(-1, 1);
 	},
 #--------------------------------------------------
-#	"fgcamera-next-ai-object": func {
-#		AI_object.cycle_ai_object(1);
-#	},
+	"fgcamera-next-ai-object": func {
+		AI_object.cycle_ai_object(1);
+	},
 #--------------------------------------------------
-#	"fgcamera-prev-ai-object": func {
-#		AI_object.cycle_ai_object(-1);
-#	},
+	"fgcamera-prev-ai-object": func {
+		AI_object.cycle_ai_object(-1);
+	},
 };
 
 var cycle_category = func(dir, mode = nil) {
@@ -98,23 +98,28 @@ var cycle_category = func(dir, mode = nil) {
 	}
 
 	var camera_by_ID = func(id) {
-		foreach (var c; registry)
-			if (c.id == id) return c;
+		foreach (var c; registry) {
+			if (c.id == id) {
+                return c;
+            }
+        }
 		return registry[0];
 	}
 
 	var current_index = camera_by_ID(camera_id).index;
 	var br = 0;
 	while (!br) {
-		if (dir < 0)
+		if (dir < 0) {
 			camera_id -= 1;
-		else
+		} else {
 			camera_id += 1;
+        }
 
-		if (camera_id < 0)
+		if (camera_id < 0) {
 			camera_id += num_cameras;
-		elsif (camera_id > (num_cameras - 1))
+		} elsif (camera_id > (num_cameras - 1)) {
 			camera_id = 0;
+        }
 
 
 		var category = camera_by_ID(camera_id).category;
@@ -122,9 +127,12 @@ var cycle_category = func(dir, mode = nil) {
 			if (mode == nil) {
 				if (current_category != category) {
 					camera_id = 0;
-					for (; 1; camera_id += 1)
-						if (camera_by_ID(camera_id).category == category)
+					for (; 1; camera_id += 1) {
+						if (camera_by_ID(camera_id).category == category) {
 							break;
+                        }
+                    }
+
 					#setprop(my_node_path ~ "/current-camera/camera-id", index_by_ID(camera_id));
 					select_camera(camera_by_ID(camera_id).index);
 					br = 1;
@@ -136,15 +144,17 @@ var cycle_category = func(dir, mode = nil) {
 			}
 		}
 
-		if (camera_by_ID(camera_id).index == current_index)
+		if (camera_by_ID(camera_id).index == current_index) {
 			br = 1;
+        }
 	}
 }
 
 
 var add_commands = func {
-	foreach (var name; keys(commands))
+	foreach (var name; keys(commands)) {
 		addcommand(name, commands[name]);
+    }
 }
 
 add_commands();

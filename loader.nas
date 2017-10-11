@@ -22,6 +22,13 @@ var reload = func {
 #-------------------------------------------------
 var fdm_init_listener = _setlistener("/sim/signals/fdm-initialized", func {
 	removelistener(fdm_init_listener);
+
+    # load new mouse configuration & reinit input subsystem
+    props.getNode("/input/mice").removeAllChildren();
+    var path = getprop("/sim/fgcamera/root_path");
+    io.read_properties(path ~ "/fgmouse.xml", "/input/mice");
+    fgcommand("reinit", props.Node.new({"subsystem": "input"}));
+
 	reload();
 	load_nasal("gui");
 	start_fgcamera();
