@@ -174,12 +174,13 @@
 			var L = fgcamera.API("1.0-devel").CameraList();
 
 			var slot = func (s) {
-				if ( getprop("/devices/status/keyboard/shift") )
+				if ( getprop("/devices/status/keyboard/shift") ) {
 					L.CurrentCamera().slot(s);
-				elsif ( getprop("/devices/status/keyboard/ctrl") )
+				} elsif ( getprop("/devices/status/keyboard/ctrl") ) {
 					L.CameraBySlot(s).slot("");
-				elsif ( (var c = L.CameraBySlot(s)) != nil)
+				} elsif ( (var c = L.CameraBySlot(s)) != nil) {
 					c.select();
+                }
 			}
 		]]></open>
     </nasal>

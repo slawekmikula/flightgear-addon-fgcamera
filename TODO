@@ -1,13 +1,15 @@
 + somehow make exchange of mice.xml in fgdata not needed (FG SRC)
++ after reset (shift+esc) addon does not reload itself
 
 - clean code, remove commented out code
 - remove "old" directory with unneeded code
 - resolve "Aircraft" prefix with resources in config.xml (in flightgear src)
-- after reset (shift+esc) addon does not reload itself
 - compatibility with older fgcamera configurations
 - bug - mini-dialogs -> switching << < >> >> does not work
-- bug - new camera views after adding cannot be selected by keyboard (missing "slot" number)
+- bug - new camera views after adding cannot be selected by keyboard (missing "slot" number ?)
 - bug - changing views via keyboard "v" does not work
 - bug - mouse look mode have limited viewport for mouse movement or hide <-> cursor
 - bug - generator dialog - does not show summary output of generators
-- bug - power plan vibration dialog - closing does not return to main dialog
+- slots - display different colors in mini-dialog for reserved/free slots
+- slots - display camera slot in main config window
+- slots - keyboard shortcuts (shift+1-0 assign slot), when no assignment -> message

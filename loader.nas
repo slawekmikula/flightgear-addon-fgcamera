@@ -98,7 +98,9 @@ var stop_fgcamera = func {
     }
 
 	if ( size(listeners) ) {
-		foreach(var l; listeners) removelistener(l);
+		foreach(var l; listeners) {
+            removelistener(l);
+        }
 		setsize(listeners, 0);
 	}
 

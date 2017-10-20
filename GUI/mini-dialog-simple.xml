@@ -16,19 +16,7 @@
         <pref-width>30</pref-width>
         <pref-height>30</pref-height>
         <binding>
-            <condition>
-                <not>
-                    <property>/devices/status/keyboard/shift</property>
-                </not>
-            </condition>
             <command>fgcamera-prev-category</command>
-        </binding>
-        <binding>
-            <condition>
-                <property>/devices/status/keyboard/shift</property>
-            </condition>
-            <command>nasal</command>
-            <script>print("shift")</script>
         </binding>
     </button>
 
@@ -38,6 +26,16 @@
         <pref-height>30</pref-height>
         <binding>
             <command>fgcamera-prev-in-category</command>
+        </binding>
+    </button>
+
+    <button>
+        <legend>R</legend>
+        <pref-width>30</pref-width>
+        <pref-height>30</pref-height>
+        <binding>
+            <command>nasal</command>
+            <script>L.CurrentCamera().select()</script>
         </binding>
     </button>
 
@@ -58,5 +56,11 @@
             <command>fgcamera-next-category</command>
         </binding>
     </button>
+
+    <nasal>
+        <open><![CDATA[
+			var L = fgcamera.API("1.0-devel").CameraList();
+		]]></open>
+    </nasal>
 
 </PropertyList>

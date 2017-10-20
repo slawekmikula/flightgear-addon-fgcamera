@@ -134,8 +134,6 @@ var save_cameras = func {
 
 	foreach (var n; node.getChildren("camera")) {
 		n.removeChild("previous-cursor-group", 0);
-        # FIXME - SM - do we really need it ?
-        n.removeChild("slot", 0);
     }
 
 	io.write_properties(path ~ "/" ~ file, node);
@@ -197,17 +195,6 @@ var load_cameras = func {
 			copy(props.getNode("/sim/fgcamera/camera"), node);
 		}
 	}
-
-    # set slots
-    # FIXME SM - do we really need it ?
-    var cameras  = props.getNode("/sim/fgcamera").getChildren("camera");
-    forindex (var i; cameras) {
-		if (i != 0) {
-            var camera = node.getChild("camera", i, 1);
-            camera.setValue("config/slot", i);
-            setprop("/sim/fgcamera/camera[" ~ i ~ "]/config/slot", i);
-        }
-    }
 
 	io.read_properties(path ~ "/" ~ file2, "/sim/fgcamera/effects");
 	cameraN.remove();

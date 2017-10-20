@@ -719,9 +719,6 @@
                     <height>12</height>
                     <halign>left</halign>
                     <label>Dynamic head movement</label>
-                    <enable>
-                        <property></property>
-                    </enable>
                     <binding>
                         <command>dialog-apply</command>
                     </binding>
@@ -747,9 +744,6 @@
                     <height>12</height>
                     <halign>left</halign>
                     <label>Random camera movement</label>
-                    <enable>
-                        <property></property>
-                    </enable>
                     <binding>
                         <command>dialog-apply</command>
                     </binding>
@@ -757,9 +751,6 @@
                 <button>
                     <legend>CFG...</legend>
                     <halign>right</halign>
-                    <!--enable>
-                        <property></property>
-                    </enable-->
                     <height>30</height>
                     <binding>
                         <command>dialog-show</command>
