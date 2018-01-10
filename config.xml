@@ -429,22 +429,22 @@
 
         <systems>
             <property-rule n="150">
-                <path>/Aircraft/property-rules/fgcamera.xml</path>
+                <path>[addon=a.marius.FGCamera]property-rules/fgcamera.xml</path>
             </property-rule>
             <property-rule n="142">
-                <path>/Aircraft/property-rules/RND/RND-air.xml</path>
+                <path>[addon=a.marius.FGCamera]property-rules/RND/RND-air.xml</path>
             </property-rule>
             <property-rule n="141">
-                <path>/Aircraft/property-rules/RND/RND-ground.xml</path>
+                <path>[addon=a.marius.FGCamera]property-rules/RND/RND-ground.xml</path>
             </property-rule>
             <property-rule n="140">
-                <path>/Aircraft/property-rules/RND/RND-main.xml</path>
+                <path>[addon=a.marius.FGCamera]property-rules/RND/RND-main.xml</path>
             </property-rule>
             <property-rule n="148">
-                <path>/Aircraft/property-rules/power-plant-vibration/power_plant_vibration.xml</path>
+                <path>[addon=a.marius.FGCamera]property-rules/power-plant-vibration/power_plant_vibration.xml</path>
             </property-rule>
             <property-rule n="147"> <!-- 149 -->
-                <path>/Aircraft/property-rules/DHM/dhm.xml</path>
+                <path>[addon=a.marius.FGCamera]property-rules/DHM/dhm.xml</path>
             </property-rule>
         </systems>
 
