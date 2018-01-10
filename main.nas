@@ -7,7 +7,9 @@
 # Converted to a FlightGear addon by
 # Slawek Mikula, October 2017
 
-var main = func( root ) {
+var main = func( addon ) {
+    var root = addon.basePath;
+
     # setting root path to addon
     setprop("/sim/fgcamera/root_path", root);
 

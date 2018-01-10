@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<PropertyList>
+  <meta>
+    <file-type type="string">FlightGear add-on metadata</file-type>
+    <format-version type="int">1</format-version>
+  </meta>
+
+  <addon>
+    <identifier type="string">a.marius.FGCamera</identifier>
+    <name type="string">FGCamera</name>
+    <version type="string">1.3.0</version>
+
+    <authors>
+      <author>
+        <name type="string">Marius_A from the FlightGear forum</name>
+        <email type="string"></email>
+        <url type="string"></url>
+      </author>
+    </authors>
+
+    <short-description type="string">
+      Help make FlightGear movies with cool camera moves.
+    </short-description>
+
+    <long-description type="string">
+      This add-on helps make FlightGear movies with cool camera moves.
+    </long-description>
+
+    <license>
+      <designation type="string">
+        GNU GPL version 2 or later
+      </designation>
+
+      <file type="string">
+        LICENSE
+      </file>
+
+      <url type="string">
+        https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html
+      </url>
+    </license>
+
+    <min-FG-version type="string">2017.4.0</min-FG-version>
+    <max-FG-version type="string">none</max-FG-version>
+
+    <urls>
+      <home-page type="string">
+        <![CDATA[ https://forum.flightgear.org/viewtopic.php?f=6&t=21685 ]]>
+      </home-page>
+
+      <download type="string">
+        https://drive.google.com/open?id=0B7ZpQgmbsSZGNkJOYzZFb1RZUnc
+      </download>
+
+      <support type="string">
+        http://wiki.flightgear.org/FGCamera
+      </support>
+
+      <code-repository type="string">
+      </code-repository>
+    </urls>
+
+    <tags>
+      <tag type="string">camera</tag>
+      <tag type="string">view</tag>
+      <tag type="string">viewpoint</tag>
+      <tag type="string">travelling</tag>
+      <tag type="string">movie</tag>
+      <tag type="string">film</tag>
+    </tags>
+  </addon>
+</PropertyList>
