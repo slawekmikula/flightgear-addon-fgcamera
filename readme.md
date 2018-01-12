@@ -36,4 +36,5 @@ Code:
 
 # License
 
-GNU General public license version 3
+GNU General Public License version 2 or, at your option, any later version
+(https://forum.flightgear.org/viewtopic.php?f=6&t=21685&p=314678#p314678)
