@@ -14,12 +14,7 @@ var main = func( addon ) {
     setprop("/sim/fgcamera/root_path", root);
 
     # load scripts
-    foreach(var f; ['loader.nas','mouse.nas'] ) {
+    foreach(var f; ['fgcamera.nas','mouse.nas'] ) {
         io.load_nasal( root ~ "/" ~ f, "fgcamera" );
     }
-
-    # load properties
-    io.read_properties(root ~ "/prop_CR.xml", "/fgcamera/cr");
-    io.read_properties(root ~ "/prop_RND.xml", "/fgcamera/rnd");
 }
-

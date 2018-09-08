@@ -21,14 +21,19 @@ Code:
 # History
 
 - 1.0-1.2 - versions published on the flightgear forum
-- 1.3
+- 1.3 - addon compatiblity
+
+# Planned (branch next)
+- 2.x
   - new GUI for configuration
+  - logic moved to property-rules
   - fgcamera converted to FlightGear addon
   - ability to select mini dialogs to toggle cameras (simple and with slot numbers)
 
 # Authors
 
 - Marius_A - concept, coding
+- Slawek Mikula - addon compatiblity
 
 # Links
 - FlightGear wiki: [Wiki](http://wiki.flightgear.org/FGCamera)
