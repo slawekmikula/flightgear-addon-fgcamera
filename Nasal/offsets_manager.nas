@@ -1,11 +1,12 @@
-
 #==================================================
 #	Offsets manager
 #==================================================
 var manager = {
 	initialized : 0,
 
-	handlers    : [ adjustment_handler, movement_handler, mouse_look_handler, DHM_handler, RND_handler, HeadTracker, LinuxTracker ],
+	handlers    : [ adjustment_handler, movement_handler, mouse_look_handler ],
+
+	#handlers    : [ DHM_handler, RND_handler, trackir_handler, linuxtrack_handler ],
 
 	_list       : ["x-offset-m", "y-offset-m", "z-offset-m", "heading-offset-deg", "pitch-offset-deg", "roll-offset-deg"],
 #--------------------------------------------------

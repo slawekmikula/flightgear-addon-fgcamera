@@ -3,7 +3,7 @@ var ht_filter = 0.1;
 #==================================================
 #	Headtracker inputs handler
 #==================================================
-var HeadTracker = {
+var trackir_handler = {
 	parents  : [ t_handler.new() ],
 
 	free     : 1,
