@@ -61,8 +61,9 @@ var mouse_look_handler = {
 			me._offsets_raw[i] += me._delta_t[i] * me._sensitivity;
 			me.offsets[i]       = me._lp[i].filter(me._offsets_raw[i], me._filter);
 
-			if ( me.offsets[i] != me._offsets_raw[i] )
+			if ( me.offsets[i] != me._offsets_raw[i] ) {
 				me._updateF = 1;
+			}
 
 			i += 1;
 		}

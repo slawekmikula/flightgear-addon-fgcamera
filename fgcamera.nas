@@ -73,6 +73,15 @@ var load_nasal = func (v) {
 		io.load_nasal ( path ~ "/Nasal/" ~ script ~ ".nas", "fgcamera" );
 	}
 }
+
+var init_mouse = func {
+	# load new mouse configuration & reinit input subsystem
+	props.getNode("/input/mice").removeAllChildren();
+	var path = getprop("/sim/fgcamera/root_path");
+	io.read_properties(path ~ "/fgmouse.xml", "/input/mice");
+	fgcommand("reinit", props.Node.new({"subsystem": "input"}));
+};
+
 #--------------------------------------------------
 var fdm_init_listener = _setlistener("/sim/signals/fdm-initialized", func {
 	removelistener(fdm_init_listener);
@@ -95,6 +104,7 @@ var fdm_init_listener = _setlistener("/sim/signals/fdm-initialized", func {
 		"offsets_manager",
 	]);
 
+  init_mouse();
 	add_commands();
 	load_cameras();
 	load_gui();
@@ -109,14 +119,9 @@ var fdm_init_listener = _setlistener("/sim/signals/fdm-initialized", func {
 	}
 });
 
-
 var reinit_listener = setlistener("/sim/signals/reinit", func {
 
-  # load new mouse configuration & reinit input subsystem
-  props.getNode("/input/mice").removeAllChildren();
-  var path = getprop("/sim/fgcamera/root_path");
-  io.read_properties(path ~ "/fgmouse.xml", "/input/mice");
-  fgcommand("reinit", props.Node.new({"subsystem": "input"}));
+	init_mouse();
 
 	fgcommand("gui-redraw");
 	fgcommand("fgcamera-reset-view");

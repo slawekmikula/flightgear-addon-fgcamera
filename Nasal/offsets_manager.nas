@@ -3,7 +3,7 @@
 #==================================================
 var manager = {
 	initialized : 0,
-	handlers    : [ adjustment_handler, movement_handler, mouse_look_handler, DHM_handler, RND_handler, trackir_handler, linuxtrack_handler ],
+	handlers    : [ movement_handler, adjustment_handler, mouse_look_handler, DHM_handler, RND_handler, trackir_handler, linuxtrack_handler ],
 	_list       : ["x-offset-m", "y-offset-m", "z-offset-m", "heading-offset-deg", "pitch-offset-deg", "roll-offset-deg"],
 #--------------------------------------------------
 	init : func {
