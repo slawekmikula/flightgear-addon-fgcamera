@@ -49,12 +49,6 @@
 		</binding>
 	</checkbox>
 
-	<checkbox>
-		<halign>left</halign>
-		<label>play sounds (n/a)</label>
-		<property>/autopilot/locks/heading</property>
-	</checkbox>
-
 	<hrule/>
 
 	<group>

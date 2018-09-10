@@ -10,9 +10,6 @@
 var main = func( addon ) {
     var root = addon.basePath;
 
-    # setting root path to addon
-    setprop("/sim/fgcamera/root_path", root);
-
     # load scripts
     foreach(var f; ['fgcamera.nas','mouse.nas'] ) {
         io.load_nasal( root ~ "/" ~ f, "fgcamera" );

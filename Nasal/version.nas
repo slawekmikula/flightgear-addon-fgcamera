@@ -1,6 +1,6 @@
 #temporary script;
 
-var versions      = ["v1.0", "v1.1", "v1.2", "v1.3"];
+var versions      = ["v1.0", "v1.1", "v1.2", "v1.2.1"];
 var version_items = {};
 
 version_items["v1.0"] = {
@@ -19,6 +19,7 @@ var create_version_vector = func (v) {
 	if (v == "v1.0") return ["v1.0", "v1.1"];
 	if (v == "v1.1") return ["v1.1"];
 	if (v == "v1.2") return [];
+	if (v == "v1.2.1") return [];
 }
 
 var update_cam_version = func (v) {

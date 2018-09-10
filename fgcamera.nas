@@ -1,4 +1,6 @@
-var my_version   = "v1.2.1";
+var my_addon_id  = "a.marius.FGCamera";
+var my_version   = getprop("/addons/by-id/" ~ my_addon_id ~ "/version");
+var my_root_path = getprop("/addons/by-id/" ~ my_addon_id ~ "/path");
 var my_node_path = "/sim/fgcamera";
 var my_views     = ["FGCamera1", "FGCamera2", "FGCamera3", "FGCamera4", "FGCamera5"];
 var my_settings  = {};
@@ -23,15 +25,6 @@ var sin       = math.sin;
 var cos       = math.cos;
 var hasmember = view.hasmember;
 
-#--------------------------------------------------
-var play_sound = func {
-	var hash = {
-		path   : getprop("/sim/fgcamera/root_path") ~ "/Sounds/",
-		file   : "start.wav",
-		volume : 1.0
-	};
-	fgcommand ("play-audio-sample", props.Node.new(hash));
-}
 #--------------------------------------------------
 var show_panel = func(path = "Aircraft/Panels/generic-vfr-panel.xml") {
 	if ( !cameras[current[1]]["panel-show"] ) {
@@ -68,17 +61,15 @@ var fgcamera_view_handler = {
 };
 
 var load_nasal = func (v) {
-	var path = getprop("/sim/fgcamera/root_path");
 	foreach (var script; v) {
-		io.load_nasal ( path ~ "/Nasal/" ~ script ~ ".nas", "fgcamera" );
+		io.load_nasal ( my_root_path ~ "/Nasal/" ~ script ~ ".nas", "fgcamera" );
 	}
 }
 
 var init_mouse = func {
 	# load new mouse configuration & reinit input subsystem
 	props.getNode("/input/mice").removeAllChildren();
-	var path = getprop("/sim/fgcamera/root_path");
-	io.read_properties(path ~ "/fgmouse.xml", "/input/mice");
+	io.read_properties(my_root_path ~ "/fgmouse.xml", "/input/mice");
 	fgcommand("reinit", props.Node.new({"subsystem": "input"}));
 };
 

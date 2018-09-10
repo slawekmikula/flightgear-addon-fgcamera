@@ -10,7 +10,7 @@ var load_cameras = func {
 	var setF      = 0;
 
 	if (dir == nil) { # FIX! (use more appropriate assumption)
-		path = getprop("/sim/fgcamera/root_path");
+		path = my_root_path;
 		file = "default-cameras.xml";
 		setF = 1;
 	}

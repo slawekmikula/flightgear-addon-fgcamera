@@ -69,7 +69,7 @@
 	<nasal>
 		<open> <![CDATA[
 			var listN    = cmdarg().getNode("group[1]/list");
-			var path     = getprop("/sim/fgcamera/root_path") ~ "/Effects/RND";
+			var path     = fgcamera.my_root_path ~ "/Effects/RND";
 			var dir      = directory(path);
 			var list     = [];
 			var mode     = nil;

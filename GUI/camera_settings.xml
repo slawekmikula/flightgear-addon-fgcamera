@@ -269,7 +269,7 @@
 			<pref-width>70</pref-width>
 			<pref-height>30</pref-height>
 			<enable>
-				<property></property>
+				<property>/sim/fgcamera/dialogs/camera-settings/enable-DHM</property>
 			</enable>
 			<binding>
 				<command>dialog-show</command>
@@ -418,7 +418,7 @@
 
 				fgcamera.cameras[id]["panel-show"] = value;
 				if (value)
-					fgcamera.show_panel("Nasal/fgcamera/Panels/generic-vfr-panel.xml");
+					fgcamera.show_panel("Aircraft/Panels/generic-vfr-panel.xml");
 				else fgcamera.hide_panel();
 			}
 			#==================================================
