@@ -13,24 +13,6 @@
 
 	<instruments>
 
-	<!-- controls visual feedback cluster -->
-	<instrument include="Aircraft/Instruments/throttle-quadrant.xml">
-	<name>Throttle Position Indicators</name>
-	<x>820</x>
-	<y>60</y>
-	<w>50</w>
-	<h>90</h>
-	</instrument>
-
-	<instrument include="Aircraft/Instruments/controls.xml">
-	<name>Control Position Indicators</name>
-	<x>730</x>
-	<y>60</y>
-	<w>90</w>
-	<h>90</h>
-	</instrument>
-<!-- end controls visual feedback cluster -->
-
   <instrument include="Aircraft/Instruments/asi-160-knot.xml">
    <name>Airspeed Indicator</name>
    <x>302</x>
@@ -62,6 +44,24 @@
    <w>100</w>
    <h>100</h>
   </instrument>
+
+	<!-- controls visual feedback cluster -->
+	<instrument include="Aircraft/Instruments/controls.xml">
+	 <name>Control Position Indicators</name>
+	 <x>730</x>
+	 <y>60</y>
+	 <w>90</w>
+	 <h>90</h>
+	</instrument>
+
+	<instrument include="Aircraft/Instruments/throttle-quadrant.xml">
+	 <name>Throttle Position Indicators</name>
+	 <x>820</x>
+	 <y>60</y>
+	 <w>50</w>
+	 <h>90</h>
+	</instrument>
+  <!-- end controls visual feedback cluster -->
 
  </instruments>
 

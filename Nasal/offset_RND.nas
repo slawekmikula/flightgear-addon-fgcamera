@@ -1,7 +1,10 @@
+# FIXME - remove ?
 #var rnd_effectN = props.Node.new();
 var rnd         = [,,]; # [] - ?
 
 var update_rnd_data = func { rnd = []; rnd = cameras[current[1]].RND }
+
+# FIXME - remove ?
 #rnd[0] = {
 #	GEN: [
 #		{sine: [0, 0, 0], resonance: [0, 2, 6, 0.5, 3, 0.005], noise: [1, 2.39, 0.04], LFO1: [0, 2.0, 0.43, 0.06], LFO2: [1, 2.0, 0.43, 0.06]},
@@ -64,9 +67,7 @@ var sine = {
 	},
 };
 
-#==================================================
-#
-#==================================================
+#--------------------------------------------------
 var resonance = {
 	new: func {
 		var m = { parents: [resonance] };
@@ -119,9 +120,7 @@ var resonance = {
 	},
 };
 
-#==================================================
-#
-#==================================================
+#--------------------------------------------------
 var noise = {
 	new: func {
 		var m = { parents: [noise] };
@@ -164,13 +163,12 @@ var noise = {
 	},
 };
 
-#==================================================
-#
-#==================================================
+#--------------------------------------------------
 var LFO1 = {
 	new: func {
 		var m = { parents: [LFO1] };
 
+		# FIXME - remove comment ?
 		m.f              = 3; # actually 2 * f
 		m.L              = 5.0;
 		m.intensity      = 15.0;
@@ -178,7 +176,7 @@ var LFO1 = {
 		m.A              = 0.005;
 		m.A2             = 0;
 		m.A3             = 0;
-		m.dir            = 1; 
+		m.dir            = 1;
 		m.enabled        = 1;
 		m.output         = 0;
 		m.output_raw     = 0;
@@ -234,9 +232,7 @@ var LFO1 = {
 	},
 };
 
-#==================================================
-#
-#==================================================
+#--------------------------------------------------
 var LFO2 = {
 	new: func {
 		var m = { parents: [LFO2] };
@@ -291,9 +287,7 @@ var LFO2 = {
 	},
 };
 
-#==================================================
-#
-#==================================================
+#--------------------------------------------------
 var generator = {
 	new: func {
 		var m = { parents : [generator] };
@@ -327,6 +321,7 @@ var generator = {
 
 var hp_coeff = 0.5;
 var hp = hi_pass.new();
+
 #==================================================
 #	RND effects handler
 #==================================================
@@ -385,9 +380,16 @@ var RND_handler = {
 			me._mode  = me.GUI_mode;
 		} else {
 			me._mode = me._check_mode();
-			if ( !helicopterF )
+
+			if ( !helicopterF ) {
 				var v = getprop("/velocities/groundspeed-kt");
-			else var v = getprop("/rotors/main/rpm");
+			} else {
+				var v = getprop("/rotors/main/rpm");
+				if (v == nil) {
+					v = 0;
+				}
+			}
+
 			if ( v < 0 ) v = 0;
 
 			hp_coeff  = me._find_value(rnd[me._mode].curves.v2, rnd[me._mode].curves.filter, v);

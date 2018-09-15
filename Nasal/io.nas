@@ -1,6 +1,8 @@
 #==================================================
 #	Data Input/Output
 #==================================================
+
+#--------------------------------------------------
 var load_cameras = func {
 	var aircraft  = getprop("/sim/aircraft");
 	var path      = getprop("/sim/fg-home") ~ "/aircraft-data/FGCamera/" ~ aircraft;
@@ -37,10 +39,12 @@ var load_cameras = func {
 	return size(cameras);
 }
 
+#--------------------------------------------------
 var set_default_offsets = func {
 	forindex (var i; manager._list)
 		cameras[0].offsets[i] = num(getprop( "/sim/view/config/" ~ manager._list[i] )) or 0;
 }
+
 #--------------------------------------------------
 var save_cameras = func {
 	var aircraft = getprop("/sim/aircraft");

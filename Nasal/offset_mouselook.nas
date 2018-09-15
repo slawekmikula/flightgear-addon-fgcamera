@@ -5,6 +5,7 @@
 var mouse_look_handler = {
 	parents      : [ t_handler.new() ],
 
+# FIXME - remove ?
 #	_mouse       : [[,,], [,,]],
 	_delta       : zeros(6),
 	_delta_t     : zeros(6),
@@ -68,6 +69,7 @@ var mouse_look_handler = {
 			i += 1;
 		}
 	},
+#--------------------------------------------------	
 	_rotate: func {
 		var t = subvec(me._delta, 0, 3);
 		var r = subvec(offsets, 3);

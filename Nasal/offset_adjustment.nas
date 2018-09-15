@@ -1,6 +1,8 @@
 #==================================================
 #	View adjustment handler
 #==================================================
+
+#--------------------------------------------------
 var adjustment_handler = {
 	parents      : [ t_handler.new() ],
 
@@ -44,6 +46,7 @@ var adjustment_handler = {
 			var filter  = cameras[current[1]].adjustment.filter;
 
 			me._rotate();
+# FIXME - remove ?
 #			forindex (var dof; me.offsets) {
 #				me._offsets_raw[dof] += me._v_t[dof] * dt;
 #				me.offsets[dof]       = me._lp[dof].filter(me._offsets_raw[dof], filter);
@@ -55,6 +58,7 @@ var adjustment_handler = {
 			forindex (var dof; me.offsets) {
 				var v = me._lp[dof].filter(me._v_t[dof], filter);
 				me.offsets[dof] += v * dt;
+# FIXME - remove ?
 #				me.offsets[dof]       = me._lp[dof].filter(me._offsets_raw[dof], filter);
 
 				if ( v != 0 )
@@ -62,6 +66,7 @@ var adjustment_handler = {
 			}
 		}
 	},
+#--------------------------------------------------	
 	_rotate: func {
 		var t = subvec(me._v, 0, 3);
 		var r = subvec(offsets, 3);

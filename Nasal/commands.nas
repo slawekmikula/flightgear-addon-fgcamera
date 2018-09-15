@@ -1,11 +1,17 @@
 #==================================================
-#	fgcommands:
+#	API for fgcommands
 #
 #		fgcamera-select (<camera-id>)
 #		fgcamera-adjust (<dof>, <velocity>)
 #		fgcamera-save   ()
+#   fgcamera-reset-view ()
+#		fgcamera-next-category ()
+#   fgcamera-prev-category ()
+#   fgcamera-next-in-category ()
+#   fgcamera-prev-in_category ()
 #==================================================
 var commands = {
+#--------------------------------------------------
 	"fgcamera-select": func {
 		var data = cmdarg().getValues();
 		popupTipF = 1;
@@ -44,6 +50,7 @@ var commands = {
 	},
 };
 
+#--------------------------------------------------
 var cycle_category = func(dir, mode = nil) {
 	var current_category = cameras[current[1]].category;
 	var camera_id        = current[1];
@@ -84,11 +91,10 @@ var cycle_category = func(dir, mode = nil) {
 	}
 }
 
-
+#--------------------------------------------------
 var add_commands = func {
 	foreach (var name; keys(commands))
 		addcommand(name, commands[name]);
 }
-
 
 print("Commands script loaded");

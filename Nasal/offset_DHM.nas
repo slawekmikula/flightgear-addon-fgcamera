@@ -1,7 +1,9 @@
+# FIXME - remove comment ?
 var rate = 0.1; #150;
 var rate2 = 5;
 var scale = 1;
 
+#--------------------------------------------------
 var DHM = {
 	new : func (prop) {
 		m = { parents : [ DHM ] };
@@ -35,6 +37,7 @@ var DHM = {
 		return m;
 	},
 
+#--------------------------------------------------
 	offset : func (dt) {
 		if ( dt > 0.04 ) dt = 0.03;
 

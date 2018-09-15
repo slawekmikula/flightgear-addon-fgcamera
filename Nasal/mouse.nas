@@ -1,5 +1,5 @@
 #==================================================
-#	fgcamera.mouse
+#	fgcamera.mouse raoutines
 #
 #		get_xy()      - ... returns [x, y],
 #		get_dxdy()    - ... returns [dx, dy],
@@ -11,6 +11,7 @@ var mouse = {
 	_delta     : zeros(6),
 	_path      : "/devices/status/mice/mouse/",
 	_path1     : "/sim/fgcamera/mouse/",
+
 #--------------------------------------------------
 	get_xy: func {
 		foreach (var a; [[0, "x"], [1, "y"]] ) {
@@ -23,6 +24,7 @@ var mouse = {
 		}
 		return me._current;
 	},
+
 #--------------------------------------------------
 	get_delta: func {
 		var i = 0;
@@ -36,18 +38,22 @@ var mouse = {
 		}
 		return me._delta;
 	},
+
 #--------------------------------------------------
 	set_mode: func(mode) {
 		setprop("/devices/status/mice/mouse/mode", mode);
 	},
+
 #--------------------------------------------------
 	get_mode: func {
 		getprop("/devices/status/mice/mouse/mode");
 	},
+
 #--------------------------------------------------
 	get_button: func(n) {
 		getprop(me._path ~ "button[" ~ n ~ "]") or 0;
 	},
+
 #--------------------------------------------------
 	reset: func {
 		var i = 0;

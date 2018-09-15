@@ -77,6 +77,9 @@ var init_mouse = func {
 var fdm_init_listener = _setlistener("/sim/signals/fdm-initialized", func {
 	removelistener(fdm_init_listener);
 
+	helicopterF = check_helicopter();
+	print("helicopter: " ~ helicopterF);
+
 	load_nasal ([
 		"math",
 		"version",
@@ -99,7 +102,6 @@ var fdm_init_listener = _setlistener("/sim/signals/fdm-initialized", func {
 	add_commands();
 	load_cameras();
 	load_gui();
-	helicopterF = check_helicopter();
 
 	foreach (var a; my_views) {
 		view.manager.register(a, fgcamera_view_handler);

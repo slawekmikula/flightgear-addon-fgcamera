@@ -1,6 +1,7 @@
 #==================================================
 #	View movement (interpolation) handler
 #==================================================
+
 movement_handler = {
 	parents : [ t_handler.new() ],
 
@@ -105,6 +106,7 @@ movement_handler = {
 		me._updateF = 0;
 		var data    = cameras[current[1]].movement;
 
+		# FIXME - remove comment ?
 		if ( data.time > 0 ) #and (timeF != 0) )
 			me._b += dt / data.time;
 		else
@@ -120,6 +122,7 @@ movement_handler = {
 			show_panel();
 
 		} else {
+			# FIXME - remove comment ?
 			me.blend = Bezier3.blend(me._b); #s_blend(me._b); #sin_blend(me._b); #Bezier2( [0.2, 1.0], me._b );
 			forindex (var i; me.offsets) {
 				var delta = me._to[i] - me._from[i];

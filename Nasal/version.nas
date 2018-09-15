@@ -1,4 +1,6 @@
-#temporary script;
+#==================================================
+#	Aircraft camera migration
+#==================================================
 
 var versions      = ["v1.0", "v1.1", "v1.2", "v1.2.1"];
 var version_items = {};

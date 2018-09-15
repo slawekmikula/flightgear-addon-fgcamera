@@ -1,11 +1,13 @@
 #==================================================
-#	Generic functions:
+#	Generic math functions
 #
 #		lowpass()              -
 #		zeros(n)               -
 #		Bezier2(p1, x)         -
 #		rotate3d(coord, angle) -
 #==================================================
+
+#--------------------------------------------------
 var lowpass = {
 	new: func(coeff = 0) {
 		var m = { parents: [lowpass] };
@@ -43,6 +45,7 @@ var lowpass = {
 	},
 };
 
+#--------------------------------------------------
 var hi_pass = {
 	new: func(coeff = 0) {
 		var m = { parents: [hi_pass] };
@@ -77,10 +80,12 @@ var zeros = func (n) {
 
 	return v;
 }
+
 #--------------------------------------------------
 var linterp = func (x0, y0, x1, y1, x) {
 	return y0 + (y1 - y0) * (x - x0) / (x1 - x0); #linear interpolation
 }
+
 #--------------------------------------------------
 var Bezier2 = func (p1, x) {
 	var p0 = [0.0, 0.0];
@@ -122,15 +127,21 @@ var Bezier3 = {
 		linterp(me._x[i-1], me._y[i-1], me._x[i], me._y[i], x);
 	},
 };
+
+# FIXME - another location ?
 Bezier3.generate( [0.47, 0.01], [0.39, 0.98] ); #[0.52, 0.05], [0.27, 0.97]
 
+#--------------------------------------------------
 var sin_blend = func (x) {
 	return 0.5 * (sin((x - 0.5) * math.pi) + 1);
 }
+
+#--------------------------------------------------
 var s_blend = func (x) {
 	x = 1 - x;
 	return 1 + 2 * x * x * x - 3 * x * x;
 }
+
 #--------------------------------------------------
 var rotate3d = func (coord, angle) {
 	var s = [,,,];
