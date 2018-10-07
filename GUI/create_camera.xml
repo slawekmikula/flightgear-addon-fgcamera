@@ -40,25 +40,48 @@
 			<halign>left</halign>
 		</text>
 
-	<combo>
-		<name>camera-types</name>
-		<halign>fill</halign>
-		<stretch>1</stretch>
-		<property>/sim/fgcamera/dialogs/create-camera/camera-type</property>
-		<binding>
-			<command>dialog-apply</command>
-			<object-name>camera-types</object-name>
-		</binding>
-		<binding>
-			<command>nasal</command>
-			<script>select_type()</script>
-		</binding>
-		<value>cockpit</value>
-		<value>aircraft (look at)</value>
-		<value>aircraft (look from)</value>
-		<value>world (look at) n/a</value>
-		<value>world (look from)</value>
-	</combo>
+		<combo>
+			<name>camera-types</name>
+			<halign>fill</halign>
+			<stretch>1</stretch>
+			<property>/sim/fgcamera/dialogs/create-camera/camera-type</property>
+			<binding>
+				<command>dialog-apply</command>
+				<object-name>camera-types</object-name>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>select_type()</script>
+			</binding>
+			<value>cockpit</value>
+			<value>aircraft (look at)</value>
+			<value>aircraft (look from)</value>
+			<value>world (look at) n/a</value>
+			<value>world (look from)</value>
+		</combo>
+
+	</group>
+
+	<group>
+		<layout>hbox</layout>
+
+		<text>
+			<label>Camera name:</label>
+			<valign>fill</valign>
+			<halign>left</halign>
+		</text>
+
+		<input>
+			<name>camera-name</name>
+			<halign>fill</halign>
+			<stretch>1</stretch>
+			<live>true</live>
+			<property>/sim/fgcamera/dialogs/create-camera/camera-name</property>
+			<binding>
+				<command>dialog-apply</command>
+				<object-name>camera-name</object-name>
+			</binding>
+		</input>
 
 	</group>
 
@@ -75,6 +98,9 @@
 				<command>nasal</command>
 				<script>create_camera()</script>
 			</binding>
+			<binding>
+				<command>dialog-close</command>
+			</binding>
 		</button>
 
 		<button>
@@ -90,12 +116,14 @@
 
 	<nasal>
 		<open> <![CDATA[
-			if (getprop("/sim/fgcamera/dialogs/create-camera/camera-type") == nil)
+			if (getprop("/sim/fgcamera/dialogs/create-camera/camera-type") == nil) {
 				setprop("/sim/fgcamera/dialogs/create-camera/camera-type", "cockpit");
+			}
 			var cameraN   = props.Node.new();
 			var path      = fgcamera.my_root_path ~ "/default-cameras.xml";
 			var type      = nil;
 			props.copy(io.read_properties(path), cameraN);
+
 			#==================================================
 			#	Functions
 			#==================================================
@@ -108,8 +136,11 @@
 					"pitch-deg",
 					"roll-deg",
 				];
-				foreach (var a; list)
+
+				foreach (var a; list) {
 					twr[a] = getprop("/sim/tower/" ~ a);
+				}
+
 				return twr;
 			}
 			#==================================================
@@ -124,25 +155,35 @@
 					["world (look at)"      , "FGCamera4"],
 					["world (look from)"    , "FGCamera5"],
 				];
-				foreach(var a; types)
-					if (selected == a[0])
+				foreach(var a; types) {
+					if (selected == a[0]) {
 						(type = a[1]) and break;
-				#print("selected:" ~ type);
+					}
+				}
 			}
 			#==================================================
 			#	Create new camera
 			#==================================================
 			var create_camera = func {
+
+				var current_id = fgcamera.current[1];
+				var current_camera  = fgcamera.cameras[current_id];
+
 				var camera   = {};
+				var camera_name = getprop("/sim/fgcamera/dialogs/create-camera/camera-name") or "new camera";
+
 				camera       = cameraN.getChild("camera").getValues();
-				camera.name  = "new camera";
+				camera.name  = camera_name;
 				camera.type  = type;
-				if (type == "FGCamera5")
+				camera.offsets = current_camera.offsets;
+				if (type == "FGCamera5") {
 					camera.tower = set_tower(camera.tower);
-					#camera.offsets = world_lookfrom_offsets();
+				}
+
 				append(fgcamera.cameras, camera);
 				setprop("/sim/fgcamera/current-camera/camera-id", size(fgcamera.cameras) - 1);
 			}
+
 			#==================================================
 			select_type();
 		]]> </open>

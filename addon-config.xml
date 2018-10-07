@@ -20,6 +20,13 @@
   			<hide-nonzero-view type="bool">false</hide-nonzero-view>
   		</panel>
 
+        <panel>
+  			<path>/Aircraft/Panels/controls-vfr-panel.xml</path>
+  			<visibility archive="y">false</visibility>
+  			<hide-nonzero-heading-offset type="bool">false</hide-nonzero-heading-offset>
+  			<hide-nonzero-view type="bool">false</hide-nonzero-view>
+  		</panel>
+
   		<!--rotorgear
   			max-power-engine="557"
   			max-power-rotor-brake="100"

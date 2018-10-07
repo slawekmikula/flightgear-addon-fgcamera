@@ -10,6 +10,7 @@
 		<category>0</category>
 		<popupTip>1</popupTip>
 		<panel-show>0</panel-show>
+		<panel-show-type>generic-vfr-panel</panel-show-type>
 		<dialog-show>0</dialog-show>
 		<dialog-name></dialog-name>
 		<head-tracker>0</head-tracker>

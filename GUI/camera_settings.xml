@@ -3,7 +3,6 @@
 <PropertyList>
 	<name>current-camera-settings</name>
 	<layout>vbox</layout>
-	<!--width>350</width-->
 	<x>20</x>
 	<y>-50</y>
 
@@ -49,58 +48,77 @@
 		</binding>
 	</checkbox>
 
-	<checkbox>
-		<name>show-panel</name>
-		<halign>left</halign>
-		<width>12</width>
-		<height>12</height>
-		<property>/sim/fgcamera/dialogs/camera-settings/show-panel</property>
-		<label>Show 2d panel</label>
-		<binding>
-			<command>dialog-apply</command>
-			<object-name>show-panel</object-name>
-		</binding>
-		<binding>
-			<command>nasal</command>
-			<script>toggle_panel()</script>
-		</binding>
-	</checkbox>
+	<group>
+		<layout>hbox</layout>
+		<checkbox>
+			<name>show-panel</name>
+			<halign>left</halign>
+			<width>12</width>
+			<height>12</height>
+			<property>/sim/fgcamera/dialogs/camera-settings/show-panel</property>
+			<label>Show 2d panel</label>
+			<binding>
+				<command>dialog-apply</command>
+				<object-name>show-panel</object-name>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>toggle_panel()</script>
+			</binding>
+		</checkbox>
+		<combo>
+			<name>show-panel-type</name>
+			<halign>fill</halign>
+			<stretch>1</stretch>
+			<property>/sim/fgcamera/dialogs/camera-settings/show-panel-type</property>
+			<binding>
+				<command>dialog-apply</command>
+				<object-name>show-panel-type</object-name>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>toggle_panel()</script>
+			</binding>
+			<value>generic-vfr-panel</value>
+			<value>controls-vfr-panel</value>
+		</combo>
+	</group>
 
-<group>
-	<layout>hbox</layout>
-	<checkbox>
-		<name>show-dialog</name>
-		<halign>left</halign>
-		<width>12</width>
-		<height>12</height>
-		<property>/sim/fgcamera/dialogs/camera-settings/show-dialog</property>
-		<label>Show dialog:</label>
-		<binding>
-			<command>dialog-apply</command>
-			<object-name>show-dialog</object-name>
-		</binding>
-		<binding>
-			<command>nasal</command>
-			<script>toggle_dialog()</script>
-		</binding>
-	</checkbox>
+	<group>
+		<layout>hbox</layout>
+		<checkbox>
+			<name>show-dialog</name>
+			<halign>left</halign>
+			<width>12</width>
+			<height>12</height>
+			<property>/sim/fgcamera/dialogs/camera-settings/show-dialog</property>
+			<label>Show dialog:</label>
+			<binding>
+				<command>dialog-apply</command>
+				<object-name>show-dialog</object-name>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>toggle_dialog()</script>
+			</binding>
+		</checkbox>
 
-	<input>
-		<name>dialog-name</name>
-		<halign>right</halign>
-		<pref-width>200</pref-width>
-		<height>25</height>
-		<property>/sim/fgcamera/dialogs/camera-settings/dialog-name</property>
-		<binding>
-			<command>dialog-apply</command>
-			<object-name>dialog-name</object-name>
-		</binding>
-		<binding>
-			<command>nasal</command>
-			<script>dialog_name()</script>
-		</binding>
-	</input>
-</group>
+		<input>
+			<name>dialog-name</name>
+			<halign>right</halign>
+			<pref-width>200</pref-width>
+			<height>25</height>
+			<property>/sim/fgcamera/dialogs/camera-settings/dialog-name</property>
+			<binding>
+				<command>dialog-apply</command>
+				<object-name>dialog-name</object-name>
+			</binding>
+			<binding>
+				<command>nasal</command>
+				<script>dialog_name()</script>
+			</binding>
+		</input>
+	</group>
 
 	<hrule/>
 
@@ -361,6 +379,7 @@
 				return [
 					[ "popup-tip"                   , c.popupTip               ],
 					[ "show-panel"                  , c["panel-show"]          ],
+					[ "show-panel-type"             , c["panel-show-type"]     ],
 					[ "show-dialog"                 , c["dialog-show"]         ],
 					[ "dialog-name"                 , c["dialog-name"]         ],
 					[ "enable-RND"                  , c["enable-RND"]          ],
@@ -415,11 +434,15 @@
 				var id    = fgcamera.current[1];
 				var path  = "/sim/fgcamera/dialogs/camera-settings/show-panel";
 				var value = getprop(path);
+				var selected_type = getprop("/sim/fgcamera/dialogs/camera-settings/show-panel-type") or "generic-vfr-panel";
 
 				fgcamera.cameras[id]["panel-show"] = value;
-				if (value)
-					fgcamera.show_panel("Aircraft/Panels/generic-vfr-panel.xml");
-				else fgcamera.hide_panel();
+				fgcamera.cameras[id]["panel-show-type"] = selected_type;
+				if (value) {
+					fgcamera.show_panel_path(selected_type);
+				} else {
+					fgcamera.hide_panel();
+				}
 			}
 			#==================================================
 			#	Toggle dialog
