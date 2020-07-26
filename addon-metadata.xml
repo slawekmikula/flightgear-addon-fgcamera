@@ -25,12 +25,29 @@
     </authors>
 
     <short-description type="string">
-      Help make FlightGear movies with cool camera moves.
+      Add-on to define custom camera views and quickly switch between them
     </short-description>
 
     <long-description type="string">
-      This add-on helps make FlightGear movies with cool camera moves.
+      This add-on enables user to define custom camera views with different view
+      modifications (e.g. head shake) and quickly switch between them using
+      keyboard shortcuts.
     </long-description>
+
+    <localized>
+      <pl>
+        <short-description type="string">
+          Rozszerzenie do definiowania własnych widoków kamery i szybkiego przełączania między nimi
+        </short-description>
+
+        <long-description type="string">
+          To rozszerzenie pozwala na definicję własnych widoków kamery z kilkoma
+          modyfikacjami widoku (np. drganie głowy) i szybkie przełączanie pomiędzy
+          nimi z wykorzystaniem skrótów klawiaturowych.
+        </long-description>
+
+      </pl>
+    </localized>
 
     <license>
       <designation type="string">
@@ -51,15 +68,15 @@
 
     <urls>
       <home-page type="string">
-        <![CDATA[ https://forum.flightgear.org/viewtopic.php?f=6&t=21685 ]]>
+        http://wiki.flightgear.org/FGCamera
       </home-page>
 
       <download type="string">
-        https://drive.google.com/open?id=0B7ZpQgmbsSZGNkJOYzZFb1RZUnc
+        https://github.com/slawekmikula/flightgear-addon-fgcamera/downloads
       </download>
 
       <support type="string">
-        http://wiki.flightgear.org/FGCamera
+        <![CDATA[ https://forum.flightgear.org/viewtopic.php?f=6&t=21685 ]]>
       </support>
 
       <code-repository type="string">
