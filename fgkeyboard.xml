@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Keyboard bindings for fgcamera -->
 <PropertyList>
+<!--
     <key n="32">
         <name>Space</name>
         <desc>toggle mouse mode</desc>
@@ -10,6 +11,7 @@
             <script>fgcamera.toggleYoke()</script>
         </binding>
     </key>
+-->
 
     <key n="360">
 				<mod-shift>
