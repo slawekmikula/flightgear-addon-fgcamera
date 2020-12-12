@@ -131,4 +131,54 @@ var reinit_listener = setlistener("/sim/signals/reinit", func {
 
 	helicopterF = check_helicopter();
 });
+
+# Support walk view toggle, when he gets out
+# The following variables define the behaviour and may be overriden by aircraft (for example to open the door before going out)
+# (See examples below)
+var walkerGetoutTime = 0.0;           # wait time after the GetOut callback executed
+var walkerGetinTime  = 0.0;           # wait time after the GetIn callback executed
+var walkerGetout_callback = func{0};  # callback when getting out
+var walkerGetin_callback  = func{0};  # callback when getting in
+var lastWalkerFGCam = nil;  # here we store what view we were in when the walker exits
+setlistener("sim/walker/key-triggers/outside-toggle", func {
+    # we let pass some time so the walker code can execute first
+    var timer = nil;
+    if (getprop("sim/walker/key-triggers/outside-toggle")) {
+        walkerGetout_callback();
+        timer = maketimer(walkerGetoutTime + 0.5, func(){
+            # went outside
+            lastWalkerFGCam = getprop("/sim/current-view/view-number-raw");
+            view.setViewByIndex(110);  #110 is defined as walk view by fgdata/walker-include.xml
+        });
+    } else {
+        walkerGetin_callback();
+        timer = maketimer(walkerGetinTime + 0.5, func(){
+            # went inside
+            view.setViewByIndex(lastWalkerFGCam);  #110 is defined as walk view by fgdata/walker-include.xml
+            lastWalkerFGCam = nil;
+        });
+    }
+    timer.singleShot = 1; # timer will only be run once
+    timer.start();
+});
+
+
+#
+# Example to open the door on the C182S/T when getting out or in:
+# (this code should go to the aircraft nasal script)
+#
+if (getprop("/sim/aircraft") == "c182s") {
+    var planeNamespace = globals[getprop("/sim/aircraft")];
+    fgcamera.walkerGetout_callback = func{
+        fgcamera.walkerGetoutTime = getprop("/sim/model/door-positions/DoorL/opened")==0? 2 : 0;
+        c182s.DoorL.open();
+    };
+    fgcamera.walkerGetin_callback = func{
+        view.setViewByIndex(110); # so we stay outside (under the hood we are already switched one frame into the pilot seat, which we must roll back)
+        fgcamera.walkerGetinTime = getprop("/sim/model/door-positions/DoorL/opened")==0? 2 : 0;
+        c182s.DoorL.open();
+    };
+}
+
+
 #eof
