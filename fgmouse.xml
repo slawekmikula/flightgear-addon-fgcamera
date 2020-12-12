@@ -248,7 +248,7 @@ current mode for each mouse is held in the
 					</condition>
 					<command>property-adjust</command>
 					<property>/sim/fgcamera/mouse/heading-offset</property>
-					<factor>100.0</factor>
+					<factor>-100.0</factor>
 				</binding>
 				<binding>
 					<condition>
@@ -295,7 +295,7 @@ current mode for each mouse is held in the
 					</condition>
 					<command>property-adjust</command>
 					<property>/sim/fgcamera/mouse/pitch-offset</property>
-					<factor>100.0</factor>
+					<factor>-100.0</factor>
 				</binding>
 				<binding>
 					<condition>
@@ -364,7 +364,7 @@ current mode for each mouse is held in the
 					</condition>
 					<command>property-adjust</command>
 					<property>/sim/fgcamera/mouse/heading-offset</property>
-					<factor>100.0</factor>
+					<factor>-100.0</factor>
 				</binding>
 				<binding>
 					<condition>
@@ -391,7 +391,7 @@ current mode for each mouse is held in the
 					</condition>
 					<command>property-adjust</command>
 					<property>/sim/fgcamera/mouse/pitch-offset</property>
-					<factor>100.0</factor>
+					<factor>-100.0</factor>
 				</binding>
 				<binding>
 					<condition>
