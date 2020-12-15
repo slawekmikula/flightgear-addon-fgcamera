@@ -1,96 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <PropertyList>
-  <meta>
-    <file-type type="string">FlightGear add-on metadata</file-type>
-    <format-version type="int">1</format-version>
-  </meta>
+    <meta>
+        <file-type type="string">FlightGear add-on metadata</file-type>
+        <format-version type="int">1</format-version>
+    </meta>
 
-  <addon>
-    <identifier type="string">a.marius.FGCamera</identifier>
-    <name type="string">FGCamera</name>
-    <version type="string">1.2.1</version>
+    <addon>
+        <identifier type="string">a.marius.FGCamera</identifier>
+        <name type="string">FGCamera</name>
+        <version type="string">1.2.2</version>
 
-    <authors>
-      <author>
-        <name type="string">Marius_A from the FlightGear forum</name>
-        <email type="string"></email>
-        <url type="string"></url>
-      </author>
-      <author>
-        <name type="string">slawekmikula from the FlightGear forum</name>
-        <email type="string"></email>
-        <url type="string"></url>
-      </author>
-    </authors>
+        <authors>
+            <author>
+                <name type="string">Marius_A from the FlightGear forum</name>
+                <email type="string"></email>
+                <url type="string"></url>
+            </author>
+            <author>
+                <name type="string">slawekmikula from the FlightGear forum</name>
+                <email type="string">slawek.mikula@gmail.com</email>
+                <url type="string"></url>
+            </author>
+        </authors>
 
-    <short-description type="string">
-      Add-on to define custom camera views and quickly switch between them
-    </short-description>
+        <maintainers>
+            <maintainer>
+                <name type="string">slawekmikula from the FlightGear forum</name>
+                <email type="string">slawek.mikula@gmail.com</email>
+                <url type="string"></url>
+            </maintainer>
+        </maintainers>
 
-    <long-description type="string">
-      This add-on enables user to define custom camera views with different view
-      modifications (e.g. head shake) and quickly switch between them using
-      keyboard shortcuts.
-    </long-description>
+        <short-description type="string">Add-on to define custom camera views and quickly switch between them</short-description>
+        <long-description type="string">This add-on enables user to define custom camera views with different view modifications (e.g. head shake) and quickly switch between them using keyboard shortcuts.</long-description>
 
-    <localized>
-      <pl>
-        <short-description type="string">
-          Rozszerzenie do definiowania własnych widoków kamery i szybkiego przełączania między nimi
-        </short-description>
+        <localized>
+            <pl>
+                <short-description type="string">Rozszerzenie do definiowania własnych widoków kamery i szybkiego przełączania między nimi</short-description>
+                <long-description type="string">To rozszerzenie pozwala na definicję własnych widoków kamery z kilkoma modyfikacjami widoku (np. drganie głowy) i szybkie przełączanie pomiędzy nimi z wykorzystaniem skrótów klawiaturowych.</long-description>
+            </pl>
+        </localized>
 
-        <long-description type="string">
-          To rozszerzenie pozwala na definicję własnych widoków kamery z kilkoma
-          modyfikacjami widoku (np. drganie głowy) i szybkie przełączanie pomiędzy
-          nimi z wykorzystaniem skrótów klawiaturowych.
-        </long-description>
+        <license>
+            <designation type="string">GNU GPL version 2 or later</designation>
+            <file type="string">LICENSE</file>
+            <url type="string">https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html</url>
+        </license>
 
-      </pl>
-    </localized>
+        <min-FG-version type="string">2017.4.0</min-FG-version>
+        <max-FG-version type="string">none</max-FG-version>
 
-    <license>
-      <designation type="string">
-        GNU GPL version 2 or later
-      </designation>
+        <urls>
+            <home-page type="string">http://wiki.flightgear.org/FGCamera</home-page>
+            <download type="string">https://github.com/slawekmikula/flightgear-addon-fgcamera/downloads</download>
+            <support type="string"><![CDATA[ https://forum.flightgear.org/viewtopic.php?f=6&t=21685 ]]></support>
+            <code-repository type="string">https://github.com/slawekmikula/flightgear-addon-fgcamera</code-repository>
+        </urls>
 
-      <file type="string">
-        LICENSE
-      </file>
-
-      <url type="string">
-        https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html
-      </url>
-    </license>
-
-    <min-FG-version type="string">2017.4.0</min-FG-version>
-    <max-FG-version type="string">none</max-FG-version>
-
-    <urls>
-      <home-page type="string">
-        http://wiki.flightgear.org/FGCamera
-      </home-page>
-
-      <download type="string">
-        https://github.com/slawekmikula/flightgear-addon-fgcamera/downloads
-      </download>
-
-      <support type="string">
-        <![CDATA[ https://forum.flightgear.org/viewtopic.php?f=6&t=21685 ]]>
-      </support>
-
-      <code-repository type="string">
-        https://github.com/slawekmikula/flightgear-addon-fgcamera
-      </code-repository>
-    </urls>
-
-    <tags>
-      <tag type="string">camera</tag>
-      <tag type="string">view</tag>
-      <tag type="string">viewpoint</tag>
-      <tag type="string">travelling</tag>
-      <tag type="string">movie</tag>
-      <tag type="string">film</tag>
-    </tags>
-  </addon>
+        <tags>
+            <tag type="string">camera</tag>
+            <tag type="string">view</tag>
+            <tag type="string">viewpoint</tag>
+            <tag type="string">travelling</tag>
+            <tag type="string">movie</tag>
+            <tag type="string">film</tag>
+        </tags>
+    </addon>
 </PropertyList>
