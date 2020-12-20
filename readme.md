@@ -1,3 +1,6 @@
+FGCamera FlightGear Addon
+=========================
+
 # About
 
 Flightgear virtual camera. Written in NASAL. Adds features similar to Ezdok Camera Addon for FSX.
@@ -13,6 +16,10 @@ Code:
     ./fgbin/bin/fgfs --fg-root=./fgdata --launcher --prop:/sim/fg-home=/myfolder/flightgear/fghome --addon="/myfolder/addons/fgcamera"
 ```
 
+# Documentation
+
+More documents can be found in the Docs folder.
+
 # Configuration
 
 - all can be configured through GUI available in the main menu under View->FGCamera
@@ -22,8 +29,10 @@ Code:
 
 - 1.0-1.2 - versions published on the flightgear forum
 - 1.2.1 - addon compatiblity + small fixes
+- 1.2.2 - #5 (reverse mouse controls - the same as in FG), #3 disable <space> keyboard mapping, #10 adds additional API for walker aircraft integration
 
 # Planned (branch next)
+
 - 2.x
   - new GUI for configuration
   - logic moved to property-rules
@@ -35,6 +44,7 @@ Code:
 - Slawek Mikula - addon compatiblity
 
 # Links
+
 - FlightGear wiki: [Wiki](http://wiki.flightgear.org/FGCamera)
 - FlightGear forum: [Forum](https://forum.flightgear.org/viewtopic.php?f=6&t=21685)
 
