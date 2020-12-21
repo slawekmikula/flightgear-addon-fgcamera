@@ -1,223 +1,232 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Keyboard bindings for fgcamera -->
 <PropertyList>
-<!--
     <key n="32">
-        <name>Space</name>
-        <desc>toggle mouse mode</desc>
-        <repeatable>0</repeatable>
-        <binding>
-            <command>nasal</command>
-            <script>fgcamera.toggleYoke()</script>
-        </binding>
+        <mod-ctrl>
+            <name>Space</name>
+            <desc>toggle mouse mode</desc>
+            <repeatable>0</repeatable>
+            <binding>
+                <command>nasal</command>
+                <script>fgcamera.toggleYoke()</script>
+            </binding>
+        </mod-ctrl>
     </key>
--->
 
     <key n="360">
-				<mod-shift>
-					<!-- name> PageUp </name>
-					<desc>Camera Up</desc -->
-					<binding>
-						<command>fgcamera-adjust</command>
-						<velocity>1</velocity>
-						<dof>y</dof>
-					</binding>
-					<mod-up>
-						<binding>
-							<command>fgcamera-adjust</command>
-							<velocity>0</velocity>
-							<dof>y</dof>
-						</binding>
-					</mod-up>
-				</mod-shift>
-			</key>
+        <mod-ctrl>
+            <name> Page Up </name>
+            <desc>Camera Up</desc>
+            <binding>
+                <command>fgcamera-adjust</command>
+                <velocity>1</velocity>
+                <dof>y</dof>
+            </binding>
+            <mod-up>
+                <binding>
+                    <command>fgcamera-adjust</command>
+                    <velocity>0</velocity>
+                    <dof>y</dof>
+                </binding>
+            </mod-up>
+        </mod-ctrl>
+    </key>
 
-			<key n="361">
-				<mod-shift>
-					<!--name> PageDown </name>
-					<desc>Camera Down</desc-->
-					<binding>
-						<command>fgcamera-adjust</command>
-						<velocity>-1</velocity>
-						<dof>y</dof>
-					</binding>
-					<mod-up>
-						<binding>
-							<command>fgcamera-adjust</command>
-							<velocity>0</velocity>
-							<dof>y</dof>
-						</binding>
-					</mod-up>
-				</mod-shift>
-			</key>
+    <key n="361">
+        <mod-ctrl>
+            <name> Page Down </name>
+            <desc> Camera Down </desc>
+            <binding>
+                <command>fgcamera-adjust</command>
+                <velocity>-1</velocity>
+                <dof>y</dof>
+            </binding>
+            <mod-up>
+                <binding>
+                    <command>fgcamera-adjust</command>
+                    <velocity>0</velocity>
+                    <dof>y</dof>
+                </binding>
+            </mod-up>
+        </mod-ctrl>
+    </key>
 
-			<key n="48">
-				<name> 0 </name>
-				<repeatable type="bool">false</repeatable>
-				<desc>Preset view 0</desc>
-				<binding>
-					<command>fgcamera-select</command>
-					<camera-id>0</camera-id>
-					<camera-type>aircraft</camera-type>
-				</binding>
-			</key>
+    <key n="357">
+        <mod-ctrl>
+            <name> Up </name>
+            <desc>Camera forward</desc>
+            <binding>
+                <command>fgcamera-adjust</command>
+                <velocity>-1</velocity>
+                <dof>z</dof>
+            </binding>
+            <mod-up>
+                <binding>
+                    <command>fgcamera-adjust</command>
+                    <velocity>0</velocity>
+                    <dof>z</dof>
+                </binding>
+            </mod-up>
+        </mod-ctrl>
+    </key>
 
-			<key n="49">
-				<name> 1 </name>
-				<repeatable type="bool">false</repeatable>
-				<desc>Preset view 1</desc>
-				<binding>
-					<command>fgcamera-select</command>
-					<camera-id>1</camera-id>
-					<camera-type>aircraft</camera-type>
-				</binding>
-			</key>
-			<key n="50">
-				<name> 2 </name>
-				<desc>Preset view 2</desc>
-				<binding>
-					<command>fgcamera-select</command>
-					<camera-id>2</camera-id>
-					<camera-type>aircraft</camera-type>
-				</binding>
-			</key>
+    <key n="359">
+        <mod-ctrl>
+            <name> Down </name>
+            <desc>camera back</desc>
+            <binding>
+                <command>fgcamera-adjust</command>
+                <velocity>1</velocity>
+                <dof>z</dof>
+            </binding>
+            <mod-up>
+                <binding>
+                    <command>fgcamera-adjust</command>
+                    <velocity>0</velocity>
+                    <dof>z</dof>
+                </binding>
+            </mod-up>
+        </mod-ctrl>
+    </key>
 
-			<key n="51">
-				<name> 3 </name>
-				<desc>Preset view 3</desc>
-				<binding>
-					<command>fgcamera-select</command>
-					<camera-id>3</camera-id>
-					<camera-type>aircraft</camera-type>
-				</binding>
-			</key>
+    <key n="356">
+        <mod-ctrl>
+            <name> Left </name>
+            <desc>Camera left</desc>
+            <binding>
+                <command>fgcamera-adjust</command>
+                <velocity>-1</velocity>
+                <dof>x</dof>
+            </binding>
+            <mod-up>
+                <binding>
+                    <command>fgcamera-adjust</command>
+                    <velocity>0</velocity>
+                    <dof>x</dof>
+                </binding>
+            </mod-up>
+        </mod-ctrl>
+    </key>
 
-			<key n="52">
-				<name> 4 </name>
-				<repeatable>0</repeatable>
-				<desc>Preset view 4</desc>
-				<binding>
-					<command>fgcamera-select</command>
-					<camera-id>4</camera-id>
-					<camera-type>aircraft</camera-type>
-				</binding>
-			</key>
+    <key n="358">
+        <mod-ctrl>
+            <name> Right </name>
+            <desc>Camera right</desc>
+            <binding>
+                <command>fgcamera-adjust</command>
+                <velocity>1</velocity>
+                <dof>x</dof>
+            </binding>
+            <mod-up>
+                <binding>
+                    <command>fgcamera-adjust</command>
+                    <velocity>0</velocity>
+                    <dof>x</dof>
+                </binding>
+            </mod-up>
+        </mod-ctrl>
+    </key>
 
-			<key n="53">
-				<name> 5 </name>
-				<desc>Preset view 5</desc>
-				<binding>
-					<command>fgcamera-select</command>
-					<camera-id>5</camera-id>
-					<camera-type>aircraft</camera-type>
-				</binding>
-			</key>
+    <key n="48">
+        <name> 0 </name>
+        <repeatable type="bool">false</repeatable>
+        <desc>Preset view 0</desc>
+        <binding>
+            <command>fgcamera-select</command>
+            <camera-id>0</camera-id>
+            <camera-type>aircraft</camera-type>
+        </binding>
+    </key>
 
-			<key n="54">
-				<name> 6 </name>
-				<desc>Preset view 6</desc>
-				<binding>
-					<command>fgcamera-select</command>
-					<camera-id>6</camera-id>
-					<camera-type>aircraft</camera-type>
-				</binding>
-			</key>
+    <key n="49">
+        <name> 1 </name>
+        <repeatable type="bool">false</repeatable>
+        <desc>Preset view 1</desc>
+        <binding>
+            <command>fgcamera-select</command>
+            <camera-id>1</camera-id>
+            <camera-type>aircraft</camera-type>
+        </binding>
+    </key>
+    <key n="50">
+        <name> 2 </name>
+        <desc>Preset view 2</desc>
+        <binding>
+            <command>fgcamera-select</command>
+            <camera-id>2</camera-id>
+            <camera-type>aircraft</camera-type>
+        </binding>
+    </key>
 
-			<key n="55">
-				<name> 7 </name>
-				<desc>Preset view 7</desc>
-				<binding>
-					<command>fgcamera-select</command>
-					<camera-id>7</camera-id>
-					<camera-type>aircraft</camera-type>
-				</binding>
-			</key>
+    <key n="51">
+        <name> 3 </name>
+        <desc>Preset view 3</desc>
+        <binding>
+            <command>fgcamera-select</command>
+            <camera-id>3</camera-id>
+            <camera-type>aircraft</camera-type>
+        </binding>
+    </key>
 
-			<key n="56">
-				<name> 8 </name>
-				<desc>Preset view 8</desc>
-				<binding>
-					<command>fgcamera-select</command>
-					<camera-id>8</camera-id>
-					<camera-type>aircraft</camera-type>
-				</binding>
-			</key>
+    <key n="52">
+        <name> 4 </name>
+        <repeatable>0</repeatable>
+        <desc>Preset view 4</desc>
+        <binding>
+            <command>fgcamera-select</command>
+            <camera-id>4</camera-id>
+            <camera-type>aircraft</camera-type>
+        </binding>
+    </key>
 
-			<key n="57">
-				<name> 9 </name>
-				<desc>Preset view 9</desc>
-				<binding>
-					<command>fgcamera-select</command>
-					<camera-id>9</camera-id>
-					<camera-type>aircraft</camera-type>
-				</binding>
-			</key>
+    <key n="53">
+        <name> 5 </name>
+        <desc>Preset view 5</desc>
+        <binding>
+            <command>fgcamera-select</command>
+            <camera-id>5</camera-id>
+            <camera-type>aircraft</camera-type>
+        </binding>
+    </key>
 
-			<key n="357">
-				<name> Up </name>
-				<desc>Camera forward</desc>
-				<binding>
-					<command>fgcamera-adjust</command>
-					<velocity>-1</velocity>
-					<dof>z</dof>
-				</binding>
-				<mod-up>
-					<binding>
-						<command>fgcamera-adjust</command>
-						<velocity>0</velocity>
-						<dof>z</dof>
-					</binding>
-				</mod-up>
-			</key>
+    <key n="54">
+        <name> 6 </name>
+        <desc>Preset view 6</desc>
+        <binding>
+            <command>fgcamera-select</command>
+            <camera-id>6</camera-id>
+            <camera-type>aircraft</camera-type>
+        </binding>
+    </key>
 
-			<key n="359">
-				<name> Down </name>
-				<desc>camera back</desc>
-				<binding>
-					<command>fgcamera-adjust</command>
-					<velocity>1</velocity>
-					<dof>z</dof>
-				</binding>
-				<mod-up>
-					<binding>
-						<command>fgcamera-adjust</command>
-						<velocity>0</velocity>
-						<dof>z</dof>
-					</binding>
-				</mod-up>
-			</key>
+    <key n="55">
+        <name> 7 </name>
+        <desc>Preset view 7</desc>
+        <binding>
+            <command>fgcamera-select</command>
+            <camera-id>7</camera-id>
+            <camera-type>aircraft</camera-type>
+        </binding>
+    </key>
 
-			<key n="356">
-				<name> Left </name>
-				<desc>Camera left</desc>
-				<binding>
-					<command>fgcamera-adjust</command>
-					<velocity>-1</velocity>
-					<dof>x</dof>
-				</binding>
-				<mod-up>
-					<binding>
-						<command>fgcamera-adjust</command>
-						<velocity>0</velocity>
-						<dof>x</dof>
-					</binding>
-				</mod-up>
-			</key>
+    <key n="56">
+        <name> 8 </name>
+        <desc>Preset view 8</desc>
+        <binding>
+            <command>fgcamera-select</command>
+            <camera-id>8</camera-id>
+            <camera-type>aircraft</camera-type>
+        </binding>
+    </key>
 
-			<key n="358">
-				<name> Right </name>
-				<desc>Camera right</desc>
-				<binding>
-					<command>fgcamera-adjust</command>
-					<velocity>1</velocity>
-					<dof>x</dof>
-				</binding>
-				<mod-up>
-					<binding>
-						<command>fgcamera-adjust</command>
-						<velocity>0</velocity>
-						<dof>x</dof>
-					</binding>
-				</mod-up>
-			</key>
+    <key n="57">
+        <name> 9 </name>
+        <desc>Preset view 9</desc>
+        <binding>
+            <command>fgcamera-select</command>
+            <camera-id>9</camera-id>
+            <camera-type>aircraft</camera-type>
+        </binding>
+    </key>
+    
 </PropertyList>
