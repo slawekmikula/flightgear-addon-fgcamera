@@ -5,17 +5,23 @@
 #--------------------------------------------------
 var load_cameras = func {
 	var aircraft  = getprop("/sim/aircraft");
-	var path      = getprop("/sim/fg-home") ~ "/aircraft-data/FGCamera/" ~ aircraft;
-	var file      = aircraft ~ ".xml";
-	var dir       = directory(path);
-	var cameraN   = props.Node.new();
-	var setF      = 0;
+	var file = aircraft ~ ".xml";
+    var path = nil;
+	var cameraN = props.Node.new();
+	var setF = 0;
 
-	if (dir == nil) { # FIX! (use more appropriate assumption)
-		path = my_root_path;
-		file = "default-cameras.xml";
-		setF = 1;
-	}
+    # search for user defined configuration (in fg-home)
+    path = getprop("/sim/fg-home") ~ "/aircraft-data/FGCamera/" ~ aircraft;
+    if (call(io.readfile, [path ~ "/" ~ file], nil, nil, var err=[]) == nil) {
+        # search in aircraft directory
+        path = getprop("/sim/aircraft-dir") ~ "/FGCamera/";
+        if (call(io.readfile, [path ~ "/" ~ file], nil, nil, var err=[]) == nil) {
+            # default configuration
+            path = my_root_path;
+            file = "default-cameras.xml";
+            setF = 1;
+        }
+    }
 
 	props.copy(io.read_properties(path ~ "/" ~ file), cameraN);
 
@@ -24,8 +30,9 @@ var load_cameras = func {
 		append( cameras, vec[i].getValues() );
 	}
 
-	if ( setF )
+	if ( setF ) {
 		set_default_offsets();
+    }
 
 	var cam_version = cameraN.getChild("version", 0, 1).getValue() or "v1.0";
 	print("cameras version: " ~ cam_version);
