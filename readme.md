@@ -7,9 +7,10 @@ Flightgear virtual camera. Written in NASAL. Adds features similar to Ezdok Came
 
 # Running
 
-- extract zip (if downloaded as a zip) to a given location. For example let's say we have /myfolder/addons/fgcamera with contents of the fgcamera addon.
-- run flightgear with --addon directive. WARNING this is not "additional settings" window in the launcher ! you
-  have to modify windows shortcut or linux startup script for example to looks like this (in linux):
+- extract zip (if downloaded as a zip) to a given location. For example let's
+  say we have /myfolder/addons/thisaddon with contents of this addon.
+- run flightgear with --addon directive **OR** add it in the Launcher application
+  in 'Add-On' section.
 
 Code:
 ```
