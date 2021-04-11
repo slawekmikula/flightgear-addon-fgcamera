@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<PropertyList>
+
+	<name>fgcamera-help</name>
+	<layout>vbox</layout>
+    <width>500</width>
+
+    <group>
+        <layout>hbox</layout>
+        <text>
+            <halign>left</halign>
+            <label>FGCamera quick help</label>
+        </text>
+		<empty><stretch>1</stretch></empty>
+        <button>
+            <halign>right</halign>
+            <pref-width>20</pref-width>
+            <pref-height>20</pref-height>
+            <legend>X</legend>
+            <key>Esc</key>
+            <binding>
+                <command>dialog-close</command>
+            </binding>
+        </button>
+    </group>
+
+    <hrule/>
+
+	<group>
+		<layout>vbox</layout>
+
+		<text>
+			<halign>center</halign>
+			<label>FGCamera modifies the keyboard and mouse handling.</label>
+		</text>
+        <text>
+			<halign>center</halign>
+			<label></label>
+		</text>
+
+		<text>
+			<halign>center</halign>
+			<label>Keys 0-9 switches between defined camera views.</label>
+		</text>
+        <text>
+			<halign>center</halign>
+			<label></label>
+		</text>
+
+		<text>
+			<halign>center</halign>
+			<label>Ctrl+PgUp, Ctrl+PgDown, Ctrl+Up, Ctrl+Down, Ctrl+Right, Ctrl+Left</label>
+		</text>
+        <text>
+			<halign>center</halign>
+			<label>modifies current camera position and view. You can use also mouseview</label>
+		</text>
+        <text>
+			<halign>center</halign>
+			<label>to define specific angle/view. Remember to store the settings</label>
+		</text>
+        <text>
+			<halign>center</halign>
+			<label>after modify the camera position !</label>
+		</text>
+        <text>
+			<halign>center</halign>
+			<label></label>
+		</text>
+
+        <text>
+			<halign>center</halign>
+			<label>Always look at the View->FGCamera dialog to configure</label>
+		</text>
+        <text>
+			<halign>center</halign>
+			<label>your views/camera position and set other settings.</label>
+		</text>
+
+	</group>
+
+	<hrule/>
+
+	<group>
+		<layout>hbox</layout>
+
+		<button>
+			<halign>center</halign>
+			<legend>Close</legend>
+			<pref-width>210</pref-width>
+			<binding>
+				<command>dialog-close</command>
+			</binding>
+		</button>
+	</group>
+
+</PropertyList>

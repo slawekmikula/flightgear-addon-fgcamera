@@ -3,7 +3,7 @@
 <PropertyList>
 	<name>fgcamera-main</name>
 	<layout>vbox</layout>
-	<width>450</width>
+	<width>600</width>
 	<x>-20</x>
 	<y>-20</y>
 
@@ -45,8 +45,17 @@
 			</binding>
 		</button>
 
+        <button>
+			<legend>Help</legend>
+			<pref-height>30</pref-height>
+			<binding>
+				<command>dialog-show</command>
+				<dialog-name>fgcamera-help</dialog-name>
+			</binding>
+		</button>
+
 		<button>
-			<legend>Copy</legend>
+			<legend>Copy camera</legend>
 			<pref-height>30</pref-height>
 			<binding>
 				<command>nasal</command>
@@ -105,9 +114,9 @@
 			<empty><stretch>1</stretch></empty>
 
 			<button>
-				<legend>U</legend>
+				<legend>Up</legend>
 				<key>Esc</key>
-				<pref-width>30</pref-width>
+				<pref-width>50</pref-width>
 				<pref-height>30</pref-height>
 				<binding>
 					<command>nasal</command>
@@ -116,9 +125,9 @@
 			</button>
 
 			<button>
-				<legend>D</legend>
+				<legend>Down</legend>
 				<key>Esc</key>
-				<pref-width>30</pref-width>
+				<pref-width>50</pref-width>
 				<pref-height>30</pref-height>
 				<binding>
 					<command>nasal</command>
@@ -187,7 +196,7 @@
 		</button>
 
 		<button>
-			<legend>CFG...</legend>
+			<legend>Config</legend>
 			<pref-height>30</pref-height>
 			<binding>
 				<command>dialog-show</command>
@@ -266,7 +275,7 @@
 						setprop("/sim/fgcamera/current-camera/category", v.category);
 						name = "[" ~ name ~ "]";
 					}
-					list.addChild("value").setValue(i ~ ". " ~ name  ~ "[" ~ v.category ~ "]");
+					list.addChild("value").setValue((i + 1) ~ ". " ~ name ~ "[" ~ v.category ~ "]");
 					i += 1;
 				}
 				dialog_update("camera_list", "camera_name", "camera_category");

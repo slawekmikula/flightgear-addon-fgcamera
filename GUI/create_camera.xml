@@ -175,7 +175,7 @@
 				camera       = cameraN.getChild("camera").getValues();
 				camera.name  = camera_name;
 				camera.type  = type;
-				camera.offsets = current_camera.offsets;
+				camera.offsets = current_camera.offsets[0:];
 				if (type == "FGCamera5") {
 					camera.tower = set_tower(camera.tower);
 				}

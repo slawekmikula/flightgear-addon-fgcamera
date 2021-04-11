@@ -6,10 +6,10 @@
 var load_gui = func {
 	var dialogs   = ["fgcamera-main", "create-new-camera", "current-camera",
 									 "fgcamera-options", "DHM-settings", "RND-mixer",
-									 "RND-generator", "RND-curves", "RND-import"];
+									 "RND-generator", "RND-curves", "RND-import", "fgcamera-help", "fgcamera-welcome"];
 	var filenames = ["main", "create_camera", "camera_settings", "fgcamera_options",
 									 "DHM_settings", "RND_mixer", "RND_generator", "RND_curves",
-									 "RND_import"];
+									 "RND_import", "fgcamera-help", "fgcamera-welcome"];
 
 	forindex (var i; dialogs) {
 		gui.Dialog.new("/sim/gui/dialogs/" ~ dialogs[i] ~ "/dialog", my_root_path ~ "/GUI/" ~ filenames[i] ~ ".xml");

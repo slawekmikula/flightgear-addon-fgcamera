@@ -31,6 +31,7 @@ More documents can be found in the Docs folder.
 - 1.0-1.2 - versions published on the flightgear forum
 - 1.2.1 - addon compatiblity + small fixes
 - 1.2.2 - #5 (reverse mouse controls - the same as in FG), #3 disable <space> keyboard mapping, #10 adds additional API for walker aircraft integration
+- 1.2.3 - fix create new camera, fix count cameras from 1, welcome message, help message
 
 # Planned (branch next)
 
@@ -43,6 +44,7 @@ More documents can be found in the Docs folder.
 
 - Marius_A - concept, coding
 - Slawek Mikula - addon compatiblity
+- PlayeRom - fixes and improvements
 
 # Links
 

@@ -87,9 +87,18 @@ var init_mouse = func {
 var fdm_init_listener = _setlistener("/sim/signals/fdm-initialized", func {
 	removelistener(fdm_init_listener);
 
+    # user-archive & defaults
+    var welcomeSkipNode = props.globals.getNode("/sim/fgcamera/welcome-skip", 1);
+    welcomeSkipNode.setAttribute("userarchive", "y");
+    if (welcomeSkipNode.getValue() == nil) {
+      welcomeSkipNode.setValue("0");
+    }
+
+    # helicopeter flag
 	helicopterF = check_helicopter();
 	print("helicopter: " ~ helicopterF);
 
+    # loading nasal functions
 	load_nasal ([
 		"math",
 		"version",
@@ -113,12 +122,19 @@ var fdm_init_listener = _setlistener("/sim/signals/fdm-initialized", func {
 	load_cameras();
 	load_gui();
 
+    # register views
 	foreach (var a; my_views) {
 		view.manager.register(a, fgcamera_view_handler);
 	}
 
+    # setting camera-id
 	if ( getprop("/sim/fgcamera/enable") ) {
-		setprop (my_node_path ~ "/current-camera/camera-id", 0);
+		setprop (my_node_path ~ "/current-camera/camera-id", 1);
+	}
+
+    # welcome message
+    if (getprop("/sim/fgcamera/welcome-skip") != 1) {
+		fgcommand("dialog-show", props.Node.new({'dialog-name':'fgcamera-welcome'}));
 	}
 });
 
