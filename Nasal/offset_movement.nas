@@ -11,6 +11,9 @@ movement_handler = {
 	_b      : 0,
 	_from   : zeros(6),
 	_to     : [],
+	_fromFov: getprop("/sim/current-view/field-of-view"),
+	_toFov  : getprop("/sim/current-view/field-of-view"),
+	_diffFov: 0,
 
 	_dlg    : nil,
 #--------------------------------------------------
@@ -87,7 +90,9 @@ movement_handler = {
 		me._set_view(view_id);
 		manager._reset();
 
-		setprop("/sim/current-view/field-of-view", cameras[current[1]].fov); # fix!
+		me._fromFov = getprop("/sim/current-view/field-of-view");
+		me._toFov = cameras[current[1]].fov;
+		me._diffFov = math.abs(me._fromFov - me._toFov);
 
 		me._updateF = 1;
 	},
@@ -120,6 +125,7 @@ movement_handler = {
 
 			show_dialog();
 			show_panel();
+			setprop("/sim/current-view/field-of-view", cameras[current[1]].fov); # to be sure that finally the fov is correct
 
 		} else {
 			# FIXME - remove comment ?
@@ -131,6 +137,21 @@ movement_handler = {
 						delta = (delta - math.sgn(delta) * 360);
 				}
 				me.offsets[i] = me._from[i] + me.blend * delta;
+			}
+
+			if (me._fromFov > me._toFov) {
+				var fov = me._fromFov - (me._diffFov * me._b);
+				if (fov < me._toFov) {
+					fov = me._toFov;
+				}
+				setprop("/sim/current-view/field-of-view", fov);
+			}
+			else if (me._fromFov < me._toFov) {
+				var fov = me._fromFov + (me._diffFov * me._b);
+				if (fov > me._toFov) {
+					fov = me._toFov;
+				}
+				setprop("/sim/current-view/field-of-view", fov);
 			}
 
 			me._updateF = 1;
