@@ -1,6 +1,10 @@
 FGCamera FlightGear Addon
 =========================
 
+# OBSOLETE CODE
+
+This fork of the fgcamera-addon is deprecated (sorry, RL issues). Please take a look at the PlayeRom's fork which from this time is a main repository for the development of this addon: https://github.com/PlayeRom/flightgear-addon-fgcamera. Thanks PlayerRom for taking it further !
+
 # About
 
 Flightgear virtual camera. Written in NASAL. Adds features similar to Ezdok Camera Addon for FSX.
